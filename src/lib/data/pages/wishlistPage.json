@@ -1,0 +1,19 @@
+{
+  "pageType": "wishlist",
+  "slug": "wishlist",
+  "isPublished": true,
+  "seo": {
+    "title": { "en": "Wishlist - KH Food", "hi": "इच्छा सूची - केएच फूड" },
+    "description": { "en": "Your saved items.", "hi": "आपकी सहेजी गई वस्तुएं।" }
+  },
+  "sections": [
+    {
+      "id": "wishlist-header",
+      "type": "text",
+      "adminTitle": "Wishlist Header",
+      "props": {
+        "heading": { "en": "My Wishlist", "hi": "मेरी इच्छा सूची" }
+      }
+    }
+  ]
+}

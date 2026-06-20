@@ -1,0 +1,192 @@
+/* Montserrat is loaded via next/font/google in layout.tsx — no @import needed */
+@import "tailwindcss";
+
+@theme inline {
+  --color-primary: var(--primary);
+  --color-primary-light: var(--primary-light);
+  --color-primary-dark: var(--primary-dark);
+  --color-secondary: var(--secondary);
+  --color-accent: var(--accent);
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-card: var(--card);
+  --color-text: var(--text);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --color-border: var(--border);
+  --color-border-hover: var(--border-hover);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-error: var(--error);
+  --color-info: var(--info);
+  --font-sans: var(--font-body);
+  --font-heading: var(--font-heading);
+  --font-mono: var(--font-mono);
+}
+
+:root {
+  --primary: #eaba88;
+  --primary-light: #f3d5b0;
+  --primary-dark: #c9813f;
+  --primary-hover: #d4925a;
+  --secondary: #111111;
+  --secondary-light: #333333;
+  --secondary-hover: #222222;
+  --accent: #FFD100;
+  --accent-hover: #e6bc00;
+  --accent-soft: #fff8e0;
+  --background: #ffffff;
+  --surface: #f5f5f7;
+  --card: #ffffff;
+  --text: #111111;
+  --text-secondary: #4b4b4b;
+  --text-muted: #7a7a7a;
+  --border: #e5e5e5;
+  --border-hover: #eaba88;
+  --success: #22c55e;
+  --warning: #f59e0b;
+  --error: #ef4444;
+  --info: #3b82f6;
+  --overlay: rgba(0,0,0,0.5);
+  --success-light: #dcfce7;
+  --warning-light: #fef3c7;
+  --error-light: #fee2e2;
+  --info-light: #dbeafe;
+  --badge-bg: #f3d5b0;
+  --badge-text: #111111;
+  --tag-bg: #f5f5f7;
+  --tag-text: #eaba88;
+  --testimonial-bg: #f5f5f7;
+  --testimonial-border: #e5e5e5;
+  --stat-number: #eaba88;
+  --marketplace-card-bg: #ffffff;
+  --integration-icon-bg: #f3d5b0;
+  --momentum-accent: #eaba88;
+  --sales-badge-bg: #ef4444;
+  --sales-badge-text: #ffffff;
+  --font-body:    var(--font-montserrat, "Montserrat"), system-ui, sans-serif;
+  --font-heading: var(--font-montserrat, "Montserrat"), system-ui, sans-serif;
+  --font-mono:    var(--font-montserrat, "Montserrat"), monospace;
+  --font-display: "Playfair Display", serif;
+  --text-xs: 11px;
+  --text-sm: 13px;
+  --text-base: 16px;
+  --text-md: 18px;
+  --text-lg: 20px;
+  --text-xl: 24px;
+  --text-2xl: 32px;
+  --text-3xl: 40px;
+  --text-4xl: 48px;
+  --text-5xl: 64px;
+  --fw-light: 300;
+  --fw-normal: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+  --fw-extrabold: 800;
+  --leading-tight: 1.15;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.8;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 24px;
+  --radius-full: 9999px;
+  --shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
+  --shadow-md: 0 4px 20px rgba(0,0,0,0.10);
+  --shadow-lg: 0 10px 40px rgba(0,0,0,0.14);
+  --shadow-hover: 0 16px 48px rgba(234,186,136,0.25);
+  --container: 1280px;
+  --navbar-height: 104px;
+  --section-padding: 80px;
+  --btn-height: 48px;
+  --btn-padding-x: 28px;
+  --btn-radius: 9999px;
+  --btn-primary-bg: #eaba88;
+  --btn-primary-text: #111111;
+  --btn-primary-hover: #d4925a;
+  --btn-secondary-bg: #111111;
+  --btn-secondary-text: #ffffff;
+  --btn-secondary-hover: #333333;
+  --btn-outline-border: #eaba88;
+  --btn-outline-text: #111111;
+  --btn-outline-hover-bg: #eaba88;
+  --btn-outline-hover-text: #111111;
+  --input-height: 48px;
+  --input-padding-x: 20px;
+  --input-padding-y: 12px;
+  --input-radius: 8px;
+  --input-bg: #ffffff;
+  --input-text: #111111;
+  --input-border: #e5e5e5;
+  --input-border-hover: #eaba88;
+  --input-placeholder: #999999;
+  --input-focus-border: #eaba88;
+  --input-focus-shadow: 0 0 0 3px rgba(234,186,136,0.25);
+  --input-disabled-bg: #eeeeee;
+  --input-disabled-text: #aaaaaa;
+  --textarea-min-height: 120px;
+  --modal-sm: 360px;
+  --modal-md: 520px;
+  --modal-lg: 720px;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; padding: 0; overflow-x: hidden; font-family: var(--font-body); background: var(--background); color: var(--text); }
+h1,h2,h3,h4,h5,h6 { margin: 0; font-family: var(--font-heading); }
+a { color: inherit; text-decoration: none; }
+
+.skip-to-content { position: absolute; top: -40px; left: 0; background: var(--primary); color: white; padding: 8px; z-index: 100; text-decoration: none; }
+.skip-to-content:focus { top: 0; }
+:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *,*::before,*::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+}
+
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--surface); }
+::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 999px; }
+
+.container-custom { max-width: var(--container); margin-inline: auto; padding-inline: 16px; }
+.section-padding { padding-block: var(--section-padding); }
+
+.card-theme { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); transition: all 0.3s ease; }
+.card-theme:hover { box-shadow: var(--shadow-hover); transform: translateY(-2px); }
+
+.card-product { background: var(--card); border-radius: var(--radius-lg); overflow: hidden; transition: all 0.3s ease; border: 1px solid var(--border); }
+.card-product:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+
+.btn-primary { background: var(--btn-primary-bg); color: var(--btn-primary-text); min-height: var(--btn-height); padding-inline: var(--btn-padding-x); border-radius: var(--btn-radius); font-weight: var(--fw-medium); transition: all 0.3s ease; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 8px; border: none; }
+.btn-primary:hover { background: var(--btn-primary-hover); transform: translateY(-2px); }
+.btn-primary:active { transform: translateY(0); }
+
+.btn-secondary { background: var(--btn-secondary-bg); color: var(--btn-secondary-text); min-height: var(--btn-height); padding-inline: var(--btn-padding-x); border-radius: var(--btn-radius); font-weight: var(--fw-medium); transition: all 0.3s ease; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 8px; border: none; }
+.btn-secondary:hover { background: var(--btn-secondary-hover); transform: translateY(-2px); }
+
+.btn-outline { background: transparent; border: 1px solid var(--btn-outline-border); color: var(--btn-outline-text); min-height: var(--btn-height); padding-inline: var(--btn-padding-x); border-radius: var(--btn-radius); font-weight: var(--fw-medium); transition: all 0.3s ease; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 8px; }
+.btn-outline:hover { background: var(--btn-outline-hover-bg); color: var(--btn-outline-hover-text); transform: translateY(-2px); }
+
+.form-input { background: var(--input-bg); color: var(--input-text); border: 1px solid var(--input-border); border-radius: var(--input-radius); padding: var(--input-padding-y) var(--input-padding-x); min-height: var(--input-height); width: 100%; transition: all 0.2s ease; }
+.form-input:focus { outline: none; border-color: var(--input-focus-border); box-shadow: var(--input-focus-shadow); }
+.form-input::placeholder { color: var(--input-placeholder); }
+.form-input:disabled { background: var(--input-disabled-bg); color: var(--input-disabled-text); cursor: not-allowed; }
+textarea.form-input { min-height: var(--textarea-min-height); }
+
+.gradient-text { background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.gradient-bg { background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); }

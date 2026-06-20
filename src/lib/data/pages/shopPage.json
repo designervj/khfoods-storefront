@@ -1,0 +1,129 @@
+{
+  "pageType": "shop",
+  "slug": "shop",
+  "isPublished": true,
+  "seo": {
+    "title": { "en": "Shop - KH Food Premium Peanuts", "hi": "दुकान - केएच फूड प्रीमियम मूंगफली" },
+    "description": { "en": "Browse our collection of premium all-natural roasted peanuts. Free shipping within the US on all orders.", "hi": "हमारे प्रीमियम प्राकृतिक भुनी मूंगफली के संग्रह को देखें। सभी ऑर्डर पर अमेरिका में मुफ्त शिपिंग।" }
+  },
+  "sections": [
+    {
+      "id": "shop-hero",
+      "type": "hero",
+      "adminTitle": "Shop Hero",
+      "props": {
+        "heading": { "en": "Our Products", "hi": "हमारे उत्पाद" },
+        "subheading": { "en": "Best Peanuts on Earth", "hi": "धरती की सबसे अच्छी मूंगफली" }
+      }
+    },
+    {
+      "id": "shop-grid",
+      "type": "products-grid",
+      "adminTitle": "Product Grid",
+      "props": {
+        "description": { "en": "Free Shipping Within US - We ship orders to all states in US including AK, HI, PR for free.", "hi": "अमेरिका में मुफ्त शिपिंग - हम AK, HI, PR सहित US के सभी राज्यों में मुफ्त शिपिंग करते हैं." }
+      },
+      "content": [
+        {
+          "id": "product-1",
+          "type": "product-item",
+          "props": {
+            "name": { "en": "Roasted Peanuts: 8 Packs", "hi": "भुनी मूंगफली: 8 पैक" },
+            "qty": { "en": "8 Packs, 6 oz each", "hi": "8 पैक, 6 औंस प्रत्येक" },
+            "price": { "en": "$36.00", "hi": "$36.00" },
+            "image": { "en": "/images/product-1.jpg", "hi": "/images/product-1.jpg" },
+            "slug": { "en": "/products/single", "hi": "/products/single" }
+          }
+        },
+        {
+          "id": "product-2",
+          "type": "product-item",
+          "props": {
+            "name": { "en": "Roasted Peanuts: 14 Packs", "hi": "भुनी मूंगफली: 14 पैक" },
+            "qty": { "en": "14 Packs, 6 oz each", "hi": "14 पैक, 6 औंस प्रत्येक" },
+            "price": { "en": "$58.00", "hi": "$58.00" },
+            "image": { "en": "/images/product-2.jpg", "hi": "/images/product-2.jpg" },
+            "slug": { "en": "/products/single", "hi": "/products/single" }
+          }
+        },
+        {
+          "id": "product-3",
+          "type": "product-item",
+          "props": {
+            "name": { "en": "Roasted Peanuts: 21 Packs", "hi": "भुनी मूंगफली: 21 पैक" },
+            "qty": { "en": "21 Packs, 6 oz each", "hi": "21 पैक, 6 औंस प्रत्येक" },
+            "price": { "en": "$80.00", "hi": "$80.00" },
+            "image": { "en": "/images/product-3.jpg", "hi": "/images/product-3.jpg" },
+            "slug": { "en": "/products/single", "hi": "/products/single" }
+          }
+        },
+        {
+          "id": "product-4",
+          "type": "product-item",
+          "props": {
+            "name": { "en": "Roasted Peanuts: 6 Bags", "hi": "भुनी मूंगफली: 6 बैग" },
+            "qty": { "en": "6 Bags, 16 oz each", "hi": "6 बैग, 16 औंस प्रत्येक" },
+            "price": { "en": "$65.00", "hi": "$65.00" },
+            "image": { "en": "/images/product-4.jpg", "hi": "/images/product-4.jpg" },
+            "slug": { "en": "/products/single", "hi": "/products/single" }
+          }
+        }
+      ]
+    },
+    {
+      "id": "shop-international",
+      "type": "products-grid",
+      "adminTitle": "International Products",
+      "props": {
+        "heading": { "en": "Ship International", "hi": "अंतरराष्ट्रीय शिपिंग" },
+        "description": { "en": "Currently, we offer direct shipping to Taiwan only. If you are interested to ship to other countries, please visit Contact Us page to submit your inquiry.", "hi": "वर्तमान में, हम केवल ताइवान के लिए सीधी शिपिंग प्रदान करते हैं। यदि आप अन्य देशों में शिप करने में रुचि रखते हैं, तो कृपया अपनी पूछताछ जमा करने के लिए संपर्क पृष्ठ पर जाएं।" }
+      },
+      "content": [
+        {
+          "id": "intl-product-1",
+          "type": "product-item",
+          "props": {
+            "name": { "en": "Roasted Peanuts: 6 Bags (Taiwan)", "hi": "भुनी मूंगफली: 6 बैग (ताइवान)" },
+            "qty": { "en": "6 Bags, 16 oz each", "hi": "6 बैग, 16 औंस प्रत्येक" },
+            "price": { "en": "$90.00", "hi": "$90.00" },
+            "image": { "en": "/images/product-4.jpg", "hi": "/images/product-4.jpg" },
+            "slug": { "en": "/products/single", "hi": "/products/single" }
+          }
+        },
+        {
+          "id": "intl-product-2",
+          "type": "product-item",
+          "props": {
+            "name": { "en": "Roasted Peanuts: 12 Bags (Taiwan)", "hi": "भुनी मूंगफली: 12 बैग (ताइवान)" },
+            "qty": { "en": "12 Bags, 16 oz each", "hi": "12 बैग, 16 औंस प्रत्येक" },
+            "price": { "en": "$148.00", "hi": "$148.00" },
+            "image": { "en": "/images/product-4.jpg", "hi": "/images/product-4.jpg" },
+            "slug": { "en": "/products/single", "hi": "/products/single" }
+          }
+        },
+        {
+          "id": "intl-product-3",
+          "type": "product-item",
+          "props": {
+            "name": { "en": "Roasted Peanuts: 14 Packs (Taiwan)", "hi": "भुनी मूंगफली: 14 पैक (ताइवान)" },
+            "qty": { "en": "14 Packs, 6 oz each", "hi": "14 पैक, 6 औंस प्रत्येक" },
+            "price": { "en": "$89.00", "hi": "$89.00" },
+            "image": { "en": "/images/product-2.jpg", "hi": "/images/product-2.jpg" },
+            "slug": { "en": "/products/single", "hi": "/products/single" }
+          }
+        },
+        {
+          "id": "intl-product-4",
+          "type": "product-item",
+          "props": {
+            "name": { "en": "Roasted Peanuts: 24 Packs (Taiwan)", "hi": "भुनी मूंगफली: 24 पैक (ताइवान)" },
+            "qty": { "en": "24 Packs, 6 oz each", "hi": "24 पैक, 6 औंस प्रत्येक" },
+            "price": { "en": "$138.00", "hi": "$138.00" },
+            "image": { "en": "/images/product-3.jpg", "hi": "/images/product-3.jpg" },
+            "slug": { "en": "/products/single", "hi": "/products/single" }
+          }
+        }
+      ]
+    }
+  ]
+}

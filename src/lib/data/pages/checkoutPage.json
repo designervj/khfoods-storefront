@@ -1,0 +1,19 @@
+{
+  "pageType": "checkout",
+  "slug": "checkout",
+  "isPublished": true,
+  "seo": {
+    "title": { "en": "Checkout - KH Food", "hi": "चेकआउट - केएच फूड" },
+    "description": { "en": "Complete your purchase.", "hi": "अपनी खरीदारी पूरी करें।" }
+  },
+  "sections": [
+    {
+      "id": "checkout-header",
+      "type": "text",
+      "adminTitle": "Checkout Header",
+      "props": {
+        "heading": { "en": "Checkout", "hi": "चेकआउट" }
+      }
+    }
+  ]
+}

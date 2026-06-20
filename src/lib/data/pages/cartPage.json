@@ -1,0 +1,19 @@
+{
+  "pageType": "cart",
+  "slug": "cart",
+  "isPublished": true,
+  "seo": {
+    "title": { "en": "Cart - KH Food", "hi": "कार्ट - केएच फूड" },
+    "description": { "en": "Review your shopping cart.", "hi": "अपनी खरीदारी टोकरी की समीक्षा करें।" }
+  },
+  "sections": [
+    {
+      "id": "cart-header",
+      "type": "text",
+      "adminTitle": "Cart Header",
+      "props": {
+        "heading": { "en": "Your Cart", "hi": "आपकी टोकरी" }
+      }
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "pageType": "terms",
+  "slug": "terms",
+  "isPublished": true,
+  "seo": {
+    "title": { "en": "Terms of Service - KH Food", "hi": "सेवा की शर्तें - केएच फूड" },
+    "description": { "en": "Terms and conditions for using KH Food website.", "hi": "केएच फूड वेबसाइट का उपयोग करने की शर्तें।" }
+  },
+  "sections": [
+    {
+      "id": "terms-content",
+      "type": "text",
+      "adminTitle": "Terms Content",
+      "props": {
+        "heading": { "en": "Terms of Service", "hi": "सेवा की शर्तें" },
+        "content": { "en": "Lorem ipsum dolor sit amet...", "hi": "यह सेवा की शर्तें पृष्ठ है।" }
+      }
+    }
+  ]
+}

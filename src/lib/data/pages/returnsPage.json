@@ -1,0 +1,20 @@
+{
+  "pageType": "returns",
+  "slug": "returns",
+  "isPublished": true,
+  "seo": {
+    "title": { "en": "Returns Policy - KH Food", "hi": "वापसी नीति - केएच फूड" },
+    "description": { "en": "KH Food returns and exchange policy.", "hi": "केएच फूड वापसी और विनिमय नीति।" }
+  },
+  "sections": [
+    {
+      "id": "returns-content",
+      "type": "text",
+      "adminTitle": "Returns Content",
+      "props": {
+        "heading": { "en": "Returns Policy", "hi": "वापसी नीति" },
+        "content": { "en": "We guarantee satisfaction...", "hi": "हम संतुष्टि की गारंटी देते हैं..." }
+      }
+    }
+  ]
+}

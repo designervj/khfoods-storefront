@@ -1,0 +1,63 @@
+{
+  "logo": {
+    "text": { "en": "KH Food", "hi": "केएच फूड" },
+    "imageSrc": "/logo.png"
+  },
+  "topBar": {
+    "welcome": { "en": "Welcome to Khfoods!", "hi": "खाद्य में आपका स्वागत है!" },
+    "storeLocator": { "en": "Store locator", "hi": "स्टोर लोकेटर" },
+    "wholesale": { "en": "Wholesale", "hi": "थोक" }
+  },
+  "navigation": [
+    { "label": { "en": "HOME", "hi": "होम" }, "href": "/" },
+    {
+      "label": { "en": "ABOUT US", "hi": "हमारे बारे में" },
+      "href": "/about",
+      "megaMenu": [
+        {
+          "category": { "en": "HISTORY", "hi": "इतिहास" },
+          "items": [
+            { "label": { "en": "Our History", "hi": "हमारा इतिहास" }, "href": "/about" }
+          ]
+        },
+        {
+          "category": { "en": "NUTRITION", "hi": "पोषण" },
+          "items": [
+            { "label": { "en": "Nutrition", "hi": "पोषण" }, "href": "/about#nutrition" }
+          ]
+        },
+        {
+          "category": { "en": "PROCESS", "hi": "प्रक्रिया" },
+          "items": [
+            { "label": { "en": "Our Process", "hi": "हमारी प्रक्रिया" }, "href": "/about#process" }
+          ]
+        }
+      ]
+    },
+    {
+      "label": { "en": "PRODUCTS", "hi": "उत्पाद" },
+      "href": "/shop",
+      "megaMenu": [
+        {
+          "category": { "en": "ALL PRODUCTS", "hi": "सभी उत्पाद" },
+          "items": [
+            { "label": { "en": "All Products", "hi": "सभी उत्पाद" }, "href": "/shop" }
+          ]
+        },
+        {
+          "category": { "en": "NEW ARRIVALS", "hi": "नए आइटम" },
+          "items": [
+            { "label": { "en": "New Arrivals", "hi": "नए आइटम" }, "href": "/shop?category=new" }
+          ]
+        },
+        {
+          "category": { "en": "BEST SELLERS", "hi": "बेस्ट सेलर" },
+          "items": [
+            { "label": { "en": "Best Sellers", "hi": "बेस्ट सेलर" }, "href": "/shop?category=bestsellers" }
+          ]
+        }
+      ]
+    },
+    { "label": { "en": "CONTACT US", "hi": "संपर्क करें" }, "href": "/contact" }
+  ]
+}

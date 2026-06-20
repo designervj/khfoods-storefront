@@ -1,0 +1,346 @@
+{
+  "pageType": "home",
+  "slug": "home",
+  "isPublished": true,
+  "seo": {
+    "title": { "en": "KH Food - The Best Peanuts on Earth", "hi": "केएच फूड - धरती की सबसे अच्छी मूंगफली" },
+    "description": { "en": "KH Food brings you the finest all-natural roasted peanuts since 1991. No preservatives. Farm-fresh quality. Free shipping within the US.", "hi": "केएच फूड 1991 से आपके लिए बेहतरीन प्राकृतिक भुनी हुई मूंगफली लाता है। कोई परिरक्षक नहीं। ताज़ा फार्म गुणवत्ता। अमेरिका में मुफ्त शिपिंग।" }
+  },
+  "sections": [
+    {
+      "id": "hero-section-1",
+      "type": "hero",
+      "adminTitle": "Hero",
+      "props": {
+        "subtitle": { "en": "KHFOOD PRESENTS", "hi": "KHFOOD प्रस्तुत करता है" },
+        "title": { "en": "BEST PEANUTS ON EARTH", "hi": "धरती की सबसे अच्छी मूंगफली" },
+        "videoSrc": { "en": "/Image/IMG_5385.mov", "hi": "/video/IMG_5385.mov" },
+        "ctaButton": { "en": "SHOP NOW", "hi": "अभी खरीदें" },
+        "ctaLink": { "en": "#shop", "hi": "#shop" }
+      },
+      "content": []
+    },
+    {
+      "id": "about-section-1",
+      "type": "about",
+      "adminTitle": "About Us",
+      "props": {
+        "since": { "en": "SINCE 1990", "hi": "1990 से" },
+        "title": { "en": "A Little Story", "hi": "एक छोटी कहानी" },
+        "titleHighlight": { "en": "About Us", "hi": "हमारे बारे में" },
+        "para1": { "en": "For nearly three decades, our vision for our peanuts stands the same: To process and manufacture the best peanuts in the world.", "hi": "लगभग तीन दशकों से, हमारी मूंगफली के लिए हमारी दृष्टि समान है: दुनिया में बेहतरीन मूंगफली का प्रसंस्करण और निर्माण करना।" },
+        "para2": { "en": "With only natural ingredients and absolutely no preservatives, we guarantee that our peanuts do not go through any unnatural processing before they reach your home!", "hi": "केवल प्राकृतिक सामग्री और बिल्कुल बिना परिरक्षकों के, हम गारंटी देते हैं कि हमारी मूंगफली आपके घर तक पहुंचने से पहले किसी भी अप्राकृतिक प्रसंस्करण से नहीं गुजरती!" },
+        "ctaButton": { "en": "KNOW MORE", "hi": "अधिक जानें" },
+        "ctaLink": { "en": "/about", "hi": "/about" },
+        "image": { "en": "/Image/Image-1.jpg", "hi": "/Image/Image-1.jpg" },
+        "badge": { "en": "OVER 30 YEARS", "hi": "30 से अधिक वर्ष" }
+      },
+      "content": []
+    },
+    {
+      "id": "offer-section-1",
+      "type": "offer-grid",
+      "adminTitle": "What We Offer",
+      "props": {
+        "title": { "en": "What We Offer", "hi": "हम क्या प्रदान करते हैं" }
+      },
+      "content": [
+        {
+          "id": "offer-1",
+          "type": "offer-item",
+          "props": {
+            "icon": { "en": "building", "hi": "building" },
+            "title": { "en": "Gift Boxes", "hi": "गिफ्ट बॉक्स" },
+            "description": { "en": "Our premium gift boxes make the perfect present for any occasion. Curated with care and delivered fresh to your door.", "hi": "हमारे प्रीमियम गिफ्ट बॉक्स किसी भी अवसर के लिए एकदम सही उपहार हैं।" }
+          }
+        },
+        {
+          "id": "offer-2",
+          "type": "offer-item",
+          "props": {
+            "icon": { "en": "grid", "hi": "grid" },
+            "title": { "en": "Wholesale", "hi": "थोक" },
+            "description": { "en": "We partner with retailers and businesses across the country to provide our premium peanuts in bulk at competitive prices.", "hi": "हम देश भर में खुदरा विक्रेताओं और व्यवसायों के साथ प्रतिस्पर्धी कीमतों पर थोक में मूंगफली प्रदान करते हैं।" }
+          }
+        },
+        {
+          "id": "offer-3",
+          "type": "offer-item",
+          "props": {
+            "icon": { "en": "home", "hi": "home" },
+            "title": { "en": "International", "hi": "अंतरराष्ट्रीय" },
+            "description": { "en": "KH Food peanuts are now shipped globally. Enjoy the same premium quality peanuts no matter where you are.", "hi": "KH Food मूंगफली अब विश्व स्तर पर भेजी जाती है।" }
+          }
+        }
+      ]
+    },
+    {
+      "id": "products-section-1",
+      "type": "products-grid",
+      "adminTitle": "Products",
+      "props": {
+        "promoCard": {
+          "image": { "en": "/Image/Image-2.jpg", "hi": "/Image/Image-2.jpg" },
+          "title": { "en": "FREE SHIPPING\nWithin US", "hi": "अमेरिका में\nमुफ्त शिपिंग" },
+          "description": { "en": "We ship orders to all states in US including AK, HI, PR at no cost.", "hi": "हम AK, HI, PR सहित US के सभी राज्यों में निःशुल्क ऑर्डर भेजते हैं।" },
+          "ctaButton": { "en": "Shop now", "hi": "अभी खरीदें" },
+          "ctaLink": { "en": "/products", "hi": "/products" }
+        }
+      },
+      "content": [
+        {
+          "id": "product-1",
+          "type": "product-item",
+          "props": {
+            "name": { "en": "Roasted Peanuts: 8 Packs", "hi": "भुनी मूंगफली: 8 पैक" },
+            "qty": { "en": "8 Packs", "hi": "8 पैक" },
+            "price": { "en": "$36.00", "hi": "$36.00" },
+            "image": { "en": "/Image/product.png", "hi": "/Image/product.png" },
+            "slug": { "en": "/products/single", "hi": "/products/single" }
+          }
+        },
+        {
+          "id": "product-2",
+          "type": "product-item",
+          "props": {
+            "name": { "en": "Roasted Peanuts: 14 Packs", "hi": "भुनी मूंगफली: 14 पैक" },
+            "qty": { "en": "14 Packs", "hi": "14 पैक" },
+            "price": { "en": "$55.00", "hi": "$55.00" },
+            "image": { "en": "/Image/2Q6A4622-3-scaled.jpg", "hi": "/Image/2Q6A4622-3-scaled.jpg" },
+            "slug": { "en": "/products/single", "hi": "/products/single" }
+          }
+        },
+        {
+          "id": "product-3",
+          "type": "product-item",
+          "props": {
+            "name": { "en": "Roasted Peanuts: 21 Packs", "hi": "भुनी मूंगफली: 21 पैक" },
+            "qty": { "en": "21 Packs", "hi": "21 पैक" },
+            "price": { "en": "$75.00", "hi": "$75.00" },
+            "image": { "en": "/Image/2Q6A4971.jpg", "hi": "/Image/2Q6A4971.jpg" },
+            "slug": { "en": "/products/single", "hi": "/products/single" }
+          }
+        },
+        {
+          "id": "product-4",
+          "type": "product-item",
+          "props": {
+            "name": { "en": "Roasted Peanuts: 6 Bags", "hi": "भुनी मूंगफली: 6 बैग" },
+            "qty": { "en": "6 Bags", "hi": "6 बैग" },
+            "price": { "en": "$65.00", "hi": "$65.00" },
+            "image": { "en": "/Image/6-bags.jpg", "hi": "/Image/6-bags.jpg" },
+            "slug": { "en": "/products/single", "hi": "/products/single" }
+          }
+        }
+      ]
+    },
+    {
+      "id": "discover-section-1",
+      "type": "discover-grid",
+      "adminTitle": "Discover Our World",
+      "props": {
+        "heading": { "en": "Discover Our World", "hi": "हमारी दुनिया जानें" }
+      },
+      "content": [
+        {
+          "id": "feature-1",
+          "type": "feature-item",
+          "props": {
+            "title": { "en": "WHOLESALE DEALS", "hi": "थोक सौदे" },
+            "category": { "en": "INTERESTED IN", "hi": "में रुचि है" },
+            "image": { "en": "/Image/khfood-img.png", "hi": "/Image/khfood-img.png" },
+            "slug": { "en": "/wholesale", "hi": "/wholesale" }
+          }
+        },
+        {
+          "id": "feature-2",
+          "type": "feature-item",
+          "props": {
+            "title": { "en": "GLOBAL SHIPPING", "hi": "वैश्विक शिपिंग" },
+            "category": { "en": "AVAILABLE NOW", "hi": "अब उपलब्ध है" },
+            "image": { "en": "/Image/Image-2.jpg", "hi": "/Image/Image-2.jpg" },
+            "slug": { "en": "/shipping", "hi": "/shipping" }
+          }
+        },
+        {
+          "id": "feature-3",
+          "type": "feature-item",
+          "props": {
+            "title": { "en": "OUR STORY", "hi": "हमारी कहानी" },
+            "category": { "en": "SINCE 1990", "hi": "1990 से" },
+            "image": { "en": "/Image/Image-1.jpg", "hi": "/Image/Image-1.jpg" },
+            "slug": { "en": "/about", "hi": "/about" }
+          }
+        },
+        {
+          "id": "feature-4",
+          "type": "feature-item",
+          "props": {
+            "title": { "en": "GIFT BOXES", "hi": "उपहार बॉक्स" },
+            "category": { "en": "HOT DEAL", "hi": "हॉट डील" },
+            "image": { "en": "/Image/Box-image.jpg", "hi": "/Image/Box-image.jpg" },
+            "slug": { "en": "/gifts", "hi": "/gifts" }
+          }
+        }
+      ]
+    },
+    {
+      "id": "testimonials-section-1",
+      "type": "testimonials",
+      "adminTitle": "Testimonials",
+      "props": {
+        "reviewCount": { "en": "5.00 from 1230+ reviews", "hi": "1230+ समीक्षाओं से 5.00" },
+        "heading": { "en": "What Customers Say", "hi": "ग्राहक क्या कहते हैं" }
+      },
+      "content": [
+        {
+          "id": "testimonial-1",
+          "type": "testimonial-item",
+          "props": {
+            "name": { "en": "Janice S.", "hi": "जेनिस एस." },
+            "rating": { "en": "5", "hi": "5" },
+            "message": { "en": "OMG, delicious roasted peanuts. Me and my dad went to the Oriental Food Market in Lauderdale Lakes yesterday. My father is 93 years old. He loves your peanuts. Thanks for pursuing your dream.", "hi": "ओह, स्वादिष्ट भुनी हुई मूंगफली। मैं और मेरे पिताजी कल लॉडरडेल लेक्स में ओरिएंटल फूड मार्केट गए थे। मेरे पिताजी 93 साल के हैं। उन्हें आपकी मूंगफली बहुत पसंद है।" }
+          }
+        },
+        {
+          "id": "testimonial-2",
+          "type": "testimonial-item",
+          "props": {
+            "name": { "en": "Sophia C.", "hi": "सोफिया सी." },
+            "rating": { "en": "5", "hi": "5" },
+            "message": { "en": "Hi, I'm a big fan of your product! I always share them with my friends in Hong Kong. Hope your product can sell in China and Hong Kong soon.", "hi": "नमस्ते, मैं आपके उत्पाद की बहुत बड़ी प्रशंसक हूँ! मैं हमेशा उन्हें हांगकांग में अपने दोस्तों के साथ साझा करती हूँ। उम्मीद है कि आपका उत्पाद जल्द ही चीन और हांगकांग में बिकेगा।" }
+          }
+        },
+        {
+          "id": "testimonial-3",
+          "type": "testimonial-item",
+          "props": {
+            "name": { "en": "Gitfon C.", "hi": "गिटफॉन सी." },
+            "rating": { "en": "5", "hi": "5" },
+            "message": { "en": "I have been a loyal fan for years. They ARE the best peanuts I've ever had.", "hi": "मैं वर्षों से एक वफादार प्रशंसक हूँ। ये वास्तव में सबसे अच्छी मूंगफली हैं जो मैंने कभी खाई हैं।" }
+          }
+        },
+        {
+          "id": "testimonial-4",
+          "type": "testimonial-item",
+          "props": {
+            "name": { "en": "Claudia W.", "hi": "क्लाउडिया डब्ल्यू." },
+            "rating": { "en": "5", "hi": "5" },
+            "message": { "en": "Bought these peanuts for my dad and he absolutely loved them! Super fresh and very crunchy. Love that they are available unsalted. Totally worth the price and taste great. Can't stop eating one after another.", "hi": "अपने पिताजी के लिए ये मूंगफली खरीदी और उन्हें ये बहुत पसंद आई! बहुत ताज़ा और बहुत कुरकुरी। मुझे पसंद है कि ये बिना नमक के भी उपलब्ध हैं। कीमत के लिए बिल्कुल सही और स्वाद बहुत अच्छा है।" }
+          }
+        },
+        {
+          "id": "testimonial-5",
+          "type": "testimonial-item",
+          "props": {
+            "name": { "en": "Phillip T.", "hi": "फिलिप टी." },
+            "rating": { "en": "5", "hi": "5" },
+            "message": { "en": "My doctor put me on a low salt diet, so I went looking for no salt snack alternatives. After I found these peanuts, I am on my second bag already. These peanuts taste so fresh and I am glad that it has very little salt. I am very impressed how fresh they are and not oily like others.", "hi": "मेरे डॉक्टर ने मुझे कम नमक वाले आहार पर रखा, इसलिए मैं बिना नमक के नाश्ते के विकल्प खोजने लगा। ये मूंगफली मिलने के बाद मैं अपना दूसरा बैग शुरू कर चुका हूँ। ये मूंगफली बहुत ताज़ा हैं और मुझे खुशी है कि इनमें बहुत कम नमक है।" }
+          }
+        }
+      ]
+    },
+    {
+      "id": "blog-section-1",
+      "type": "blog-grid",
+      "adminTitle": "Blog / News",
+      "props": {
+        "subtitle": { "en": "NEWS & INSIGHTS", "hi": "समाचार और अंतर्दृष्टि" },
+        "title": { "en": "DISCOVER THE WORLD OF PREMIUM PEANUTS.", "hi": "प्रीमियम मूंगफली की दुनिया की खोज करें।" },
+        "ctaButton": { "en": "VIEW ALL", "hi": "सभी देखें" },
+        "ctaLink": { "en": "/blog", "hi": "/blog" },
+        "featured": {
+          "image": { "en": "/Image/About-Us-Photo-1.png", "hi": "/Image/About-Us-Photo-1.png" },
+          "category": { "en": "PROCESSING", "hi": "प्रसंस्करण" },
+          "title": { "en": "The Art of the Perfect Roast // Our Legacy", "hi": "परफेक्ट रोस्ट की कला // हमारी विरासत" },
+          "description": { "en": "We take a behind-the-scenes look at how we select the finest California peanuts and roast them to perfection for that signature KH Food crunch...", "hi": "हम पर्दे के पीछे देखते हैं कि हम कैसे बेहतरीन कैलिफोर्निया मूंगफली का चयन करते हैं और उस विशिष्ट केएच फूड क्रंच के लिए उन्हें पूर्णता तक भूनते हैं..." }
+        }
+      },
+      "content": [
+        {
+          "id": "article-1",
+          "type": "article-item",
+          "props": {
+            "image": { "en": "/Image/peanuts_blog_4-1.jpg", "hi": "/Image/peanuts_blog_4-1.jpg" },
+            "title": { "en": "The Surprising Health Benefits of Peanuts", "hi": "मूंगफली के आश्चर्यजनक स्वास्थ्य लाभ" },
+            "description": { "en": "Rich in protein and heart-healthy fats, discover why adding premium roasted peanuts to your daily diet is a smart...", "hi": "प्रोटीन और हृदय के लिए स्वस्थ वसा से भरपूर, जानें कि अपने दैनिक आहार में प्रीमियम भुनी हुई मूंगफली को शामिल करना एक स्मार्ट विकल्प क्यों है..." },
+            "date": { "en": "BY KH FOOD TEAM · 15TH JAN 2026", "hi": "केएच फूड टीम द्वारा · 15 जनवरी 2026" },
+            "slug": { "en": "/blog/health-benefits", "hi": "/blog/health-benefits" }
+          }
+        },
+        {
+          "id": "article-2",
+          "type": "article-item",
+          "props": {
+            "image": { "en": "/Image/Image-1.jpg", "hi": "/Image/Image-1.jpg" },
+            "title": { "en": "KH Food Expands Wholesale Distribution Network", "hi": "केएच फूड ने थोक वितरण नेटवर्क का विस्तार किया" },
+            "description": { "en": "We are proud to announce new partnerships that bring our premium roasted peanuts to more retailers and...", "hi": "हमें नई साझेदारियों की घोषणा करते हुए गर्व हो रहा है जो हमारी प्रीमियम भुनी हुई मूंगफली को अधिक खुदरा विक्रेताओं तक लाती हैं..." },
+            "date": { "en": "BY KH FOOD TEAM · 10TH FEB 2026", "hi": "केएच फूड टीम द्वारा · 10 फरवरी 2026" },
+            "slug": { "en": "/blog/wholesale-expansion", "hi": "/blog/wholesale-expansion" }
+          }
+        },
+        {
+          "id": "article-3",
+          "type": "article-item",
+          "props": {
+            "image": { "en": "/Image/Image-2.jpg", "hi": "/Image/Image-2.jpg" },
+            "title": { "en": "Perfect Gifting: Why Our Gift Boxes Are Best Sellers", "hi": "परफेक्ट गिफ्टिंग: हमारे गिफ्ट बॉक्स बेस्ट सेलर क्यों हैं" },
+            "description": { "en": "From corporate events to family gatherings, find out why our complimentary peanut gift boxes are the perfect wa...", "hi": "कॉर्पोरेट आयोजनों से लेकर पारिवारिक समारोहों तक, जानें कि हमारे मानार्थ मूंगफली उपहार बॉक्स सही तरीका क्यों हैं..." },
+            "date": { "en": "BY KH FOOD TEAM · 5TH MAR 2026", "hi": "केएच फूड टीम द्वारा · 5 मार्च 2026" },
+            "slug": { "en": "/blog/gift-boxes", "hi": "/blog/gift-boxes" }
+          }
+        }
+      ]
+    },
+    {
+      "id": "brands-section-1",
+      "type": "brands-carousel",
+      "adminTitle": "Partner Brands",
+      "props": {
+        "autoplay": { "en": "true", "hi": "true" }
+      },
+      "content": [
+        {
+          "id": "brand-1",
+          "type": "brand-item",
+          "props": {
+            "name": { "en": "Brand 1", "hi": "ब्रांड 1" },
+            "image": { "en": "/Image/logo1.jpg", "hi": "/Image/logo1.jpg" }
+          }
+        },
+        {
+          "id": "brand-2",
+          "type": "brand-item",
+          "props": {
+            "name": { "en": "Brand 2", "hi": "ब्रांड 2" },
+            "image": { "en": "/Image/logo2.jpg", "hi": "/Image/logo2.jpg" }
+          }
+        },
+        {
+          "id": "brand-3",
+          "type": "brand-item",
+          "props": {
+            "name": { "en": "Brand 3", "hi": "ब्रांड 3" },
+            "image": { "en": "/Image/logo3.jpg", "hi": "/Image/logo3.jpg" }
+          }
+        },
+        {
+          "id": "brand-4",
+          "type": "brand-item",
+          "props": {
+            "name": { "en": "Brand 4", "hi": "ब्रांड 4" },
+            "image": { "en": "/Image/logo4.jpg", "hi": "/Image/logo4.jpg" }
+          }
+        },
+        {
+          "id": "brand-5",
+          "type": "brand-item",
+          "props": {
+            "name": { "en": "Brand 5", "hi": "ब्रांड 5" },
+            "image": { "en": "/Image/logo5.jpg", "hi": "/Image/logo5.jpg" }
+          }
+        }
+      ]
+    }
+  ]
+}
