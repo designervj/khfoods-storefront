@@ -96,7 +96,7 @@
             "qty": { "en": "8 Packs", "hi": "8 पैक" },
             "price": { "en": "$36.00", "hi": "$36.00" },
             "image": { "en": "/Image/product.png", "hi": "/Image/product.png" },
-            "slug": { "en": "/products/single", "hi": "/products/single" }
+            "slug": { "en": "/product/roasted-peanuts-8-packs", "hi": "/product/roasted-peanuts-8-packs" }
           }
         },
         {
@@ -107,7 +107,7 @@
             "qty": { "en": "14 Packs", "hi": "14 पैक" },
             "price": { "en": "$55.00", "hi": "$55.00" },
             "image": { "en": "/Image/2Q6A4622-3-scaled.jpg", "hi": "/Image/2Q6A4622-3-scaled.jpg" },
-            "slug": { "en": "/products/single", "hi": "/products/single" }
+            "slug": { "en": "/product/roasted-peanuts-14-packs", "hi": "/product/roasted-peanuts-14-packs" }
           }
         },
         {
@@ -118,7 +118,7 @@
             "qty": { "en": "21 Packs", "hi": "21 पैक" },
             "price": { "en": "$75.00", "hi": "$75.00" },
             "image": { "en": "/Image/2Q6A4971.jpg", "hi": "/Image/2Q6A4971.jpg" },
-            "slug": { "en": "/products/single", "hi": "/products/single" }
+            "slug": { "en": "/product/roasted-peanuts-21-packs", "hi": "/product/roasted-peanuts-21-packs" }
           }
         },
         {
@@ -129,7 +129,7 @@
             "qty": { "en": "6 Bags", "hi": "6 बैग" },
             "price": { "en": "$65.00", "hi": "$65.00" },
             "image": { "en": "/Image/6-bags.jpg", "hi": "/Image/6-bags.jpg" },
-            "slug": { "en": "/products/single", "hi": "/products/single" }
+            "slug": { "en": "/product/roasted-peanuts-6-bags", "hi": "/product/roasted-peanuts-6-bags" }
           }
         }
       ]

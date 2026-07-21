@@ -6,6 +6,7 @@ import { useAppSelector, useAppDispatch } from '@/redux/store/hooks';
 import { setCurrentPageBySlug } from '@/redux/slices/pages/pagesSlice';
 import { saveField } from '@/redux/slices/pages/saveField';
 import EditableText from '@/components/shared/EditableText';
+import PageHeroSection from '@/components/sections/PageHeroSection';
 import { getLocalizedString } from '@/lib/i18n/locale';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
@@ -30,7 +31,6 @@ export default function AboutPage() {
     return <div className="min-h-screen flex items-center justify-center"><div className="animate-pulse text-[var(--text-muted)]">Loading...</div></div>;
   }
 
-  const hero = currentPages.sections.find(s => s.adminTitle === 'About Hero');
   const story = currentPages.sections.find(s => s.adminTitle === 'Story');
   const values = currentPages.sections.find(s => s.adminTitle === 'What We Value');
   const mission = currentPages.sections.find(s => s.adminTitle === 'Mission');
@@ -40,16 +40,13 @@ export default function AboutPage() {
 
   return (
     <main>
-      {hero && (
-        <section className="relative overflow-hidden pt-[120px] bg-[#f5f5f7]">
-          <div className="mx-auto max-w-7xl min-h-[260px] md:min-h-[320px] flex items-center justify-center px-4 sm:px-6 lg:px-8">
-            <div className="text-center">
-              <EditableText value={getLocalizedString(hero.props?.heading, locale)} onSave={createSaveHandler(hero.id, 'props.heading')} isEditable={isEditable} tag="h1" className="text-3xl md:text-5xl font-bold text-black uppercase" placeholder="Page title..." />
-              <EditableText value={getLocalizedString(hero.props?.subheading, locale)} onSave={createSaveHandler(hero.id, 'props.subheading')} isEditable={isEditable} tag="p" className="text-gray-500 mt-3 max-w-xl mx-auto" placeholder="Subheading..." multiline rows={2} />
-            </div>
-          </div>
-        </section>
-      )}
+      <PageHeroSection
+        sections={currentPages.sections}
+        locale={locale}
+        isEditable={isEditable}
+        createSaveHandler={createSaveHandler}
+        heroTitle="Page Hero"
+      />
 
       {story && (
         <motion.section
@@ -86,26 +83,58 @@ export default function AboutPage() {
       )}
 
       {values && values.content && (
-        <section className="py-16 bg-[#f5f5f7]">
+        <section className="py-20 bg-[#f5f5f7]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <EditableText value={getLocalizedString(values.props?.title, locale)} onSave={createSaveHandler(values.id, 'props.title')} isEditable={isEditable} tag="h2" className="text-3xl md:text-4xl font-bold uppercase" placeholder="Section title..." />
+            <div className="text-center mb-16">
+              <EditableText value={getLocalizedString(values.props?.title, locale)} onSave={createSaveHandler(values.id, 'props.title')} isEditable={isEditable} tag="h2" className="text-4xl md:text-5xl font-bold uppercase tracking-tight text-black" placeholder="Section title..." />
               {values.props?.subtitle && (
-                <EditableText value={getLocalizedString(values.props?.subtitle, locale)} onSave={createSaveHandler(values.id, 'props.subtitle')} isEditable={isEditable} tag="p" className="text-gray-500 mt-2" placeholder="Subtitle..." />
+                <div className="mt-4">
+                  <EditableText value={getLocalizedString(values.props?.subtitle, locale)} onSave={createSaveHandler(values.id, 'props.subtitle')} isEditable={isEditable} tag="p" className="text-gray-500 text-lg" placeholder="Subtitle..." />
+                </div>
               )}
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {values.content.map((item, idx) => (
-                <div key={item.id} className="bg-white rounded-3xl overflow-hidden shadow-sm">
-                  <div className="h-48 overflow-hidden">
-                    <img src={getLocalizedString(item.props?.image, locale)} alt="" className="w-full h-full object-cover" />
+              {values.content.map((item, idx) => {
+                const title = getLocalizedString(item.props?.title, locale);
+                
+                // Select icon based on title or index
+                let Icon = null;
+                if (idx === 0) { // Health
+                  Icon = (
+                    <svg width="140" height="140" viewBox="0 0 24 24" fill="none" stroke="#5C3A21" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" className="mx-auto mb-8">
+                      <path d="M6 3v7a2 2 0 0 1-2 2H3V3h1zm0 0v18" /> {/* Fork */}
+                      <path d="M19 3v10a2 2 0 0 1-2 2h-1V3h3zm-1 12v6" /> {/* Knife */}
+                      <circle cx="12" cy="11" r="5" /> {/* Plate */}
+                      <path d="M12 11c.4-.4 1.2-.8 1.8-.8.8 0 1.2.4 1.2 1.2 0 1.2-2 2.5-3 2.5s-3-1.3-3-2.5c0-.8.4-1.2 1.2-1.2.6 0 1.4.4 1.8.8z" fill="#5C3A21" /> {/* Heart */}
+                    </svg>
+                  );
+                } else if (idx === 1) { // Quality
+                  Icon = (
+                    <svg width="140" height="140" viewBox="0 0 24 24" fill="none" stroke="#5C3A21" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" className="mx-auto mb-8">
+                      <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3" />
+                      <circle cx="5.5" cy="18.5" r="0.5" fill="#5C3A21" />
+                    </svg>
+                  );
+                } else { // Taste
+                  Icon = (
+                    <svg width="140" height="140" viewBox="0 0 24 24" fill="none" stroke="#5C3A21" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" className="mx-auto mb-8">
+                      <path d="M7 11c1.5 3 4 4.5 5 4.5s3.5-1.5 5-4.5" />
+                      <path d="M12 15.5v2a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-1" />
+                      <path d="M5 9l2 2 M19 9l-2 2" />
+                    </svg>
+                  );
+                }
+
+                return (
+                  <div key={item.id} className="bg-white rounded-[2rem] p-8 md:p-10 shadow-sm border border-gray-100 flex flex-col justify-between">
+                    <div>
+                      {Icon}
+                      <EditableText value={title} onSave={createSaveHandler(values.id, `content.${idx}.props.title`)} isEditable={isEditable} tag="h3" className="text-2xl font-bold text-black mb-3" placeholder="Value title..." />
+                      <EditableText value={getLocalizedString(item.props?.description, locale)} onSave={createSaveHandler(values.id, `content.${idx}.props.description`)} isEditable={isEditable} tag="p" className="text-gray-500 text-sm leading-relaxed" placeholder="Value description..." multiline rows={3} />
+                    </div>
                   </div>
-                  <div className="p-6">
-                    <EditableText value={getLocalizedString(item.props?.title, locale)} onSave={createSaveHandler(values.id, `content.${idx}.props.title`)} isEditable={isEditable} tag="h3" className="text-xl font-bold mb-2" placeholder="Value title..." />
-                    <EditableText value={getLocalizedString(item.props?.description, locale)} onSave={createSaveHandler(values.id, `content.${idx}.props.description`)} isEditable={isEditable} tag="p" className="text-gray-600 text-sm" placeholder="Value description..." multiline rows={3} />
-                  </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </section>

@@ -1,0 +1,409 @@
+{
+  "id": "page_ecommerce",
+  "title": {
+    "en": "Premium Foods | KH Foods",
+    "hi": "प्रीमियम फूड्स | केएच फूड्स"
+  },
+  "slug": "ecommerce",
+  "isPublished": true,
+  "metaTitle": {
+    "en": "Shop Premium Foods Online - KH Foods",
+    "hi": "प्रीमियम फूड्स ऑनलाइन खरीदें - केएच फूड्स"
+  },
+  "metaDescription": {
+    "en": "Explore our exclusive collection of premium spices, snacks, and pickles.",
+    "hi": "प्रीमियम मसालों, स्नैक्स और अचार के हमारे विशेष संग्रह का अन्वेषण करें।"
+  },
+  "content": [
+    {
+      "id": "sec_ecommerce_hero",
+      "type": "hero-section",
+      "layout": "default",
+      "props": {
+        "badge": {
+          "type": "text",
+          "value": {
+            "en": "New Arrivals",
+            "hi": "नये आगमन"
+          }
+        },
+        "title": {
+          "type": "text",
+          "value": {
+            "en": "Authentic Taste, Delivered",
+            "hi": "प्रामाणिक स्वाद, डिलीवर किया गया"
+          }
+        },
+        "description": {
+          "type": "textarea",
+          "value": {
+            "en": "Discover premium foods that blend authentic recipes with exceptional quality.",
+            "hi": "प्रीमियम फूड्स की खोज करें जो असाधारण गुणवत्ता के साथ प्रामाणिक व्यंजनों को मिश्रित करते हैं।"
+          }
+        },
+        "primaryCTA": {
+          "type": "text",
+          "value": {
+            "en": "Shop Now",
+            "hi": "अभी खरीदें"
+          }
+        },
+        "primaryLink": {
+          "type": "link",
+          "value": "/shop"
+        },
+        "image": {
+          "type": "image",
+          "value": "https://images.unsplash.com/photo-1505253758473-96b7015fcd40?auto=format&fit=crop&q=80&w=1800"
+        }
+      },
+      "content": []
+    },
+    {
+      "id": "sec_ecommerce_categories",
+      "type": "category-grid",
+      "layout": "grid-7",
+      "props": {
+        "badge": {
+          "type": "text",
+          "value": {
+            "en": "Categories",
+            "hi": "श्रेणियाँ"
+          }
+        },
+        "title": {
+          "type": "text",
+          "value": {
+            "en": "Shop by Category",
+            "hi": "श्रेणी के अनुसार खरीदारी करें"
+          }
+        }
+      },
+      "content": [
+        {
+          "id": "prod_9m6n5mbzo",
+          "type": "category-item",
+          "props": {
+            "title": {
+              "value": {
+                "en": "Domestic",
+                "hi": "Domestic"
+              }
+            },
+            "image": {
+              "value": "https://khfood.com/wp-content/uploads/2019/11/2Q6A4971.jpg"
+            },
+            "link": {
+              "value": "/category/domestic"
+            }
+          }
+        },
+        {
+          "id": "prod_jspfhrqtp",
+          "type": "category-item",
+          "props": {
+            "title": {
+              "value": {
+                "en": "International",
+                "hi": "International"
+              }
+            },
+            "image": {
+              "value": "https://khfood.com/wp-content/uploads/2019/10/6-bags.jpg"
+            },
+            "link": {
+              "value": "/category/international"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "sec_ecommerce_products",
+      "type": "product-grid",
+      "layout": "sidebar-right",
+      "props": {
+        "badge": {
+          "type": "text",
+          "value": {
+            "en": "Top Picks",
+            "hi": "शीर्ष चयन"
+          }
+        },
+        "title": {
+          "type": "text",
+          "value": {
+            "en": "Trending Now",
+            "hi": "अभी ट्रेंडिंग"
+          }
+        }
+      },
+      "content": [
+        {
+          "id": "prod_gdywhxeab",
+          "type": "product-card",
+          "props": {
+            "title": {
+              "value": {
+                "en": "Roasted Peanuts: 14 Packs",
+                "hi": "Roasted Peanuts: 14 Packs"
+              }
+            },
+            "price": {
+              "value": 4814
+            },
+            "image": {
+              "value": "https://khfood.com/wp-content/uploads/2019/11/2Q6A4971.jpg"
+            },
+            "category": {
+              "value": {
+                "en": "Domestic",
+                "hi": "Domestic"
+              }
+            },
+            "link": {
+              "value": "/product/roasted-peanuts-14-packs"
+            },
+            "ratings": {
+              "value": 5
+            },
+            "reviews": {
+              "value": 42
+            }
+          }
+        },
+        {
+          "id": "prod_no533cowj",
+          "type": "product-card",
+          "props": {
+            "title": {
+              "value": {
+                "en": "Roasted Peanuts: 21 Packs",
+                "hi": "Roasted Peanuts: 21 Packs"
+              }
+            },
+            "price": {
+              "value": 6640
+            },
+            "image": {
+              "value": "https://khfood.com/wp-content/uploads/2019/11/2Q6A4622-3-scaled.jpg"
+            },
+            "category": {
+              "value": {
+                "en": "Domestic",
+                "hi": "Domestic"
+              }
+            },
+            "link": {
+              "value": "/product/roasted-peanuts-21-packs"
+            },
+            "ratings": {
+              "value": 5
+            },
+            "reviews": {
+              "value": 20
+            }
+          }
+        },
+        {
+          "id": "prod_fh0ie49to",
+          "type": "product-card",
+          "props": {
+            "title": {
+              "value": {
+                "en": "Roasted Peanuts:   6 Bags",
+                "hi": "Roasted Peanuts:   6 Bags"
+              }
+            },
+            "price": {
+              "value": 5395
+            },
+            "image": {
+              "value": "https://khfood.com/wp-content/uploads/2019/10/6-bags.jpg"
+            },
+            "category": {
+              "value": {
+                "en": "Domestic",
+                "hi": "Domestic"
+              }
+            },
+            "link": {
+              "value": "/product/roasted-peanuts-6-bags"
+            },
+            "ratings": {
+              "value": 5
+            },
+            "reviews": {
+              "value": 45
+            }
+          }
+        },
+        {
+          "id": "prod_6dslonbi8",
+          "type": "product-card",
+          "props": {
+            "title": {
+              "value": {
+                "en": "Roasted Peanuts: 8 Packs",
+                "hi": "Roasted Peanuts: 8 Packs"
+              }
+            },
+            "price": {
+              "value": 2988
+            },
+            "image": {
+              "value": "https://khfood.com/wp-content/uploads/2023/08/2Q6A4963.jpg"
+            },
+            "category": {
+              "value": {
+                "en": "Domestic",
+                "hi": "Domestic"
+              }
+            },
+            "link": {
+              "value": "/product/roasted-peanuts-8-packs"
+            },
+            "ratings": {
+              "value": 5
+            },
+            "reviews": {
+              "value": 52
+            }
+          }
+        },
+        {
+          "id": "prod_8hdkxlz10",
+          "type": "product-card",
+          "props": {
+            "title": {
+              "value": {
+                "en": "Roasted Peanuts: 6 Bags (Taiwan)",
+                "hi": "Roasted Peanuts: 6 Bags (Taiwan)"
+              }
+            },
+            "price": {
+              "value": 7470
+            },
+            "image": {
+              "value": "https://khfood.com/wp-content/uploads/2019/10/6-bags.jpg"
+            },
+            "category": {
+              "value": {
+                "en": "International",
+                "hi": "International"
+              }
+            },
+            "link": {
+              "value": "/product/roasted-peanuts-6-bags-taiwan"
+            },
+            "ratings": {
+              "value": 5
+            },
+            "reviews": {
+              "value": 13
+            }
+          }
+        },
+        {
+          "id": "prod_obogperxj",
+          "type": "product-card",
+          "props": {
+            "title": {
+              "value": {
+                "en": "Roasted Peanuts: 12 Bags (Taiwan)",
+                "hi": "Roasted Peanuts: 12 Bags (Taiwan)"
+              }
+            },
+            "price": {
+              "value": 12284
+            },
+            "image": {
+              "value": "https://khfood.com/wp-content/uploads/2019/10/6-bags.jpg"
+            },
+            "category": {
+              "value": {
+                "en": "International",
+                "hi": "International"
+              }
+            },
+            "link": {
+              "value": "/product/roasted-peanuts-12-bags-taiwan"
+            },
+            "ratings": {
+              "value": 5
+            },
+            "reviews": {
+              "value": 44
+            }
+          }
+        },
+        {
+          "id": "prod_qv3ml30gn",
+          "type": "product-card",
+          "props": {
+            "title": {
+              "value": {
+                "en": "Roasted Peanuts: 14 Packs (Taiwan)",
+                "hi": "Roasted Peanuts: 14 Packs (Taiwan)"
+              }
+            },
+            "price": {
+              "value": 7387
+            },
+            "image": {
+              "value": "https://khfood.com/wp-content/uploads/2019/11/2Q6A4971.jpg"
+            },
+            "category": {
+              "value": {
+                "en": "International",
+                "hi": "International"
+              }
+            },
+            "link": {
+              "value": "/product/roasted-peanuts-14-packs-taiwan"
+            },
+            "ratings": {
+              "value": 5
+            },
+            "reviews": {
+              "value": 32
+            }
+          }
+        },
+        {
+          "id": "prod_nbnr1gh6w",
+          "type": "product-card",
+          "props": {
+            "title": {
+              "value": {
+                "en": "Roasted Peanuts: 24 Packs (Taiwan)",
+                "hi": "Roasted Peanuts: 24 Packs (Taiwan)"
+              }
+            },
+            "price": {
+              "value": 11454
+            },
+            "image": {
+              "value": "https://khfood.com/wp-content/uploads/2019/11/2Q6A4622-3-scaled.jpg"
+            },
+            "category": {
+              "value": {
+                "en": "International",
+                "hi": "International"
+              }
+            },
+            "link": {
+              "value": "/product/roasted-peanuts-24-packs-taiwan"
+            },
+            "ratings": {
+              "value": 5
+            },
+            "reviews": {
+              "value": 23
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

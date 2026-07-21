@@ -43,7 +43,7 @@ export default function Footer() {
   );
 
   return (
-    <footer className="bg-[#1c1c1a] text-white mt-auto border-t-[3px] border-[#FFD100]">
+    <footer className="bg-[#1c1c1a] text-white mt-auto border-t-[3px] border-[#FFD100] pb-16 md:pb-0">
       <div className="max-w-[1280px] mx-auto px-6 py-12 md:py-16">
         
         {/* ROW 1: Brand & Socials */}
@@ -148,7 +148,7 @@ export default function Footer() {
               placeholder="Enter your email" 
               className="bg-[#2a2a2a] text-white px-5 py-4 w-full sm:w-[320px] focus:outline-none placeholder:text-gray-500 rounded-t-sm sm:rounded-l-sm sm:rounded-tr-none"
             />
-            <button className="bg-[#FFD100] hover:bg-[#eab900] text-black font-bold uppercase tracking-wider px-8 py-4 transition-colors whitespace-nowrap rounded-b-sm sm:rounded-r-sm sm:rounded-bl-none text-[15px]">
+            <button className="bg-[#FFD100] hover:bg-[#eab900] text-black font-bold uppercase tracking-wider px-8 py-4 transition-colors whitespace-nowrap rounded-b-sm sm:rounded-r-sm sm:rounded-bl-none text-[15px] w-full sm:w-auto">
               SUBSCRIBE
             </button>
           </div>

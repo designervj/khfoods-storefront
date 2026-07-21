@@ -27,7 +27,7 @@ export default function PageHeroSection({ sections, locale, isEditable, createSa
 
   return (
     <section
-      className="relative overflow-hidden pt-[120px]"
+      className={`relative overflow-hidden ${!backgroundImage ? 'bg-[#f5f5f7]' : ''}`}
       style={{
         backgroundImage: backgroundImage ? `url(${backgroundImage})` : undefined,
         backgroundRepeat: 'no-repeat',
@@ -35,14 +35,16 @@ export default function PageHeroSection({ sections, locale, isEditable, createSa
         backgroundSize: 'cover',
       }}
     >
-      <div className="mx-auto max-w-7xl min-h-[260px] md:min-h-[320px] flex items-center justify-center px-4 sm:px-6 lg:px-8">
+      {backgroundImage && <div className="absolute inset-0 bg-black/40 z-0"></div>}
+      
+      <div className="relative z-10 mx-auto max-w-7xl py-16 md:py-24 min-h-[260px] md:min-h-[320px] flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8">
         <div className="text-center">
           <EditableText
             value={getLocalizedString(section.props?.title, locale)}
             onSave={createSaveHandler(section.id, 'props.title')}
             isEditable={isEditable}
             tag="h1"
-            className="text-3xl md:text-5xl font-bold text-black uppercase"
+            className={`text-3xl md:text-5xl font-bold uppercase ${backgroundImage ? 'text-white' : 'text-black'}`}
             placeholder="Page title..."
           />
           {breadcrumbs.length > 0 && (
@@ -52,13 +54,13 @@ export default function PageHeroSection({ sections, locale, isEditable, createSa
                 const label = getLocalizedString(item.label, locale);
                 return (
                   <React.Fragment key={idx}>
-                    {idx > 0 && <span className="text-gray-400">&rsaquo;</span>}
+                    {idx > 0 && <span className={backgroundImage ? "text-gray-400" : "text-gray-400"}>&rsaquo;</span>}
                     {item.href && !isLast ? (
-                      <Link href={item.href} className="text-gray-500 hover:text-black transition-colors">
+                      <Link href={item.href} className={`transition-colors ${backgroundImage ? 'text-gray-200 hover:text-white' : 'text-gray-500 hover:text-black'}`}>
                         {label}
                       </Link>
                     ) : (
-                      <span className="text-black font-medium">{label}</span>
+                      <span className={`font-medium ${backgroundImage ? 'text-white' : 'text-black'}`}>{label}</span>
                     )}
                   </React.Fragment>
                 );

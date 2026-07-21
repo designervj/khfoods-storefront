@@ -5,6 +5,7 @@ import BlueprintProvider from '@/components/providers/BlueprintProvider';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import EditModeToggle from '@/components/shared/EditModeToggle';
+import MobileBottomNav from '@/components/shared/MobileBottomNav';
 import '@/styles/globals.css';
 
 /* ── Montserrat via next/font — self-hosted, zero layout shift ── */
@@ -36,11 +37,12 @@ export default async function RootLayout({ children, params }: RootLayoutProps) 
           <BlueprintProvider context="public">
             <a href="#main-content" className="skip-to-content">Skip to content</a>
             <Header />
-            <main id="main-content" className="flex-grow pt-[var(--navbar-height)]">
+            <main id="main-content" className="flex-grow pt-[var(--navbar-height)] pb-16 md:pb-0">
               {children}
             </main>
             <Footer />
-            <EditModeToggle />
+            <MobileBottomNav />
+            {/* <EditModeToggle /> */}
           </BlueprintProvider>
         </ReduxProvider>
       </body>

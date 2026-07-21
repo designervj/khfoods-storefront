@@ -9,6 +9,7 @@ import { selectPublicNavigation } from '@/redux/slices/blueprint';
 import { selectCartItemCount } from '@/redux/slices/ecommerce/cartSlice';
 import { getLocalizedString } from '@/lib/i18n/locale';
 import headerData from '@/lib/data/pages/headerData.json';
+import CartSidebar from '@/components/shared/CartSidebar';
 
 /* ═══════════════════════════════════════════════════════════════════
    SVG ICONS — pixel-perfect matches from the reference image
@@ -101,6 +102,7 @@ export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const [mobileOpenIndex, setMobileOpenIndex] = useState<number | null>(null);
+  const [isCartSidebarOpen, setIsCartSidebarOpen] = useState(false);
 
   const headerRef = useRef<HTMLElement>(null);
 
@@ -137,7 +139,7 @@ export default function Header() {
     <header ref={headerRef} className="fixed top-0 left-0 right-0 z-50">
 
       {/* ── TOP UTILITY BAR ──────────────────────────────────────── */}
-      <div style={{ backgroundColor: '#f5d9a8' }}>
+      <div style={{ backgroundColor: '#f5d9a8' }} className="hidden md:block">
         <div
           className="flex items-center justify-between"
           style={{ maxWidth: 1280, margin: '0 auto', padding: '0 24px', height: 36 }}
@@ -202,8 +204,23 @@ export default function Header() {
         <div
           style={{ maxWidth: 1280, margin: '0 auto', padding: '0 24px', height: 68, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}
         >
-          {/* LOGO */}
-          <Link href={href('/')} style={{ display: 'flex', alignItems: 'center', flexShrink: 0 }}>
+          {/* MOBILE HAMBURGER (LEFT) */}
+          <div className="flex md:hidden items-center z-10">
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#fff', padding: 6 }}
+              className="hover:text-[#D4A820] transition-colors -ml-2"
+              aria-label="Toggle menu"
+            >
+              {isMobileMenuOpen ? <CloseIcon /> : <MenuIcon />}
+            </button>
+          </div>
+
+          {/* LOGO (CENTER ON MOBILE, LEFT ON DESKTOP) */}
+          <Link 
+            href={href('/')} 
+            className="flex items-center flex-shrink-0 absolute left-1/2 -translate-x-1/2 md:static md:translate-x-0"
+          >
             <Image
               src="/Image/khfood_logo.png"
               alt="KH Foods Logo"
@@ -215,7 +232,7 @@ export default function Header() {
           </Link>
 
           {/* DESKTOP NAV */}
-          <nav style={{ display: 'flex', alignItems: 'center', gap: 0 }} className="hidden md:flex">
+          <nav className="hidden md:flex items-center gap-0">
             {navigationItems.map((item: any, index: number) => {
               const hasMega = item.megaMenu && item.megaMenu.length > 0;
               const active = isActive(item);
@@ -252,13 +269,21 @@ export default function Header() {
           </nav>
 
           {/* SHOP + Cart */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+          <div className="flex items-center gap-4 md:gap-8 z-10">
             <Link
-              href={href('/cart')}
-              style={{ display: 'flex', alignItems: 'center', gap: 8, color: '#ffffff', textDecoration: 'none' }}
-              className="hidden md:flex hover:!text-[#D4A820] transition-colors"
+              href={href('/shop')}
+              className="hidden md:flex items-center gap-2 hover:!text-[#D4A820] transition-colors"
+              style={{ color: '#ffffff' }}
             >
-              <span style={{ fontSize: 13, fontWeight: 700, letterSpacing: '0.16em' }}>SHOP</span>
+              <span style={{ fontSize: 13, fontWeight: 700, letterSpacing: '0.16em', color: 'inherit' }}>SHOP</span>
+            </Link>
+
+            {/* We can add a Search icon here in the future if needed to fully match the screenshot */}
+            <button
+              onClick={() => setIsCartSidebarOpen(true)}
+              style={{ display: 'flex', alignItems: 'center', background: 'none', border: 'none', cursor: 'pointer', color: '#ffffff' }}
+              className="hover:!text-[#D4A820] transition-colors"
+            >
               <div style={{ position: 'relative' }}>
                 <BagIcon />
                 <span style={{
@@ -272,16 +297,6 @@ export default function Header() {
                   {cartCount}
                 </span>
               </div>
-            </Link>
-
-            {/* Mobile hamburger */}
-            <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#fff', padding: 6 }}
-              className="md:hidden hover:text-[#D4A820] transition-colors"
-              aria-label="Toggle menu"
-            >
-              {isMobileMenuOpen ? <CloseIcon /> : <MenuIcon />}
             </button>
           </div>
         </div>
@@ -355,7 +370,7 @@ export default function Header() {
 
       {/* ── MOBILE MENU ──────────────────────────────────────────── */}
       {isMobileMenuOpen && (
-        <div style={{ backgroundColor: '#1c1c1a', borderTop: '1px solid rgba(255,255,255,0.08)' }} className="md:hidden">
+        <div style={{ backgroundColor: '#1c1c1a', borderTop: '1px solid rgba(255,255,255,0.08)', maxHeight: 'calc(100vh - 68px)', overflowY: 'auto' }} className="md:hidden">
           <div style={{ maxWidth: 1280, margin: '0 auto', padding: '12px 24px 20px' }}>
             {navigationItems.map((item: any, index: number) => {
               const hasMega = item.megaMenu && item.megaMenu.length > 0;
@@ -424,6 +439,7 @@ export default function Header() {
           </div>
         </div>
       )}
+      <CartSidebar isOpen={isCartSidebarOpen} onClose={() => setIsCartSidebarOpen(false)} />
     </header>
   );
 }

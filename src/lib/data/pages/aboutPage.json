@@ -9,11 +9,16 @@
   "sections": [
     {
       "id": "about-hero",
-      "type": "hero",
-      "adminTitle": "About Hero",
+      "type": "page-hero",
+      "adminTitle": "Page Hero",
       "props": {
-        "heading": { "en": "About Us", "hi": "हमारे बारे में" },
-        "subheading": { "en": "Crafting the finest peanuts since 1991", "hi": "1991 से बेहतरीन मूंगफली तैयार कर रहे हैं" }
+        "title": { "en": "History", "hi": "इतिहास" },
+        "backgroundImage": "/Image/bg-banner.png",
+        "breadcrumb": [
+          { "label": { "en": "Home", "hi": "होम" }, "href": "/" },
+          { "label": { "en": "About Us", "hi": "हमारे बारे में" }, "href": null },
+          { "label": { "en": "History", "hi": "इतिहास" }, "href": "/about" }
+        ]
       }
     },
     {

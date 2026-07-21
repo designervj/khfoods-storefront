@@ -23,13 +23,13 @@
         {
           "category": { "en": "NUTRITION", "hi": "पोषण" },
           "items": [
-            { "label": { "en": "Nutrition", "hi": "पोषण" }, "href": "/about#nutrition" }
+            { "label": { "en": "Nutrition", "hi": "पोषण" }, "href": "/nutrition" }
           ]
         },
         {
           "category": { "en": "PROCESS", "hi": "प्रक्रिया" },
           "items": [
-            { "label": { "en": "Our Process", "hi": "हमारी प्रक्रिया" }, "href": "/about#process" }
+            { "label": { "en": "Our Process", "hi": "हमारी प्रक्रिया" }, "href": "/process" }
           ]
         }
       ]

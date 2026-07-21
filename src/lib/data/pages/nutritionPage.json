@@ -1,0 +1,75 @@
+{
+  "pageType": "nutrition",
+  "slug": "nutrition",
+  "isPublished": true,
+  "seo": {
+    "title": { "en": "Nutrition - KH Food", "hi": "पोषण - केएच फूड" },
+    "description": { "en": "Discover the health benefits and nutritional value of KH Food's premium peanuts.", "hi": "केएच फूड की प्रीमियम मूंगफली के स्वास्थ्य लाभ और पोषण मूल्य की खोज करें।" }
+  },
+  "sections": [
+    {
+      "id": "nutrition-hero",
+      "type": "page-hero",
+      "adminTitle": "Page Hero",
+      "props": {
+        "title": { "en": "Nutrition", "hi": "पोषण" },
+        "backgroundImage": "/Image/bg-banner.png",
+        "breadcrumb": [
+          { "label": { "en": "Home", "hi": "होम" }, "href": "/" },
+          { "label": { "en": "About Us", "hi": "हमारे बारे में" }, "href": null },
+          { "label": { "en": "Nutrition", "hi": "पोषण" }, "href": "/nutrition" }
+        ]
+      }
+    },
+    {
+      "id": "nutrition-benefits",
+      "type": "benefits-grid",
+      "adminTitle": "Health Benefits",
+      "props": {
+        "title": { "en": "Why Choose Our Peanuts?", "hi": "हमारी मूंगफली क्यों चुनें?" },
+        "subtitle": { "en": "Packed with goodness in every bite", "hi": "हर बाइट में अच्छाई" }
+      },
+      "content": [
+        {
+          "id": "benefit-1",
+          "props": {
+            "title": { "en": "High in Protein", "hi": "प्रोटीन से भरपूर" },
+            "description": { "en": "Essential for muscle growth and repair, making it a perfect post-workout snack.", "hi": "मांसपेशियों के विकास के लिए आवश्यक।" }
+          }
+        },
+        {
+          "id": "benefit-2",
+          "props": {
+            "title": { "en": "Heart Healthy", "hi": "दिल के लिए स्वस्थ" },
+            "description": { "en": "Rich in monounsaturated fats that support cardiovascular health.", "hi": "मोनोअनसैचुरेटेड वसा से भरपूर।" }
+          }
+        },
+        {
+          "id": "benefit-3",
+          "props": {
+            "title": { "en": "All Natural", "hi": "पूरी तरह से प्राकृतिक" },
+            "description": { "en": "Zero preservatives, zero artificial flavors. Just pure, wholesome peanuts.", "hi": "कोई प्रिजर्वेटिव नहीं, बस शुद्ध मूंगफली।" }
+          }
+        }
+      ]
+    },
+    {
+      "id": "nutrition-facts",
+      "type": "facts-split",
+      "adminTitle": "Nutrition Facts",
+      "props": {
+        "title": { "en": "Nutritional Breakdown", "hi": "पोषण संबंधी जानकारी" },
+        "description": { "en": "A quick look at what makes our peanuts the smart choice for snacking.", "hi": "हमारी मूंगफली के पोषण की एक झलक।" },
+        "image": "/Image/Peanut.jpg",
+        "fact1_label": { "en": "Calories", "hi": "कैलोरी" },
+        "fact1_value": { "en": "160 kcal", "hi": "160 kcal" },
+        "fact2_label": { "en": "Protein", "hi": "प्रोटीन" },
+        "fact2_value": { "en": "7g", "hi": "7g" },
+        "fact3_label": { "en": "Fiber", "hi": "फाइबर" },
+        "fact3_value": { "en": "2.4g", "hi": "2.4g" },
+        "fact4_label": { "en": "Healthy Fats", "hi": "स्वस्थ वसा" },
+        "fact4_value": { "en": "14g", "hi": "14g" }
+      }
+    }
+  ]
+}
