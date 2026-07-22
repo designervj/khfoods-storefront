@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 
-const BACKEND_URL = process.env.BACKEND_API_URL || "http://localhost:8000";
+const BACKEND_URL = process.env.FASTAPI_URL || process.env.BACKEND_API_URL || "http://localhost:8000";
 
 async function getParams(context: { params: Promise<{ slug?: string[] }> }) {
   return await context.params;
