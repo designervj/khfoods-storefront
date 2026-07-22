@@ -103,6 +103,8 @@ export default function Header() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const [mobileOpenIndex, setMobileOpenIndex] = useState<number | null>(null);
   const [isCartSidebarOpen, setIsCartSidebarOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
 
   const headerRef = useRef<HTMLElement>(null);
 
@@ -123,6 +125,23 @@ export default function Header() {
     return () => document.removeEventListener('mousedown', handler);
   }, []);
 
+  /* Hide header on scroll down */
+  useEffect(() => {
+    const controlNavbar = () => {
+      if (typeof window !== 'undefined') {
+        if (window.scrollY > lastScrollY && window.scrollY > 80) {
+          setIsVisible(false);
+        } else {
+          setIsVisible(true);
+        }
+        setLastScrollY(window.scrollY);
+      }
+    };
+
+    window.addEventListener('scroll', controlNavbar);
+    return () => window.removeEventListener('scroll', controlNavbar);
+  }, [lastScrollY]);
+
   /* Close on route change */
   useEffect(() => {
     setOpenIndex(null);
@@ -136,7 +155,7 @@ export default function Header() {
     pathname === item.href || (item.href !== '/' && pathname?.startsWith(item.href));
 
   return (
-    <header ref={headerRef} className="fixed top-0 left-0 right-0 z-50">
+    <header ref={headerRef} className={`fixed top-0 left-0 right-0 z-50 transition-transform duration-300 ${isVisible ? 'translate-y-0' : '-translate-y-full'}`}>
 
       {/* ── TOP UTILITY BAR ──────────────────────────────────────── */}
       <div style={{ backgroundColor: '#f5d9a8' }} className="hidden md:block">
@@ -271,7 +290,7 @@ export default function Header() {
           {/* SHOP + Cart */}
           <div className="flex items-center gap-4 md:gap-8 z-10">
             <Link
-              href={href('/shop')}
+              href={href('/product/all-product')}
               className="hidden md:flex items-center gap-2 hover:!text-[#D4A820] transition-colors"
               style={{ color: '#ffffff' }}
             >

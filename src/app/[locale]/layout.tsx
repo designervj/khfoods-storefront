@@ -6,6 +6,8 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import EditModeToggle from '@/components/shared/EditModeToggle';
 import MobileBottomNav from '@/components/shared/MobileBottomNav';
+import CartDrawer from '@/components/ecommerce/CartDrawer';
+import AdminBar from '@/components/layout/AdminBar';
 import '@/styles/globals.css';
 
 /* ── Montserrat via next/font — self-hosted, zero layout shift ── */
@@ -35,6 +37,7 @@ export default async function RootLayout({ children, params }: RootLayoutProps) 
       <body className="min-h-screen flex flex-col" style={{ fontFamily: 'var(--font-montserrat), system-ui, sans-serif' }}>
         <ReduxProvider>
           <BlueprintProvider context="public">
+            <AdminBar />
             <a href="#main-content" className="skip-to-content">Skip to content</a>
             <Header />
             <main id="main-content" className="flex-grow pt-[var(--navbar-height)] pb-16 md:pb-0">
@@ -42,6 +45,7 @@ export default async function RootLayout({ children, params }: RootLayoutProps) 
             </main>
             <Footer />
             <MobileBottomNav />
+            <CartDrawer />
             {/* <EditModeToggle /> */}
           </BlueprintProvider>
         </ReduxProvider>

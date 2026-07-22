@@ -37,7 +37,7 @@ export default function CartPage() {
             <ShoppingBag size={64} className="mx-auto mb-6 text-[var(--text-muted)]" />
             <h2 className="text-2xl font-semibold mb-4">Your cart is empty</h2>
             <p className="text-[var(--text-secondary)] mb-8">Looks like you haven't added anything yet.</p>
-            <Link href={getLocalizedHref('/shop')} className="btn-primary">Continue Shopping</Link>
+            <Link href={getLocalizedHref('/product/all-product')} className="btn-primary">Continue Shopping</Link>
           </div>
         ) : (
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">

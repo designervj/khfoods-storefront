@@ -7,6 +7,7 @@ import { setCurrentPageBySlug } from '@/redux/slices/pages/pagesSlice';
 import { saveField } from '@/redux/slices/pages/saveField';
 import EditableText from '@/components/shared/EditableText';
 import PageHeroSection from '@/components/sections/PageHeroSection';
+import FeaturesBar from '@/components/sections/FeaturesBar';
 import { getLocalizedString } from '@/lib/i18n/locale';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
@@ -123,7 +124,7 @@ export default function AboutPage() {
                   whileInView={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.5, duration: 0.6 }}
                   viewport={{ once: true }}
-                  className="absolute bottom-12 -left-4 lg:left-[-60px] bg-white py-4 px-6 rounded-2xl shadow-[0_15px_30px_rgb(0,0,0,0.1)] flex items-center gap-4 max-w-[220px] z-20"
+                  className="absolute bottom-12 left-4 lg:left-[-60px] bg-white py-4 px-6 rounded-2xl shadow-[0_15px_30px_rgb(0,0,0,0.1)] flex items-center gap-4 max-w-[220px] z-20"
                 >
                   <div className="w-10 h-10 rounded-full bg-[#fdf5ed] flex items-center justify-center shrink-0 text-[#ecb984] font-bold text-sm">
                     $
@@ -298,7 +299,7 @@ export default function AboutPage() {
                 onSave={createSaveHandler(mission.id, 'props.content')} 
                 isEditable={isEditable} 
                 tag="p" 
-                className="text-2xl md:text-xl lg:text-xl text-[#0f172a] leading-snug font-semibold mx-auto tracking-tight" 
+                className="text-xl md:text-2xl text-[#0f172a] leading-relaxed font-semibold mx-auto tracking-tight" 
                 placeholder="Mission content..." 
                 multiline 
                 rows={6} 
@@ -338,6 +339,7 @@ export default function AboutPage() {
           </motion.div>
         </div>
       </section>
+      <FeaturesBar />
     </main>
   );
 }

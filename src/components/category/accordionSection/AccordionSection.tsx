@@ -107,7 +107,7 @@ const AccordionSection = ({
                 className="overflow-hidden transition-all duration-300"
                 style={{ maxHeight: open ? "800px" : "0px", opacity: open ? 1 : 0 }}
             >
-                <div className={isPrimary ? "pl-[30px] pr-4 pb-4" : "px-4 pb-4"}>
+                <div className={isPrimary ? "pl-[30px] pr-4 pb-4 pt-2" : "px-4 pb-4"}>
                     {children}
                 </div>
             </div>

@@ -35,7 +35,7 @@ export default function WishlistPage() {
             <Heart size={64} className="mx-auto mb-6 text-[var(--text-muted)]" />
             <h2 className="text-2xl font-semibold mb-4">Your wishlist is empty</h2>
             <p className="text-[var(--text-secondary)] mb-8">Save items you love to your wishlist.</p>
-            <Link href={getLocalizedHref('/shop')} className="btn-primary">Explore Products</Link>
+            <Link href={getLocalizedHref('/product/all-product')} className="btn-primary">Explore Products</Link>
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">

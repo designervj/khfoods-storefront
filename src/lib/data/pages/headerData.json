@@ -12,48 +12,48 @@
     { "label": { "en": "HOME", "hi": "होम" }, "href": "/" },
     {
       "label": { "en": "ABOUT US", "hi": "हमारे बारे में" },
-      "href": "/about",
+      "href": "/about/history",
       "megaMenu": [
         {
           "category": { "en": "HISTORY", "hi": "इतिहास" },
           "items": [
-            { "label": { "en": "Our History", "hi": "हमारा इतिहास" }, "href": "/about" }
+            { "label": { "en": "Our History", "hi": "हमारा इतिहास" }, "href": "/about/history" }
           ]
         },
         {
           "category": { "en": "NUTRITION", "hi": "पोषण" },
           "items": [
-            { "label": { "en": "Nutrition", "hi": "पोषण" }, "href": "/nutrition" }
+            { "label": { "en": "Nutrition", "hi": "पोषण" }, "href": "/about/nutrition" }
           ]
         },
         {
           "category": { "en": "PROCESS", "hi": "प्रक्रिया" },
           "items": [
-            { "label": { "en": "Our Process", "hi": "हमारी प्रक्रिया" }, "href": "/process" }
+            { "label": { "en": "Our Process", "hi": "हमारी प्रक्रिया" }, "href": "/about/process" }
           ]
         }
       ]
     },
     {
       "label": { "en": "PRODUCTS", "hi": "उत्पाद" },
-      "href": "/shop",
+      "href": "/product/all-product",
       "megaMenu": [
         {
           "category": { "en": "ALL PRODUCTS", "hi": "सभी उत्पाद" },
           "items": [
-            { "label": { "en": "All Products", "hi": "सभी उत्पाद" }, "href": "/shop" }
+            { "label": { "en": "All Products", "hi": "सभी उत्पाद" }, "href": "/product/all-product" }
           ]
         },
         {
-          "category": { "en": "NEW ARRIVALS", "hi": "नए आइटम" },
+          "category": { "en": "DOMESTIC", "hi": "घरेलू" },
           "items": [
-            { "label": { "en": "New Arrivals", "hi": "नए आइटम" }, "href": "/shop?category=new" }
+            { "label": { "en": "Domestic Products", "hi": "घरेलू उत्पाद" }, "href": "/product/domestic" }
           ]
         },
         {
-          "category": { "en": "BEST SELLERS", "hi": "बेस्ट सेलर" },
+          "category": { "en": "INTERNATIONAL", "hi": "अंतरराष्ट्रीय" },
           "items": [
-            { "label": { "en": "Best Sellers", "hi": "बेस्ट सेलर" }, "href": "/shop?category=bestsellers" }
+            { "label": { "en": "International Products", "hi": "अंतरराष्ट्रीय उत्पाद" }, "href": "/product/international" }
           ]
         }
       ]

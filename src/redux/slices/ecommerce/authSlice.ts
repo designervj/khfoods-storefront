@@ -42,6 +42,11 @@ const authSlice = createSlice({
       if (exists) { state.user.wishlist = wishlist.filter((item) => item.id !== product.id); }
       else { state.user.wishlist = [...wishlist, product]; }
     },
+    mockAdminLogin: (state) => {
+      state.isAuthenticated = true;
+      state.user = { id: "admin-1", email: "admin@khfoods.com", firstName: "Admin", lastName: "User", phone: "123", role: "admin" };
+      state.token = "mock-admin-token";
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(loginThunk.pending, (state) => { state.loading = true; state.error = null; });
@@ -62,5 +67,5 @@ export const selectAuthError = (state: RootState) => state.auth.error;
 export const selectWishlist = (state: RootState) => state.auth.user?.wishlist || [];
 export const selectIsInWishlist = (state: RootState, productId: string) => { const wishlist = state.auth.user?.wishlist || []; return wishlist.some((item) => item.id === productId); };
 
-export const { logout, clearAuthError, toggleWishlist } = authSlice.actions;
+export const { logout, clearAuthError, toggleWishlist, mockAdminLogin } = authSlice.actions;
 export default authSlice.reducer;

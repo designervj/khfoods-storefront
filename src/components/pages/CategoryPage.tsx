@@ -9,6 +9,7 @@ import {
   Eye,
   ChevronRight,
   Loader2,
+  X,
 } from "lucide-react";
 import { RootState } from "@/redux/store";
 import { useSelector } from "react-redux";
@@ -53,12 +54,13 @@ const LoadingState = () => (
 interface CategoryPageProps {
   isShopPage?: boolean;
   sections?: any[];
+  categoryId?: string;
 }
 
 /* ─── Main Page ──────────────────────────────────────────── */
-const CategoryPage = ({ isShopPage, sections }: CategoryPageProps) => {
+const CategoryPage = ({ isShopPage, sections, categoryId }: CategoryPageProps) => {
   const params = useParams();
-  const id = (params?.id as string) || "all";
+  const id = categoryId || (params?.id as string) || "all";
   const locale = (params?.locale as string) || "en";
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -116,6 +118,8 @@ const CategoryPage = ({ isShopPage, sections }: CategoryPageProps) => {
   const [expandedCategories, setExpandedCategories] = useState<
     Record<string, boolean>
   >({});
+  
+  const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false);
 
   const getCatIdStr = (cat: any) => {
     if (!cat) return "";
@@ -307,9 +311,9 @@ const CategoryPage = ({ isShopPage, sections }: CategoryPageProps) => {
   const filteredProducts = useMemo(() => {
     let result = allProducts;
 
-    if (currentCategory && currentCategory.id) {
+    if (currentCategory && currentCategory.slug) {
       result = result.filter((p: any) =>
-        p.categoryIds.includes(currentCategory?.id ?? ""),
+        p.categorySlug === currentCategory.slug
       );
     }
 
@@ -436,12 +440,42 @@ const CategoryPage = ({ isShopPage, sections }: CategoryPageProps) => {
         {/* Content Layout */}
         <section className="mt-8">
           <div className="grid grid-cols-1 lg:grid-cols-[320px_1fr] gap-8 items-start">
+            {/* Mobile Filter Backdrop */}
+            {isMobileFilterOpen && (
+              <div 
+                className="fixed inset-0 bg-black/50 z-[10000] lg:hidden"
+                onClick={() => setIsMobileFilterOpen(false)}
+              />
+            )}
+
             {/* LEFT FILTERS */}
-            <aside className="lg:sticky lg:top-[128px] space-y-6">
+            <aside className={`
+              fixed inset-y-0 left-0 z-[10001] w-[320px] max-w-[85vw] bg-background p-5 overflow-y-auto transition-transform duration-300
+              ${isMobileFilterOpen ? 'translate-x-0 shadow-2xl' : '-translate-x-full'}
+              lg:static lg:translate-x-0 lg:z-auto lg:w-auto lg:max-w-none lg:bg-transparent lg:p-0 lg:overflow-visible lg:shadow-none
+              lg:sticky lg:top-[128px] space-y-6
+            `}>
+              <div className="flex justify-between items-center lg:hidden mb-4 pb-4 border-b border-border">
+                <h3 className="text-xl font-black flex items-center gap-2">
+                  <Filter size={18} className="text-secondary" />
+                  Filters
+                </h3>
+                <div className="flex items-center gap-3">
+                  <span className="text-[10px] font-black uppercase tracking-[2px] text-muted border border-border rounded-full px-2.5 py-1.5 bg-background">
+                    {currentCategory && currentCategory.title
+                      ? currentCategory.title
+                      : "All"}
+                  </span>
+                  <button onClick={() => setIsMobileFilterOpen(false)} className="p-2 bg-muted/10 rounded-full text-foreground/70 hover:text-foreground">
+                    <X size={20} />
+                  </button>
+                </div>
+              </div>
+
               {/* Container 1: Category & Rating Filters */}
-              <div className="border border-border bg-surface rounded-[20px] overflow-hidden shadow-sm">
-                {/* Filter header */}
-                <div className="p-4 border-b border-border flex justify-between items-center">
+              <div className="lg:border lg:border-border lg:bg-surface lg:rounded-[20px] lg:overflow-hidden lg:shadow-sm">
+                {/* Filter header (Desktop Only) */}
+                <div className="hidden lg:flex p-4 border-b border-border justify-between items-center">
                   <div className="flex items-center gap-2">
                     <Filter size={18} className="text-secondary" />
                     <h3 className="text-[26px] font-black leading-none">
@@ -466,7 +500,7 @@ const CategoryPage = ({ isShopPage, sections }: CategoryPageProps) => {
                 >
                   <div className="space-y-2.5">
                     <Link
-                      href="/shop"
+                      href="/product/all-product"
                       className={`flex justify-between items-center text-sm font-bold hover:text-secondary transition-colors ${
                         !id || id === "all" ? "text-secondary" : "text-muted"
                       }`}
@@ -512,7 +546,7 @@ const CategoryPage = ({ isShopPage, sections }: CategoryPageProps) => {
 
               {/* Container 2: Product Filters (CMS Attribute Filters) */}
               {cmsFilters && cmsFilters.length > 0 && (
-                <div className="border border-border bg-surface rounded-[20px] overflow-hidden shadow-sm">
+                <div className="mt-6 lg:mt-0 lg:border lg:border-border lg:bg-surface lg:rounded-[20px] lg:overflow-hidden lg:shadow-sm">
                   {/* Product Filters header */}
                   <div className="p-4 border-b border-border flex justify-between items-center">
                     <div className="flex items-center gap-2">
@@ -570,6 +604,17 @@ const CategoryPage = ({ isShopPage, sections }: CategoryPageProps) => {
 
             {/* RIGHT GRID */}
             <div>
+              {/* Mobile Filter Toggle */}
+              <div className="lg:hidden mb-4">
+                <button 
+                  onClick={() => setIsMobileFilterOpen(true)}
+                  className="w-full flex items-center justify-center gap-2 h-12 rounded-2xl border border-border bg-surface font-bold text-sm hover:bg-surface/80 transition-colors"
+                >
+                  <Filter size={18} />
+                  Show Filters
+                </button>
+              </div>
+
               {/* Search and Sort Bar */}
               <div className="flex flex-col sm:flex-row gap-4 justify-between items-center mb-8">
                 <div className="relative w-full sm:max-w-md">

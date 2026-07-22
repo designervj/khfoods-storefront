@@ -4,8 +4,8 @@
     "description": { "en": "Premium peanuts, naturally good. Since 1985.", "hi": "प्रीमियम मूंगफली, प्राकृतिक रूप से अच्छी। 1985 से।" }
   },
   "quickLinks": [
-    { "label": { "en": "Shop", "hi": "दुकान" }, "href": "/shop" },
-    { "label": { "en": "About Us", "hi": "हमारे बारे में" }, "href": "/about" },
+    { "label": { "en": "Shop", "hi": "दुकान" }, "href": "/product/all-product" },
+    { "label": { "en": "About Us", "hi": "हमारे बारे में" }, "href": "/about/history" },
     { "label": { "en": "Contact", "hi": "संपर्क" }, "href": "/contact" },
     { "label": { "en": "FAQ", "hi": "सामान्य प्रश्न" }, "href": "/faq" }
   ],

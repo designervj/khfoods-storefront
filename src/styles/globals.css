@@ -110,7 +110,7 @@
   --shadow-lg: 0 10px 40px rgba(0,0,0,0.14);
   --shadow-hover: 0 16px 48px rgba(234,186,136,0.25);
   --container: 1280px;
-  --navbar-height: 104px;
+  --navbar-height: 68px;
   --section-padding: 80px;
   --btn-height: 48px;
   --btn-padding-x: 28px;
@@ -142,6 +142,12 @@
   --modal-sm: 360px;
   --modal-md: 520px;
   --modal-lg: 720px;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --navbar-height: 104px;
+  }
 }
 
 * { box-sizing: border-box; }
@@ -190,3 +196,10 @@ textarea.form-input { min-height: var(--textarea-min-height); }
 
 .gradient-text { background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .gradient-bg { background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); }
+
+body.admin-bar-visible {
+  padding-top: var(--admin-bar-height, 44px);
+}
+body.admin-bar-visible header {
+  top: var(--admin-bar-height, 44px);
+}

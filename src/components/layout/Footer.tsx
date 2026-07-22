@@ -30,8 +30,8 @@ export default function Footer() {
   ];
 
   const productsLinks = [
-    { label: 'Domestic', path: '/shop' },
-    { label: 'International', path: '/shop' },
+    { label: 'Domestic', path: '/product/domestic' },
+    { label: 'International', path: '/product/international' },
   ];
 
   const SocialIcon = ({ d }: { d: string }) => (

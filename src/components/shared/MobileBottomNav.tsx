@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname, useParams } from 'next/navigation';
+import { useState, useEffect } from 'react';
 import { useAppSelector } from '@/redux/store/hooks';
 import { selectCartItemCount } from '@/redux/slices/ecommerce/cartSlice';
 
@@ -47,6 +48,32 @@ export default function MobileBottomNav() {
   
   const cartCount = useAppSelector(selectCartItemCount);
 
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  useEffect(() => {
+    const controlNavbar = () => {
+      if (typeof window !== 'undefined') {
+        // "uper scroll karu to footer remove" means when scrolling UP the page (swipe down)
+        // scrollY decreasing means scrolling UP
+        if (window.scrollY < lastScrollY && window.scrollY > 80) {
+          setIsVisible(false); // Hide footer on scroll up
+        } else if (window.scrollY > lastScrollY) {
+          setIsVisible(true);  // Show footer on scroll down
+        }
+        
+        if (window.scrollY <= 10) {
+           setIsVisible(true);
+        }
+        
+        setLastScrollY(window.scrollY);
+      }
+    };
+
+    window.addEventListener('scroll', controlNavbar);
+    return () => window.removeEventListener('scroll', controlNavbar);
+  }, [lastScrollY]);
+
   const href = (path: string) => {
     if (path === '/') return locale === 'en' ? '/' : `/${locale}`;
     return locale === 'en' ? path : `/${locale}${path}`;
@@ -55,13 +82,13 @@ export default function MobileBottomNav() {
   const navItems = [
     { label: 'Home', icon: HomeIcon, path: '/' },
     { label: 'Account', icon: UserIcon, path: '/account' },
-    { label: 'Shop', icon: ShopIcon, path: '/shop' },
+    { label: 'Shop', icon: ShopIcon, path: '/product/all-product' },
     { label: 'Wishlist', icon: HeartIcon, path: '/wishlist' },
     { label: 'Cart', icon: BagIcon, path: '/cart' },
   ];
 
   return (
-    <div className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 z-50 shadow-[0_-2px_10px_rgba(0,0,0,0.05)] pb-safe">
+    <div className={`md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 z-[100] shadow-[0_-2px_10px_rgba(0,0,0,0.05)] pb-[env(safe-area-inset-bottom)] transition-transform duration-300 ${isVisible ? 'translate-y-0' : 'translate-y-[200%]'}`}>
       <div className="flex items-center justify-between px-2 h-16">
         {navItems.map((item, index) => {
           const isActive = pathname === href(item.path);

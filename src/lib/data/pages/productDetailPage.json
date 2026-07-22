@@ -1,0 +1,29 @@
+{
+  "pageType": "product-detail",
+  "slug": "product-detail",
+  "isPublished": true,
+  "sections": [
+    {
+      "id": "product-tabs-1",
+      "type": "product-tabs",
+      "adminTitle": "Product Tabs",
+      "props": {
+        "descriptionTab": { "en": "Description", "hi": "विवरण" },
+        "additionalTab": { "en": "Additional information", "hi": "अतिरिक्त जानकारी" },
+        "reviewsTab": { "en": "Reviews", "hi": "समीक्षाएँ" },
+        "descriptionContent1": { "en": "Are you looking for a healthy snack? Look no further than KH Roasted Peanuts! Our peanuts are roasted perfectly without any oil, making them a healthier alternative to other snacks. And because they're packed with protein and fiber, they'll keep you full and satisfied until your next meal.", "hi": "क्या आप एक स्वस्थ नाश्ते की तलाश में हैं? केएच भुनी हुई मूंगफली से आगे मत देखो!" },
+        "descriptionContent2": { "en": "Enjoy our peanuts as a snack on the go or sprinkle them on your salad.", "hi": "चलते-फिरते नाश्ते के रूप में हमारी मूंगफली का आनंद लें या उन्हें अपने सलाद पर छिड़कें।" }
+      },
+      "content": []
+    },
+    {
+      "id": "related-products-1",
+      "type": "related-products",
+      "adminTitle": "Related Products",
+      "props": {
+        "title": { "en": "Related products", "hi": "संबंधित उत्पाद" }
+      },
+      "content": []
+    }
+  ]
+}

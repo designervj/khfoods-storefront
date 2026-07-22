@@ -86,7 +86,7 @@ export default function OrdersPage() {
             <ShoppingBag size={48} className="mx-auto mb-4 text-[var(--text-muted)]" />
             <h2 className="text-2xl font-bold mb-2">No orders yet</h2>
             <p className="text-[var(--text-secondary)] mb-6">Start shopping and place your first order.</p>
-            <Link href="/shop" className="btn-primary">Start Shopping</Link>
+            <Link href="/product/all-product" className="btn-primary">Start Shopping</Link>
           </div>
         )}
       </div>

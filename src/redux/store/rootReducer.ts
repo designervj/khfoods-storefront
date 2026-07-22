@@ -4,6 +4,7 @@ import pagesReducer from "../slices/pages/pagesSlice";
 import cartReducer from "../slices/ecommerce/cartSlice";
 import authReducer from "../slices/ecommerce/authSlice";
 import ordersReducer from "../slices/ecommerce/ordersSlice";
+import commentReducer from "../slices/comments/commentSlice";
 
 const rootReducer = combineReducers({
   blueprint: blueprintReducer,
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
   cart: cartReducer,
   auth: authReducer,
   orders: ordersReducer,
+  comments: commentReducer,
 });
 
 export default rootReducer;

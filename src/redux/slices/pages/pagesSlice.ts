@@ -13,9 +13,10 @@ import privacyPageData from "@/lib/data/pages/privacyPage.json";
 import returnsPageData from "@/lib/data/pages/returnsPage.json";
 import nutritionPageData from "@/lib/data/pages/nutritionPage.json";
 import processPageData from "@/lib/data/pages/processPage.json";
+import productDetailPageData from "@/lib/data/pages/productDetailPage.json";
 
 const initialState: PagesState = {
-  allPages: [homePageData, shopPageData, cartPageData, checkoutPageData, wishlistPageData, aboutPageData, nutritionPageData, processPageData, contactPageData, faqPageData, termsPageData, privacyPageData, returnsPageData] as Page[],
+  allPages: [homePageData, shopPageData, cartPageData, checkoutPageData, wishlistPageData, aboutPageData, nutritionPageData, processPageData, contactPageData, faqPageData, termsPageData, privacyPageData, returnsPageData, productDetailPageData] as Page[],
   currentPages: null,
   isAllPageFetched: false,
   isError: false,

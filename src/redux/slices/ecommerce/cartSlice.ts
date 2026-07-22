@@ -3,9 +3,9 @@ import type { RootState } from "@/redux/store";
 
 export interface CartItem { id: string; productId: string; name: string; price: number; quantity: number; image: string; variantId?: string; variantName?: string; maxQuantity: number; }
 
-export interface CartState { items: CartItem[]; couponCode: string | null; discount: number; loading: boolean; error: string | null; }
+export interface CartState { items: CartItem[]; couponCode: string | null; discount: number; loading: boolean; error: string | null; isCartOpen: boolean; }
 
-const initialState: CartState = { items: [], couponCode: null, discount: 0, loading: false, error: null };
+const initialState: CartState = { items: [], couponCode: null, discount: 0, loading: false, error: null, isCartOpen: false };
 
 export const fetchCartThunk = createAsyncThunk("cart/fetch", async (_, { rejectWithValue }) => {
   try { const response = await fetch("/api/cart"); const data = await response.json(); return data; }
@@ -42,6 +42,16 @@ const cartSlice = createSlice({
       if (item && quantity <= item.maxQuantity && quantity > 0) item.quantity = quantity;
     },
     removeItem: (state, action: PayloadAction<string>) => { state.items = state.items.filter((i) => i.id !== action.payload); },
+    addToCart: (state, action: PayloadAction<Omit<CartItem, "id">>) => {
+      const existingItem = state.items.find(i => i.productId === action.payload.productId);
+      if (existingItem) {
+        existingItem.quantity += action.payload.quantity;
+      } else {
+        state.items.push({ ...action.payload, id: Date.now().toString() });
+      }
+    },
+    openCart: (state) => { state.isCartOpen = true; },
+    closeCart: (state) => { state.isCartOpen = false; },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchCartThunk.fulfilled, (state, action) => { state.items = action.payload.items; state.couponCode = action.payload.couponCode; state.discount = action.payload.discount; });
@@ -52,11 +62,12 @@ const cartSlice = createSlice({
   },
 });
 
-export const selectCartItems = (state: RootState) => state.cart.items;
-export const selectCartTotal = (state: RootState) => state.cart.items.reduce((sum, item) => sum + item.price * item.quantity, 0);
-export const selectCartItemCount = (state: RootState) => state.cart.items.reduce((sum, item) => sum + item.quantity, 0);
-export const selectCartDiscount = (state: RootState) => state.cart.discount;
-export const selectCartLoading = (state: RootState) => state.cart.loading;
+export const selectCartItems = (state: RootState) => state.cart?.items || [];
+export const selectCartTotal = (state: RootState) => (state.cart?.items || []).reduce((sum, item) => sum + item.price * item.quantity, 0);
+export const selectCartItemCount = (state: RootState) => (state.cart?.items || []).reduce((sum, item) => sum + item.quantity, 0);
+export const selectCartDiscount = (state: RootState) => state.cart?.discount || 0;
+export const selectCartLoading = (state: RootState) => state.cart?.loading || false;
+export const selectIsCartOpen = (state: RootState) => state.cart?.isCartOpen || false;
 
-export const { clearCart, updateQuantity, removeItem } = cartSlice.actions;
+export const { clearCart, updateQuantity, removeItem, addToCart, openCart, closeCart } = cartSlice.actions;
 export default cartSlice.reducer;

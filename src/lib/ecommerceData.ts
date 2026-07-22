@@ -6,6 +6,7 @@ export interface KhProduct {
   name: string;
   price: number;
   image: string;
+  nutritionImage?: string;
   categorySlug: string;
   categoryName: string;
   description: string;

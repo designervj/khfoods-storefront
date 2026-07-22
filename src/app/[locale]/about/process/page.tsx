@@ -6,8 +6,10 @@ import { useAppSelector, useAppDispatch } from '@/redux/store/hooks';
 import { setCurrentPageBySlug } from '@/redux/slices/pages/pagesSlice';
 import { saveField } from '@/redux/slices/pages/saveField';
 import PageHeroSection from '@/components/sections/PageHeroSection';
+import FeaturesBar from '@/components/sections/FeaturesBar';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import EditableText from '@/components/shared/EditableText';
 
 export default function ProcessPage() {
   const params = useParams();
@@ -38,6 +40,8 @@ export default function ProcessPage() {
       </div>
     );
   }
+
+  const sectionsObj: any = currentPages.sections;
 
   // Animation Variants
   const fadeInUp: any = { 
@@ -74,7 +78,7 @@ export default function ProcessPage() {
   ];
 
   return (
-    <main className="bg-[#fafafa]">
+    <main className="overflow-hidden bg-[#fafafa]">
       {/* Dynamic Page Hero (From CMS) */}
       <PageHeroSection
         sections={currentPages.sections}
@@ -96,45 +100,66 @@ export default function ProcessPage() {
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
           >
-            <motion.span variants={fadeInUp} className="text-[#c89255] uppercase tracking-widest text-sm font-bold block mb-4">How It's Made</motion.span>
+            <motion.span variants={fadeInUp} className="text-[#c89255] uppercase tracking-widest text-sm font-bold block mb-4">
+              <EditableText
+                value={sectionsObj?.process_hero?.subtitle || "How It's Made"}
+                onSave={createSaveHandler('process_hero', 'subtitle')}
+                isEditable={isEditable}
+              />
+            </motion.span>
             <motion.h2 variants={fadeInUp} className="text-4xl md:text-5xl font-extrabold text-[#1a202c] tracking-tight">
-              Our Journey to Perfection
+              <EditableText
+                value={sectionsObj?.process_hero?.title || "Our Journey to Perfection"}
+                onSave={createSaveHandler('process_hero', 'title')}
+                isEditable={isEditable}
+              />
             </motion.h2>
           </motion.div>
 
-          <div className="relative">
-            {/* Vertical Line for Desktop */}
-            <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-[#e3b584] to-transparent -translate-x-1/2" />
-
-            <div className="space-y-16 md:space-y-24">
-              {timelineSteps.map((step, idx) => (
-                <motion.div 
-                  key={idx}
-                  className={`flex flex-col md:flex-row items-center gap-8 md:gap-16 ${idx % 2 === 0 ? '' : 'md:flex-row-reverse'}`}
-                  initial={{ opacity: 0, y: 50 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  transition={{ duration: 0.8, ease: "easeOut" }}
-                >
-                  <div className={`md:w-1/2 flex ${idx % 2 === 0 ? 'md:justify-end' : 'md:justify-start'}`}>
-                    <div className="w-28 h-28 md:w-40 md:h-40 rounded-[2rem] bg-white shadow-xl shadow-[#ecb984]/20 border border-gray-100 flex items-center justify-center p-3 transform rotate-3 hover:rotate-0 hover:scale-105 transition-all duration-300">
-                      <img src={step.image} alt={step.title} className="w-full h-full object-cover rounded-[1.5rem]" />
-                    </div>
-                  </div>
+          <div className="space-y-24 md:space-y-32 mt-16">
+            {timelineSteps.map((step, idx) => (
+              <motion.div 
+                key={idx}
+                className={`flex flex-col lg:flex-row items-center gap-12 lg:gap-20 ${idx % 2 === 0 ? '' : 'lg:flex-row-reverse'}`}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+              >
+                <div className="w-full lg:w-1/2 relative group">
+                  {/* Decorative background behind image */}
+                  <div className={`absolute inset-0 bg-[#e3b584] rounded-[3rem] transform scale-105 opacity-20 transition-transform duration-700 ${idx % 2 === 0 ? 'rotate-3 group-hover:rotate-6' : '-rotate-3 group-hover:-rotate-6'}`}></div>
+                  <img src={step.image} alt={step.title} className="relative z-10 w-full h-[400px] md:h-[500px] object-cover rounded-[3rem] shadow-2xl transition-transform duration-700" />
                   
-                  {/* Timeline Dot */}
-                  <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-white border-4 border-[#e3b584] items-center justify-center shadow-lg z-10">
-                    <div className="w-2 h-2 rounded-full bg-[#1a202c]" />
+                  {/* Floating Step Number Overlay */}
+                  <div className={`absolute -top-6 md:-top-8 w-20 h-20 md:w-24 md:h-24 bg-white rounded-full shadow-[0_10px_30px_rgba(0,0,0,0.1)] flex items-center justify-center z-20 border-4 border-[#fafafa] ${idx % 2 === 0 ? 'left-2 md:-left-8' : 'right-2 md:-right-8'}`}>
+                    <span className="text-3xl md:text-4xl font-black text-[#e3b584]">0{idx + 1}</span>
                   </div>
+                </div>
 
-                  <div className={`md:w-1/2 text-center ${idx % 2 === 0 ? 'md:text-left' : 'md:text-right'}`}>
-                    <span className="text-[#c89255] font-black text-xl mb-2 block">Step 0{idx + 1}</span>
-                    <h3 className="text-2xl md:text-3xl font-bold text-[#1a202c] mb-4">{step.title}</h3>
-                    <p className="text-gray-500 text-lg leading-relaxed">{step.desc}</p>
+                <div className="w-full lg:w-1/2 space-y-6 md:px-8">
+                  <div className="inline-flex items-center gap-4">
+                    <div className="w-12 h-[3px] bg-[#e3b584] rounded-full"></div>
+                    <span className="text-[#c89255] uppercase tracking-widest text-sm font-bold">Phase 0{idx + 1}</span>
                   </div>
-                </motion.div>
-              ))}
-            </div>
+                  <h3 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-[#1a202c] leading-tight">
+                    <EditableText
+                      value={sectionsObj?.timeline?.[idx]?.title || step.title}
+                      onSave={createSaveHandler(`timeline.${idx}`, 'title')}
+                      isEditable={isEditable}
+                    />
+                  </h3>
+                  <p className="text-gray-500 text-lg md:text-xl leading-relaxed">
+                    <EditableText
+                      value={sectionsObj?.timeline?.[idx]?.desc || step.desc}
+                      onSave={createSaveHandler(`timeline.${idx}`, 'desc')}
+                      isEditable={isEditable}
+                      multiline={true}
+                    />
+                  </p>
+                </div>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
@@ -151,10 +176,19 @@ export default function ProcessPage() {
             viewport={{ once: true }}
           >
             <motion.h2 variants={fadeInUp} className="text-3xl md:text-4xl lg:text-5xl font-extrabold mb-6 tracking-tight">
-              The <span className="text-[#e3b584]">KH Food</span> Difference
+              <EditableText
+                value={sectionsObj?.difference?.title || "The KH Food Difference"}
+                onSave={createSaveHandler('difference', 'title')}
+                isEditable={isEditable}
+              />
             </motion.h2>
             <motion.p variants={fadeInUp} className="text-gray-400 text-lg max-w-2xl mx-auto">
-              We do things the hard way because it's the right way. No shortcuts, just pure dedication to quality.
+              <EditableText
+                value={sectionsObj?.difference?.desc || "We do things the hard way because it's the right way. No shortcuts, just pure dedication to quality."}
+                onSave={createSaveHandler('difference', 'desc')}
+                isEditable={isEditable}
+                multiline={true}
+              />
             </motion.p>
           </motion.div>
 
@@ -172,8 +206,21 @@ export default function ProcessPage() {
             ].map((diff, i) => (
               <motion.div key={i} variants={fadeInUp} className="bg-white/5 border border-white/10 rounded-[2rem] p-8 md:p-10 hover:bg-white/10 transition-colors duration-300">
                 <div className="text-4xl mb-6">{diff.icon}</div>
-                <h3 className="text-2xl font-bold mb-4 text-[#e3b584]">{diff.title}</h3>
-                <p className="text-gray-400 leading-relaxed">{diff.desc}</p>
+                <h3 className="text-2xl font-bold mb-4 text-[#e3b584]">
+                  <EditableText
+                    value={sectionsObj?.difference_items?.[i]?.title || diff.title}
+                    onSave={createSaveHandler(`difference_items.${i}`, 'title')}
+                    isEditable={isEditable}
+                  />
+                </h3>
+                <p className="text-gray-400 leading-relaxed">
+                  <EditableText
+                    value={sectionsObj?.difference_items?.[i]?.desc || diff.desc}
+                    onSave={createSaveHandler(`difference_items.${i}`, 'desc')}
+                    isEditable={isEditable}
+                    multiline={true}
+                  />
+                </p>
               </motion.div>
             ))}
           </motion.div>
@@ -191,10 +238,19 @@ export default function ProcessPage() {
             viewport={{ once: true }}
           >
             <motion.h2 variants={fadeInUp} className="text-3xl md:text-4xl font-extrabold text-[#1a202c] mb-4 tracking-tight">
-              Inside Our Facilities
+              <EditableText
+                value={sectionsObj?.gallery?.title || "Inside Our Facilities"}
+                onSave={createSaveHandler('gallery', 'title')}
+                isEditable={isEditable}
+              />
             </motion.h2>
             <motion.p variants={fadeInUp} className="text-gray-500 text-lg max-w-2xl mx-auto">
-              Take a look at where the magic happens. A blend of modern hygiene standards and traditional craftsmanship.
+              <EditableText
+                value={sectionsObj?.gallery?.desc || "Take a look at where the magic happens. A blend of modern hygiene standards and traditional craftsmanship."}
+                onSave={createSaveHandler('gallery', 'desc')}
+                isEditable={isEditable}
+                multiline={true}
+              />
             </motion.p>
           </motion.div>
 
@@ -205,12 +261,16 @@ export default function ProcessPage() {
             whileInView="visible"
             viewport={{ once: true }}
           >
-            {[1, 2, 3].map((item) => (
-              <motion.div key={item} variants={fadeInUp} className="relative group overflow-hidden rounded-[2rem] h-64 md:h-80 shadow-md">
-                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors duration-500 z-10" />
+            {[
+              "https://khfood.com/wp-content/uploads/2019/12/1.jpg",
+              "https://khfood.com/wp-content/uploads/2019/12/2-1.jpg",
+              "https://khfood.com/wp-content/uploads/2019/12/3.jpg"
+            ].map((imgSrc, idx) => (
+              <motion.div key={idx} variants={fadeInUp} className="relative group overflow-hidden rounded-[2rem] h-64 md:h-80 shadow-md bg-gray-100">
+                <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors duration-500 z-10" />
                 <img 
-                  src="/Image/Peanut.jpg" 
-                  alt="Factory view" 
+                  src={imgSrc} 
+                  alt={`Factory view ${idx + 1}`} 
                   className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
                 />
               </motion.div>
@@ -228,8 +288,20 @@ export default function ProcessPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h3 className="text-[#c89255] uppercase tracking-widest text-sm font-bold mb-2">Verified Excellence</h3>
-            <h2 className="text-2xl md:text-3xl font-bold text-[#1a202c]">Certified by the Best</h2>
+            <h3 className="text-[#c89255] uppercase tracking-widest text-sm font-bold mb-2">
+              <EditableText
+                value={sectionsObj?.certifications?.subtitle || "Verified Excellence"}
+                onSave={createSaveHandler('certifications', 'subtitle')}
+                isEditable={isEditable}
+              />
+            </h3>
+            <h2 className="text-2xl md:text-3xl font-bold text-[#1a202c]">
+              <EditableText
+                value={sectionsObj?.certifications?.title || "Certified by the Best"}
+                onSave={createSaveHandler('certifications', 'title')}
+                isEditable={isEditable}
+              />
+            </h2>
           </motion.div>
           
           <div className="flex flex-wrap justify-center gap-8 md:gap-16 opacity-70 grayscale hover:grayscale-0 transition-all duration-500">
@@ -254,13 +326,30 @@ export default function ProcessPage() {
             viewport={{ once: true }}
             className="bg-white/90 backdrop-blur-sm rounded-[3rem] p-10 md:p-16 shadow-2xl"
           >
-            <h2 className="text-3xl md:text-4xl font-extrabold text-[#1a202c] mb-6">Our Promise to the Planet</h2>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-[#1a202c] mb-6">
+              <EditableText
+                value={sectionsObj?.sustainability?.title || "Our Promise to the Planet"}
+                onSave={createSaveHandler('sustainability', 'title')}
+                isEditable={isEditable}
+              />
+            </h2>
             <p className="text-gray-600 text-lg md:text-xl leading-relaxed max-w-3xl mx-auto mb-8">
-              We believe that producing the best peanuts shouldn't come at the cost of our environment. Our facilities operate with minimal waste, utilizing eco-friendly packaging and sustainable farming partnerships.
+              <EditableText
+                value={sectionsObj?.sustainability?.desc || "We believe that producing the best peanuts shouldn't come at the cost of our environment. Our facilities operate with minimal waste, utilizing eco-friendly packaging and sustainable farming partnerships."}
+                onSave={createSaveHandler('sustainability', 'desc')}
+                isEditable={isEditable}
+                multiline={true}
+              />
             </p>
             <div className="flex justify-center items-center gap-3 text-[#c89255] font-bold">
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>
-              <span>100% Recyclable Packaging</span>
+              <span>
+                <EditableText
+                  value={sectionsObj?.sustainability?.highlight || "100% Recyclable Packaging"}
+                  onSave={createSaveHandler('sustainability', 'highlight')}
+                  isEditable={isEditable}
+                />
+              </span>
             </div>
           </motion.div>
         </div>
@@ -275,9 +364,20 @@ export default function ProcessPage() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 tracking-tight">Stay Connected With Us</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 tracking-tight">
+              <EditableText
+                value={sectionsObj?.newsletter?.title || "Stay Connected With Us"}
+                onSave={createSaveHandler('newsletter', 'title')}
+                isEditable={isEditable}
+              />
+            </h2>
             <p className="text-[#8e98a8] text-base md:text-lg mb-10 max-w-xl mx-auto leading-relaxed">
-              Join our newsletter to get the latest updates on our natural peanut products, exclusive offers, and behind-the-scenes content.
+              <EditableText
+                value={sectionsObj?.newsletter?.desc || "Join our newsletter to get the latest updates on our natural peanut products, exclusive offers, and behind-the-scenes content."}
+                onSave={createSaveHandler('newsletter', 'desc')}
+                isEditable={isEditable}
+                multiline={true}
+              />
             </p>
             <form className="flex flex-col sm:flex-row gap-4 justify-center max-w-lg mx-auto" onSubmit={(e) => e.preventDefault()}>
               <input 
@@ -296,6 +396,7 @@ export default function ProcessPage() {
           </motion.div>
         </div>
       </section>
+      <FeaturesBar />
     </main>
   );
 }
