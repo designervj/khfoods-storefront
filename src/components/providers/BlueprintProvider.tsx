@@ -4,7 +4,6 @@ import { useEffect, useRef, ReactNode } from 'react';
 import { useAppSelector, useAppDispatch } from '@/redux/store/hooks';
 import { fetchBlueprintThunk } from '@/redux/slices/blueprint/blueprintThunk';
 import { selectActiveTheme, selectThemeContext, selectBlueprintLastFetched, selectBlueprintLoading, setThemeContext } from '@/redux/slices/blueprint/blueprintSlice';
-import { mockAdminLogin } from '@/redux/slices/ecommerce/authSlice';
 import applyTheme from '@/lib/applyTheme';
 
 interface BlueprintProviderProps { children: ReactNode; context?: 'public' | 'admin'; }
@@ -23,7 +22,6 @@ export default function BlueprintProvider({ children, context = 'public' }: Blue
 
   useEffect(() => {
     if (hasFetched.current) return;
-    dispatch(mockAdminLogin()); // Temporary mock for Admin Bar testing
     const shouldFetch = !lastFetched || (Date.now() - new Date(lastFetched).getTime()) > STALE_THRESHOLD;
     if (shouldFetch && !isLoading) { hasFetched.current = true; dispatch(fetchBlueprintThunk()); }
   }, [dispatch, lastFetched, isLoading]);

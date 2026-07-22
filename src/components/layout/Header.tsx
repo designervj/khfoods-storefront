@@ -97,6 +97,8 @@ const BagIcon = () => (
 export default function Header() {
   const pathname = usePathname();
   const params = useParams();
+  
+  if (pathname.includes('/login') || pathname.includes('/register')) return null;
   const locale = (params?.locale as string) || 'en';
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);

@@ -48,6 +48,8 @@ export default function MobileBottomNav() {
   
   const cartCount = useAppSelector(selectCartItemCount);
 
+  if (pathname.includes('/login') || pathname.includes('/register')) return null;
+
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 

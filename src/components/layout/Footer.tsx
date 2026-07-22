@@ -2,11 +2,15 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { useParams } from 'next/navigation';
+import { useParams, usePathname } from 'next/navigation';
 
 export default function Footer() {
   const params = useParams();
+  const pathname = usePathname();
   const locale = (params?.locale as string) || 'en';
+  
+  if (pathname.includes('/login') || pathname.includes('/register')) return null;
+
   const currentYear = new Date().getFullYear();
 
   const href = (path: string) => {
