@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useCallback } from 'react';
+import { useEffect, useCallback, useState } from 'react';
 import { useParams } from 'next/navigation';
 import { useAppSelector, useAppDispatch } from '@/redux/store/hooks';
 import { setCurrentPageBySlug } from '@/redux/slices/pages/pagesSlice';
@@ -8,6 +8,8 @@ import { saveField } from '@/redux/slices/pages/saveField';
 import PageHeroSection from '@/components/sections/PageHeroSection';
 import EditableText from '@/components/shared/EditableText';
 import { getLocalizedString } from '@/lib/i18n/locale';
+import { motion, AnimatePresence } from 'framer-motion';
+import Link from 'next/link';
 
 export default function NutritionPage() {
   const params = useParams();
@@ -16,6 +18,7 @@ export default function NutritionPage() {
 
   const currentPages = useAppSelector((state) => state.pages.currentPages);
   const isEditable = useAppSelector((state) => state.pages.isEditablePage);
+  const [activeFaq, setActiveFaq] = useState<number | null>(null);
 
   useEffect(() => {
     if (!currentPages || currentPages.slug !== 'nutrition') dispatch(setCurrentPageBySlug('nutrition'));
@@ -31,6 +34,16 @@ export default function NutritionPage() {
 
   const benefitsSection = currentPages.sections.find(s => s.adminTitle === 'Health Benefits');
   const factsSection = currentPages.sections.find(s => s.adminTitle === 'Nutrition Facts');
+
+  const fadeInUp: any = { 
+    hidden: { opacity: 0, y: 40 }, 
+    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } } 
+  };
+  
+  const staggerContainer: any = { 
+    hidden: { opacity: 0 }, 
+    visible: { opacity: 1, transition: { staggerChildren: 0.15 } } 
+  };
 
   return (
     <main>
@@ -106,6 +119,142 @@ export default function NutritionPage() {
           </div>
         </section>
       )}
+      {/* 1. Pure Ingredients & Sourcing */}
+      <section className="relative py-24 bg-[#fafafa] overflow-hidden">
+        <div className="absolute top-0 right-0 w-[40%] h-[60%] bg-[#ecb984]/10 rounded-full blur-[100px] -z-10" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div 
+            className="flex flex-col lg:flex-row items-center gap-16"
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+          >
+            <motion.div variants={fadeInUp} className="lg:w-1/2 relative">
+              <div className="absolute inset-0 bg-[#c89255] rounded-[3rem] transform rotate-3 scale-105 opacity-20"></div>
+              <img src="/Image/Peanut.jpg" alt="Pure Peanuts" className="relative z-10 w-full h-[400px] md:h-[500px] object-cover rounded-[3rem] shadow-2xl" />
+            </motion.div>
+            <motion.div variants={fadeInUp} className="lg:w-1/2 space-y-8">
+              <span className="text-[#c89255] uppercase tracking-widest text-sm font-bold">100% All Natural</span>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-[#1a202c] leading-tight">
+                Sourced from the <span className="text-[#ecb984]">Finest Farms</span>
+              </h2>
+              <p className="text-gray-600 text-lg leading-relaxed">
+                We believe that great taste starts with great ingredients. That's why our peanuts are carefully selected from premium farms, ensuring every bite delivers nature's pure goodness without any artificial additives.
+              </p>
+              <ul className="space-y-4">
+                {['No Preservatives', 'No Artificial Flavors', 'Non-GMO'].map((item, i) => (
+                  <li key={i} className="flex items-center gap-3 text-gray-700 font-medium">
+                    <svg className="w-6 h-6 text-[#c89255]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* 2. Dietary & Lifestyle Badges */}
+      <section className="py-20 bg-white border-y border-gray-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div 
+            className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-12"
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
+            {[
+              { title: "Vegan", icon: "🌱" },
+              { title: "Gluten-Free", icon: "🌾" },
+              { title: "Non-GMO", icon: "🧬" },
+              { title: "Zero Cholesterol", icon: "❤️" },
+            ].map((badge, i) => (
+              <motion.div key={i} variants={fadeInUp} className="flex flex-col items-center justify-center p-6 md:p-8 bg-gray-50 rounded-3xl hover:bg-[#fdf5ed] transition-colors duration-300 group text-center border border-gray-100 hover:border-[#ecb984]/30 cursor-default">
+                <span className="text-4xl md:text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">{badge.icon}</span>
+                <h3 className="font-bold text-gray-900">{badge.title}</h3>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* 3. Nutrition FAQ */}
+      <section className="py-24 bg-[#fafafa]">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div 
+            className="text-center mb-16"
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
+            <motion.div variants={fadeInUp}>
+              <h2 className="text-3xl md:text-4xl font-extrabold text-[#1a202c]">Common Questions</h2>
+              <p className="text-gray-500 mt-4 text-lg">Everything you need to know about our peanuts.</p>
+            </motion.div>
+          </motion.div>
+
+          <div className="space-y-4">
+            {[
+              { q: "Are your peanuts roasted in oil?", a: "No, we strictly avoid unhealthy oils. Our peanuts undergo a specialized roasting process that enhances their natural flavor without adding extra fat." },
+              { q: "Is there any added sugar?", a: "Absolutely not. We believe in the natural sweetness and savory profile of high-quality peanuts. You won't find any hidden sugars here." },
+              { q: "Are they safe for gluten allergies?", a: "Yes, our peanuts are naturally gluten-free and processed in a facility that maintains strict hygiene standards to prevent cross-contamination." },
+            ].map((faq, idx) => (
+              <div key={idx} className="bg-white rounded-2xl shadow-[0_4px_20px_rgb(0,0,0,0.03)] border border-gray-100 overflow-hidden">
+                <button 
+                  onClick={() => setActiveFaq(activeFaq === idx ? null : idx)}
+                  className="w-full text-left px-6 py-6 flex items-center justify-between font-bold text-gray-900 hover:bg-gray-50/50 transition-colors focus:outline-none"
+                >
+                  <span className="text-lg">{faq.q}</span>
+                  <span className={`transform transition-transform duration-300 ${activeFaq === idx ? 'rotate-180' : ''}`}>
+                    <svg className="w-5 h-5 text-[#c89255]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
+                  </span>
+                </button>
+                <AnimatePresence>
+                  {activeFaq === idx && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <div className="px-6 pb-6 text-gray-600 text-base leading-relaxed border-t border-gray-50 pt-4">
+                        {faq.a}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 4. Call to Action */}
+      <section className="relative py-24 md:py-32 bg-gradient-to-br from-[#1e293b] to-[#0f172a] text-center overflow-hidden">
+        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10 mix-blend-overlay" />
+        <div className="absolute top-[-50%] right-[-10%] w-[60%] h-[150%] bg-[#ecb984]/10 rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute bottom-[-20%] left-[-10%] w-[40%] h-[100%] bg-[#c89255]/10 rounded-full blur-[100px] pointer-events-none" />
+        
+        <div className="max-w-4xl mx-auto px-4 relative z-10">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-4xl md:text-5xl lg:text-4xl font-extrabold text-white mb-6 leading-tight pb-4">Ready to Fuel Your Body?</h2>
+            <p className="text-gray-300 text-lg md:text-lg mb-10 max-w-2xl mx-auto font-light leading-relaxed">
+              Experience the perfect balance of health and taste. Grab your pack of naturally processed peanuts today.
+            </p>
+            <Link href="/products" className="inline-block bg-gradient-to-r from-[#d9a269] to-[#ecb984] text-slate-900 font-bold text-md px-10 py-4 rounded-full hover:scale-105 transition-transform duration-300 shadow-xl shadow-[#ecb984]/20 border border-white/20">
+              Shop Healthy Options
+            </Link>
+          </motion.div>
+        </div>
+      </section>
     </main>
   );
 }

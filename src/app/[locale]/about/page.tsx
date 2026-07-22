@@ -35,11 +35,23 @@ export default function AboutPage() {
   const values = currentPages.sections.find(s => s.adminTitle === 'What We Value');
   const mission = currentPages.sections.find(s => s.adminTitle === 'Mission');
 
-  const containerVariants = { hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.2 } } };
-  const itemVariants = { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6 } } };
+  const fadeInUp: any = { 
+    hidden: { opacity: 0, y: 40 }, 
+    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } } 
+  };
+  
+  const staggerContainer: any = { 
+    hidden: { opacity: 0 }, 
+    visible: { opacity: 1, transition: { staggerChildren: 0.15 } } 
+  };
+
+  const scaleIn: any = {
+    hidden: { opacity: 0, scale: 0.95 },
+    visible: { opacity: 1, scale: 1, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } }
+  };
 
   return (
-    <main>
+    <main className="overflow-hidden bg-[#fafafa]">
       <PageHeroSection
         sections={currentPages.sections}
         locale={locale}
@@ -49,75 +61,150 @@ export default function AboutPage() {
       />
 
       {story && (
-        <motion.section
-          className="w-full bg-white text-black py-10 md:py-20 px-4 sm:px-6 lg:px-8"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-        >
-          <div className="max-w-7xl mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
-              <div className="flex flex-col gap-4 md:gap-6">
-                <motion.div variants={itemVariants} className="bg-[#F5F5F7] rounded-[2rem] p-8 md:p-12 flex flex-col justify-center h-full min-h-[300px]">
-                  <EditableText value={getLocalizedString(story.props?.since, locale)} onSave={createSaveHandler(story.id, 'props.since')} isEditable={isEditable} tag="span" className="uppercase tracking-widest text-xs font-bold text-[#ecb984] mb-3" placeholder="SINCE 1990" />
-                  <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-4">
+        <section className="relative w-full py-24 lg:py-32 px-4 sm:px-6 lg:px-8">
+          {/* Subtle background decoration */}
+          <div className="absolute top-0 left-0 w-full h-full overflow-hidden -z-10">
+            <div className="absolute top-[-10%] right-[-5%] w-[40%] h-[40%] rounded-full bg-[#ecb984]/10 blur-[100px]" />
+            <div className="absolute bottom-[-10%] left-[-5%] w-[40%] h-[40%] rounded-full bg-blue-100/40 blur-[100px]" />
+          </div>
+
+          <div className="max-w-6xl mx-auto">
+            <motion.div 
+              className="flex flex-col lg:flex-row items-center relative"
+              variants={staggerContainer}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-100px" }}
+            >
+              {/* Text Card overlapping the image */}
+              <div className="lg:w-[45%] lg:absolute lg:left-0 lg:z-10 order-2 lg:order-1 mt-[-60px] lg:mt-0 relative px-4 lg:px-0">
+                <motion.div variants={fadeInUp} className="bg-white rounded-[2rem] p-8 lg:p-12 shadow-[0_15px_40px_rgb(0,0,0,0.08)] border border-gray-50">
+                  
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="h-[1px] w-8 bg-[#ecb984]"></div>
+                    <EditableText 
+                      value={getLocalizedString(story.props?.since, locale)} 
+                      onSave={createSaveHandler(story.id, 'props.since')} 
+                      isEditable={isEditable} 
+                      tag="span" 
+                      className="text-[#c89255] uppercase tracking-widest text-[10px] font-extrabold" 
+                      placeholder="SINCE 1990" 
+                    />
+                  </div>
+
+                  <h2 className="text-3xl lg:text-4xl font-extrabold tracking-tight text-[#1a202c] leading-[1.1] mb-6">
                     <EditableText value={getLocalizedString(story.props?.title, locale)} onSave={createSaveHandler(story.id, 'props.title')} isEditable={isEditable} tag="span" placeholder="Enter title..." />
-                    <span className="text-[#ecb984]"> <EditableText value={getLocalizedString(story.props?.titleHighlight, locale)} onSave={createSaveHandler(story.id, 'props.titleHighlight')} isEditable={isEditable} tag="span" placeholder="highlight" /></span>
+                    <br />
+                    <span className="text-[#ecb984]">
+                      <EditableText value={getLocalizedString(story.props?.titleHighlight, locale)} onSave={createSaveHandler(story.id, 'props.titleHighlight')} isEditable={isEditable} tag="span" placeholder="highlight" />
+                    </span>
                   </h2>
-                  <div className="space-y-4 text-gray-700 text-base sm:text-lg mb-6 max-w-md">
+                  
+                  <div className="space-y-4 text-gray-500 text-sm leading-[1.8]">
                     <EditableText value={getLocalizedString(story.props?.para1, locale)} onSave={createSaveHandler(story.id, 'props.para1')} isEditable={isEditable} tag="p" placeholder="Enter paragraph 1..." multiline rows={3} />
                     <EditableText value={getLocalizedString(story.props?.para2, locale)} onSave={createSaveHandler(story.id, 'props.para2')} isEditable={isEditable} tag="p" placeholder="Enter paragraph 2..." multiline rows={3} />
                   </div>
                 </motion.div>
               </div>
-              <motion.div variants={itemVariants} className="h-[500px] lg:h-auto w-full relative overflow-hidden rounded-[2rem]">
-                <img src={getLocalizedString(story.props?.image, locale)} alt="About KH Food" className="w-full h-full object-cover" />
-                <div className="absolute bottom-6 left-6 bg-white/90 backdrop-blur-sm py-3 px-6 rounded-xl shadow-sm">
-                  <EditableText value={getLocalizedString(story.props?.badge, locale)} onSave={createSaveHandler(story.id, 'props.badge')} isEditable={isEditable} tag="p" className="font-bold text-lg" placeholder="Badge text" />
-                </div>
+
+              {/* Image Section */}
+              <motion.div variants={scaleIn} className="w-full lg:w-[65%] lg:ml-auto h-[450px] sm:h-[550px] relative order-1 lg:order-2 rounded-[2.5rem] overflow-hidden">
+                <motion.img 
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.7, ease: "easeOut" }}
+                  src={getLocalizedString(story.props?.image, locale)} 
+                  alt="About KH Food" 
+                  className="w-full h-full object-cover" 
+                />
+                
+                {/* Floating Badge (Left aligned, overflowing slightly) */}
+                <motion.div 
+                  initial={{ y: 20, opacity: 0 }}
+                  whileInView={{ y: 0, opacity: 1 }}
+                  transition={{ delay: 0.5, duration: 0.6 }}
+                  viewport={{ once: true }}
+                  className="absolute bottom-12 -left-4 lg:left-[-60px] bg-white py-4 px-6 rounded-2xl shadow-[0_15px_30px_rgb(0,0,0,0.1)] flex items-center gap-4 max-w-[220px] z-20"
+                >
+                  <div className="w-10 h-10 rounded-full bg-[#fdf5ed] flex items-center justify-center shrink-0 text-[#ecb984] font-bold text-sm">
+                    $
+                  </div>
+                  <EditableText value={getLocalizedString(story.props?.badge, locale)} onSave={createSaveHandler(story.id, 'props.badge')} isEditable={isEditable} tag="p" className="font-bold text-[#1a202c] text-xs leading-tight uppercase" placeholder="Badge text" />
+                </motion.div>
               </motion.div>
-            </div>
+
+            </motion.div>
           </div>
-        </motion.section>
+        </section>
       )}
 
       {values && values.content && (
-        <section className="py-20 bg-[#f5f5f7]">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16">
-              <EditableText value={getLocalizedString(values.props?.title, locale)} onSave={createSaveHandler(values.id, 'props.title')} isEditable={isEditable} tag="h2" className="text-4xl md:text-5xl font-bold uppercase tracking-tight text-black" placeholder="Section title..." />
+        <section className="relative py-32 bg-[#0a0f16] overflow-hidden">
+          {/* Dark section dynamic background */}
+          <div className="absolute top-0 right-0 w-[50%] h-[50%] bg-[#ecb984]/10 blur-[120px] rounded-full" />
+          <div className="absolute bottom-0 left-0 w-[50%] h-[50%] bg-[#ecb984]/5 blur-[120px] rounded-full" />
+
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <motion.div 
+              className="text-center mb-20"
+              variants={staggerContainer}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-100px" }}
+            >
+              <motion.div variants={fadeInUp}>
+                <EditableText 
+                  value={getLocalizedString(values.props?.title, locale)} 
+                  onSave={createSaveHandler(values.id, 'props.title')} 
+                  isEditable={isEditable} 
+                  tag="h2" 
+                  className="text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight text-white mb-6" 
+                  placeholder="Section title..." 
+                />
+              </motion.div>
               {values.props?.subtitle && (
-                <div className="mt-4">
-                  <EditableText value={getLocalizedString(values.props?.subtitle, locale)} onSave={createSaveHandler(values.id, 'props.subtitle')} isEditable={isEditable} tag="p" className="text-gray-500 text-lg" placeholder="Subtitle..." />
-                </div>
+                <motion.div variants={fadeInUp}>
+                  <EditableText 
+                    value={getLocalizedString(values.props?.subtitle, locale)} 
+                    onSave={createSaveHandler(values.id, 'props.subtitle')} 
+                    isEditable={isEditable} 
+                    tag="p" 
+                    className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto font-light" 
+                    placeholder="Subtitle..." 
+                  />
+                </motion.div>
               )}
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            </motion.div>
+
+            <motion.div 
+              className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8"
+              variants={staggerContainer}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-50px" }}
+            >
               {values.content.map((item, idx) => {
                 const title = getLocalizedString(item.props?.title, locale);
                 
-                // Select icon based on title or index
                 let Icon = null;
-                if (idx === 0) { // Health
+                if (idx === 0) { 
                   Icon = (
-                    <svg width="140" height="140" viewBox="0 0 24 24" fill="none" stroke="#5C3A21" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" className="mx-auto mb-8">
-                      <path d="M6 3v7a2 2 0 0 1-2 2H3V3h1zm0 0v18" /> {/* Fork */}
-                      <path d="M19 3v10a2 2 0 0 1-2 2h-1V3h3zm-1 12v6" /> {/* Knife */}
-                      <circle cx="12" cy="11" r="5" /> {/* Plate */}
-                      <path d="M12 11c.4-.4 1.2-.8 1.8-.8.8 0 1.2.4 1.2 1.2 0 1.2-2 2.5-3 2.5s-3-1.3-3-2.5c0-.8.4-1.2 1.2-1.2.6 0 1.4.4 1.8.8z" fill="#5C3A21" /> {/* Heart */}
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-[#ecb984]">
+                      <path d="M6 3v7a2 2 0 0 1-2 2H3V3h1zm0 0v18" />
+                      <path d="M19 3v10a2 2 0 0 1-2 2h-1V3h3zm-1 12v6" />
+                      <circle cx="12" cy="11" r="5" />
+                      <path d="M12 11c.4-.4 1.2-.8 1.8-.8.8 0 1.2.4 1.2 1.2 0 1.2-2 2.5-3 2.5s-3-1.3-3-2.5c0-.8.4-1.2 1.2-1.2.6 0 1.4.4 1.8.8z" fill="currentColor" />
                     </svg>
                   );
-                } else if (idx === 1) { // Quality
+                } else if (idx === 1) { 
                   Icon = (
-                    <svg width="140" height="140" viewBox="0 0 24 24" fill="none" stroke="#5C3A21" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" className="mx-auto mb-8">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-[#ecb984]">
                       <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3" />
-                      <circle cx="5.5" cy="18.5" r="0.5" fill="#5C3A21" />
+                      <circle cx="5.5" cy="18.5" r="0.5" fill="currentColor" />
                     </svg>
                   );
-                } else { // Taste
+                } else { 
                   Icon = (
-                    <svg width="140" height="140" viewBox="0 0 24 24" fill="none" stroke="#5C3A21" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" className="mx-auto mb-8">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-[#ecb984]">
                       <path d="M7 11c1.5 3 4 4.5 5 4.5s3.5-1.5 5-4.5" />
                       <path d="M12 15.5v2a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-1" />
                       <path d="M5 9l2 2 M19 9l-2 2" />
@@ -126,28 +213,131 @@ export default function AboutPage() {
                 }
 
                 return (
-                  <div key={item.id} className="bg-white rounded-[2rem] p-8 md:p-10 shadow-sm border border-gray-100 flex flex-col justify-between">
-                    <div>
+                  <motion.div 
+                    key={item.id} 
+                    variants={fadeInUp}
+                    whileHover={{ y: -10 }}
+                    className="group bg-white/[0.03] hover:bg-white/[0.06] backdrop-blur-xl rounded-[2rem] p-8 md:p-10 border border-white/10 hover:border-white/20 transition-all duration-300"
+                  >
+                    <div className="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-8 group-hover:scale-110 group-hover:bg-[#ecb984]/20 transition-all duration-300">
                       {Icon}
-                      <EditableText value={title} onSave={createSaveHandler(values.id, `content.${idx}.props.title`)} isEditable={isEditable} tag="h3" className="text-2xl font-bold text-black mb-3" placeholder="Value title..." />
-                      <EditableText value={getLocalizedString(item.props?.description, locale)} onSave={createSaveHandler(values.id, `content.${idx}.props.description`)} isEditable={isEditable} tag="p" className="text-gray-500 text-sm leading-relaxed" placeholder="Value description..." multiline rows={3} />
                     </div>
-                  </div>
+                    <EditableText 
+                      value={title} 
+                      onSave={createSaveHandler(values.id, `content.${idx}.props.title`)} 
+                      isEditable={isEditable} 
+                      tag="h3" 
+                      className="text-2xl font-bold text-white mb-4" 
+                      placeholder="Value title..." 
+                    />
+                    <EditableText 
+                      value={getLocalizedString(item.props?.description, locale)} 
+                      onSave={createSaveHandler(values.id, `content.${idx}.props.description`)} 
+                      isEditable={isEditable} 
+                      tag="p" 
+                      className="text-gray-400 text-base leading-relaxed" 
+                      placeholder="Value description..." 
+                      multiline 
+                      rows={4} 
+                    />
+                  </motion.div>
                 );
               })}
-            </div>
+            </motion.div>
           </div>
         </section>
       )}
 
+      {/* New Impact/Stats Section */}
+      <section className="relative py-20 bg-[#ecb984] text-slate-900">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div 
+            className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 text-center"
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
+            {[
+              { label: "Years of Heritage", value: "30+" },
+              { label: "Happy Customers", value: "10K+" },
+              { label: "Natural Ingredients", value: "100%" },
+              { label: "Premium Products", value: "50+" },
+            ].map((stat, i) => (
+              <motion.div key={i} variants={fadeInUp} className="flex flex-col gap-2">
+                <span className="text-4xl md:text-5xl lg:text-6xl font-black">{stat.value}</span>
+                <span className="text-sm md:text-base font-semibold uppercase tracking-wider opacity-80">{stat.label}</span>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
       {mission && (
-        <section className="py-16 bg-white">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <EditableText value={getLocalizedString(mission.props?.heading, locale)} onSave={createSaveHandler(mission.id, 'props.heading')} isEditable={isEditable} tag="h2" className="text-3xl md:text-4xl font-bold mb-6 uppercase" placeholder="Mission heading..." />
-            <EditableText value={getLocalizedString(mission.props?.content, locale)} onSave={createSaveHandler(mission.id, 'props.content')} isEditable={isEditable} tag="p" className="text-lg text-gray-600 leading-relaxed max-w-3xl mx-auto" placeholder="Mission content..." multiline rows={6} />
-          </div>
+        <section className="relative py-24 bg-white flex items-center justify-center">
+          <motion.div 
+            className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center"
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+          >
+            <motion.div variants={scaleIn}>
+              <EditableText 
+                value={getLocalizedString(mission.props?.heading, locale)} 
+                onSave={createSaveHandler(mission.id, 'props.heading')} 
+                isEditable={isEditable} 
+                tag="h2" 
+                className="text-sm font-bold mb-6 uppercase tracking-[0.2em] text-[#c89255] pb-4" 
+                placeholder="Mission heading..." 
+              />
+            </motion.div>
+            <motion.div variants={fadeInUp}>
+              <EditableText 
+                value={getLocalizedString(mission.props?.content, locale)} 
+                onSave={createSaveHandler(mission.id, 'props.content')} 
+                isEditable={isEditable} 
+                tag="p" 
+                className="text-2xl md:text-xl lg:text-xl text-[#0f172a] leading-snug font-semibold mx-auto tracking-tight" 
+                placeholder="Mission content..." 
+                multiline 
+                rows={6} 
+              />
+            </motion.div>
+          </motion.div>
         </section>
       )}
+
+      {/* Newsletter CTA Section (Matched Design) */}
+      <section className="relative py-24 bg-[#1a1f2c] text-white overflow-hidden">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 tracking-tight">Stay Connected With Us</h2>
+            <p className="text-[#8e98a8] text-base md:text-lg mb-10 max-w-xl mx-auto leading-relaxed">
+              Join our newsletter to get the latest updates on our natural peanut products, exclusive offers, and behind-the-scenes content.
+            </p>
+            <form className="flex flex-col sm:flex-row gap-4 justify-center max-w-lg mx-auto" onSubmit={(e) => e.preventDefault()}>
+              <input 
+                type="email" 
+                placeholder="Enter your email" 
+                className="flex-1 bg-[#2d3342] border border-[#3f4656] rounded-full px-6 py-4 text-white placeholder:text-[#8e98a8] focus:outline-none focus:border-[#e3b584] transition-colors"
+                required 
+              />
+              <button 
+                type="submit" 
+                className="bg-[#e3b584] text-[#1a1f2c] font-bold px-8 py-4 rounded-full hover:bg-[#d4a371] transition-colors whitespace-nowrap"
+              >
+                Subscribe
+              </button>
+            </form>
+          </motion.div>
+        </div>
+      </section>
     </main>
   );
 }
