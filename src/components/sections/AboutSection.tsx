@@ -67,7 +67,7 @@ export default function AboutSection({ sections, locale, isEditable, createSaveH
                 className="uppercase tracking-widest text-xs font-bold text-[#ecb984] mb-3"
                 placeholder="SINCE 1990"
               />
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-4">
+              <h2 className="text-3xl sm:text-3xl md:text-3xl font-bold leading-tight mb-4">
                 <EditableText
                   value={getLocalizedString(title, locale)}
                   onSave={createSaveHandler(section.id, 'props.title')}

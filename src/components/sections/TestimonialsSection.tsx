@@ -43,7 +43,7 @@ export default function TestimonialsSection({ sections, locale, isEditable, crea
               onSave={createSaveHandler(section.id, 'props.heading')}
               isEditable={isEditable}
               tag="h2"
-              className="text-3xl md:text-4xl font-bold text-gray-900"
+              className="text-3xl md:text-3xl font-bold text-gray-900"
               placeholder="Heading..."
             />
           </div>

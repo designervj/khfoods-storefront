@@ -35,7 +35,7 @@ export default function BlogSection({ sections, locale, isEditable, createSaveHa
             onSave={createSaveHandler(section.id, 'props.title')}
             isEditable={isEditable}
             tag="h2"
-            className="text-3xl sm:text-4xl lg:text-[42px] font-bold uppercase tracking-tight text-black"
+            className="text-3xl sm:text-3xl lg:text-3xl font-bold uppercase tracking-tight text-black"
             placeholder="Title..."
             multiline
             rows={2}

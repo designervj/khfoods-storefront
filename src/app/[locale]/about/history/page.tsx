@@ -93,7 +93,7 @@ export default function AboutPage() {
                     />
                   </div>
 
-                  <h2 className="text-3xl lg:text-4xl font-extrabold tracking-tight text-[#1a202c] leading-[1.1] mb-6">
+                  <h2 className="text-3xl lg:text-3xl font-extrabold tracking-tight text-[#1a202c] leading-[1.1] mb-6">
                     <EditableText value={getLocalizedString(story.props?.title, locale)} onSave={createSaveHandler(story.id, 'props.title')} isEditable={isEditable} tag="span" placeholder="Enter title..." />
                     <br />
                     <span className="text-[#ecb984]">
@@ -101,7 +101,7 @@ export default function AboutPage() {
                     </span>
                   </h2>
                   
-                  <div className="space-y-4 text-gray-500 text-sm leading-[1.8]">
+                  <div className="space-y-4 text-gray-500 text-sm leading-[1.8] pt-3">
                     <EditableText value={getLocalizedString(story.props?.para1, locale)} onSave={createSaveHandler(story.id, 'props.para1')} isEditable={isEditable} tag="p" placeholder="Enter paragraph 1..." multiline rows={3} />
                     <EditableText value={getLocalizedString(story.props?.para2, locale)} onSave={createSaveHandler(story.id, 'props.para2')} isEditable={isEditable} tag="p" placeholder="Enter paragraph 2..." multiline rows={3} />
                   </div>
@@ -139,14 +139,14 @@ export default function AboutPage() {
       )}
 
       {values && values.content && (
-        <section className="relative py-32 bg-[#0a0f16] overflow-hidden">
-          {/* Dark section dynamic background */}
+        <section className="relative py-24 lg:py-32 bg-[#fafafa] overflow-hidden">
+          {/* Light section dynamic background */}
           <div className="absolute top-0 right-0 w-[50%] h-[50%] bg-[#ecb984]/10 blur-[120px] rounded-full" />
-          <div className="absolute bottom-0 left-0 w-[50%] h-[50%] bg-[#ecb984]/5 blur-[120px] rounded-full" />
+          <div className="absolute bottom-0 left-0 w-[50%] h-[50%] bg-blue-100/40 blur-[120px] rounded-full" />
 
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <motion.div 
-              className="text-center mb-20"
+              className="text-center mb-16"
               variants={staggerContainer}
               initial="hidden"
               whileInView="visible"
@@ -158,7 +158,7 @@ export default function AboutPage() {
                   onSave={createSaveHandler(values.id, 'props.title')} 
                   isEditable={isEditable} 
                   tag="h2" 
-                  className="text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight text-white mb-6" 
+                  className="text-3xl lg:text-4xl font-extrabold tracking-tight text-[#1a202c] mb-4" 
                   placeholder="Section title..." 
                 />
               </motion.div>
@@ -169,7 +169,7 @@ export default function AboutPage() {
                     onSave={createSaveHandler(values.id, 'props.subtitle')} 
                     isEditable={isEditable} 
                     tag="p" 
-                    className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto font-light" 
+                    className="text-gray-600 text-base md:text-lg max-w-2xl mx-auto font-light" 
                     placeholder="Subtitle..." 
                   />
                 </motion.div>
@@ -217,10 +217,10 @@ export default function AboutPage() {
                   <motion.div 
                     key={item.id} 
                     variants={fadeInUp}
-                    whileHover={{ y: -10 }}
-                    className="group bg-white/[0.03] hover:bg-white/[0.06] backdrop-blur-xl rounded-[2rem] p-8 md:p-10 border border-white/10 hover:border-white/20 transition-all duration-300"
+                    whileHover={{ y: -5 }}
+                    className="group bg-white rounded-[2rem] p-8 md:p-10 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 hover:shadow-[0_15px_40px_rgb(0,0,0,0.08)] transition-all duration-300"
                   >
-                    <div className="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-8 group-hover:scale-110 group-hover:bg-[#ecb984]/20 transition-all duration-300">
+                    <div className="w-14 h-14 rounded-2xl bg-[#fdf5ed] flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-[#ecb984]/20 transition-all duration-300">
                       {Icon}
                     </div>
                     <EditableText 
@@ -228,7 +228,7 @@ export default function AboutPage() {
                       onSave={createSaveHandler(values.id, `content.${idx}.props.title`)} 
                       isEditable={isEditable} 
                       tag="h3" 
-                      className="text-2xl font-bold text-white mb-4" 
+                      className="text-xl font-bold text-[#1a202c] mb-3" 
                       placeholder="Value title..." 
                     />
                     <EditableText 
@@ -236,7 +236,7 @@ export default function AboutPage() {
                       onSave={createSaveHandler(values.id, `content.${idx}.props.description`)} 
                       isEditable={isEditable} 
                       tag="p" 
-                      className="text-gray-400 text-base leading-relaxed" 
+                      className="text-gray-500 text-sm leading-[1.8]" 
                       placeholder="Value description..." 
                       multiline 
                       rows={4} 
@@ -266,7 +266,7 @@ export default function AboutPage() {
               { label: "Premium Products", value: "50+" },
             ].map((stat, i) => (
               <motion.div key={i} variants={fadeInUp} className="flex flex-col gap-2">
-                <span className="text-4xl md:text-5xl lg:text-6xl font-black">{stat.value}</span>
+                <span className="text-4xl md:text-5xl lg:text-6xl font-bold font-black">{stat.value}</span>
                 <span className="text-sm md:text-base font-semibold uppercase tracking-wider opacity-80">{stat.label}</span>
               </motion.div>
             ))}
@@ -299,7 +299,7 @@ export default function AboutPage() {
                 onSave={createSaveHandler(mission.id, 'props.content')} 
                 isEditable={isEditable} 
                 tag="p" 
-                className="text-xl md:text-2xl text-[#0f172a] leading-relaxed font-semibold mx-auto tracking-tight" 
+                className="text-xl md:text-xl text-[#0f172a] leading-relaxed font-semibold mx-auto tracking-tight" 
                 placeholder="Mission content..." 
                 multiline 
                 rows={6} 
@@ -310,7 +310,7 @@ export default function AboutPage() {
       )}
 
       {/* Newsletter CTA Section (Matched Design) */}
-      <section className="relative py-24 bg-[#1a1f2c] text-white overflow-hidden">
+      <section className="relative py-24 bg-[#fafafa] text-slate-900 overflow-hidden">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -318,20 +318,20 @@ export default function AboutPage() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 tracking-tight">Stay Connected With Us</h2>
-            <p className="text-[#8e98a8] text-base md:text-lg mb-10 max-w-xl mx-auto leading-relaxed">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 tracking-tight text-[#1a202c]">Stay Connected With Us</h2>
+            <p className="text-gray-600 text-base md:text-lg mb-10 max-w-xl mx-auto leading-relaxed pt-4">
               Join our newsletter to get the latest updates on our natural peanut products, exclusive offers, and behind-the-scenes content.
             </p>
             <form className="flex flex-col sm:flex-row gap-4 justify-center max-w-lg mx-auto" onSubmit={(e) => e.preventDefault()}>
               <input 
                 type="email" 
                 placeholder="Enter your email" 
-                className="flex-1 bg-[#2d3342] border border-[#3f4656] rounded-full px-6 py-4 text-white placeholder:text-[#8e98a8] focus:outline-none focus:border-[#e3b584] transition-colors"
+                className="flex-1 bg-white border border-gray-200 rounded-full px-6 py-4 text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-[#e3b584] focus:ring-1 focus:ring-[#e3b584] transition-colors shadow-sm"
                 required 
               />
               <button 
                 type="submit" 
-                className="bg-[#e3b584] text-[#1a1f2c] font-bold px-8 py-4 rounded-full hover:bg-[#d4a371] transition-colors whitespace-nowrap"
+                className="bg-[#e3b584] text-[#1a1f2c] font-bold px-8 py-4 rounded-full hover:bg-[#d4a371] transition-colors whitespace-nowrap shadow-sm"
               >
                 Subscribe
               </button>

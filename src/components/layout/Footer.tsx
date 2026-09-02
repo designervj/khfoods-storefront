@@ -4,6 +4,18 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useParams, usePathname } from 'next/navigation';
 
+const footerLinkClass = "relative inline-flex text-gray-300 transition-colors duration-200 after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:w-0 after:bg-[#FFD100] after:transition-all after:duration-200 hover:text-[#FFD100] hover:after:w-full focus-visible:outline-none focus-visible:text-[#FFD100] focus-visible:after:w-full text-[15px]";
+
+function SocialIcon({ d }: { d: string }) {
+  return (
+    <a href="#" className="w-10 h-10 rounded-full bg-[#2a2a2a] flex items-center justify-center text-white hover:bg-[#FFD100] hover:text-black transition-colors">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+        <path d={d} />
+      </svg>
+    </a>
+  );
+}
+
 export default function Footer() {
   const params = useParams();
   const pathname = usePathname();
@@ -37,14 +49,6 @@ export default function Footer() {
     { label: 'Domestic', path: '/product/domestic' },
     { label: 'International', path: '/product/international' },
   ];
-
-  const SocialIcon = ({ d }: { d: string }) => (
-    <a href="#" className="w-10 h-10 rounded-full bg-[#2a2a2a] flex items-center justify-center text-white hover:bg-[#FFD100] hover:text-black transition-colors">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-        <path d={d} />
-      </svg>
-    </a>
-  );
 
   return (
     <footer className="bg-[#1c1c1a] text-white mt-auto border-t-[3px] border-[#FFD100] pb-16 md:pb-0">
@@ -89,7 +93,7 @@ export default function Footer() {
             <ul className="flex flex-col gap-3">
               {quickLinks.map((link, i) => (
                 <li key={i}>
-                  <Link href={href(link.path)} className="text-gray-300 hover:text-[#FFD100] transition-colors text-[15px]">
+                  <Link href={href(link.path)} className={footerLinkClass}>
                     {link.label}
                   </Link>
                 </li>
@@ -103,7 +107,7 @@ export default function Footer() {
             <ul className="flex flex-col gap-3">
               {aboutUsLinks.map((link, i) => (
                 <li key={i}>
-                  <Link href={href(link.path)} className="text-gray-300 hover:text-[#FFD100] transition-colors text-[15px]">
+                  <Link href={href(link.path)} className={footerLinkClass}>
                     {link.label}
                   </Link>
                 </li>
@@ -117,7 +121,7 @@ export default function Footer() {
             <ul className="flex flex-col gap-3">
               {productsLinks.map((link, i) => (
                 <li key={i}>
-                  <Link href={href(link.path)} className="text-gray-300 hover:text-[#FFD100] transition-colors text-[15px]">
+                  <Link href={href(link.path)} className={footerLinkClass}>
                     {link.label}
                   </Link>
                 </li>

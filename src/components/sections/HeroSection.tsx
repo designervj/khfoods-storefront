@@ -65,7 +65,7 @@ export default function HeroSection({ sections, locale, isEditable, createSaveHa
             initial={{ opacity: 0, y: 25 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
-            className="text-[34px] sm:text-[56px] md:text-[80px] lg:text-[100px] font-extrabold uppercase text-white leading-none text-center break-words max-w-[92vw] md:whitespace-nowrap md:max-w-none"
+            className="text-[34px] sm:text-[56px] md:text-[80px] lg:text-[80px] font-extrabold uppercase text-white leading-none text-center break-words max-w-[92vw] md:whitespace-nowrap md:max-w-none"
           >
             <EditableText
               value={getLocalizedString(title, locale)}
