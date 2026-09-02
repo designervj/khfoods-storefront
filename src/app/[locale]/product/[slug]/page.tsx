@@ -1,13 +1,9 @@
 import { notFound } from 'next/navigation';
-import { getProductBySlug, getAllProducts } from '@/lib/ecommerceData';
+import { getProductBySlug } from '@/lib/ecommerceData';
+import { getLiveProducts } from '@/lib/liveProducts';
 import ProductDetailPage from '@/components/pages/ProductDetailPage';
 
-export async function generateStaticParams() {
-  const products = getAllProducts('en');
-  return products.map((product) => ({
-    slug: product.slug,
-  }));
-}
+export const dynamic = 'force-dynamic';
 
 export default async function ProductPage({
   params,
@@ -15,11 +11,12 @@ export default async function ProductPage({
   params: Promise<{ locale: string; slug: string }>;
 }) {
   const { locale, slug } = await params;
-  const product = getProductBySlug(slug, locale);
+  const liveFeed = await getLiveProducts().catch(() => null);
+  const product = liveFeed?.products.find((item) => item.slug === slug || item.id === slug) || getProductBySlug(slug, locale);
 
   if (!product) {
     notFound();
   }
 
-  return <ProductDetailPage product={product} />;
+  return <ProductDetailPage product={product} relatedProducts={liveFeed?.products} />;
 }

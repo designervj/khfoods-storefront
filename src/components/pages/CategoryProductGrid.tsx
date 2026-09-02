@@ -1,19 +1,54 @@
 "use client";
 
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
-import { getAllProducts, KhProduct } from "@/lib/ecommerceData";
+import { getAllProducts, mapBackendProducts, KhProduct } from "@/lib/ecommerceData";
 import { useParams } from "next/navigation";
 
 export default function CategoryProductGrid({ categoryId }: { categoryId: string }) {
   const params = useParams();
   const locale = (params?.locale as string) || "en";
-  
-  const allProducts = useMemo(() => getAllProducts(locale), [locale]);
+  const [allProducts, setAllProducts] = useState<KhProduct[]>(() => getAllProducts(locale));
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    let isMounted = true;
+
+    async function loadProducts() {
+      setLoading(true);
+      try {
+        const response = await fetch("/api/storefront/products?perPage=100", {
+          cache: "no-store",
+        });
+        if (!response.ok) throw new Error(`Product feed returned ${response.status}`);
+        const body = await response.json();
+        const backendProducts = Array.isArray(body?.data)
+          ? body.data
+          : Array.isArray(body?.products)
+            ? body.products
+            : [];
+        if (isMounted) setAllProducts(mapBackendProducts(backendProducts, body?.categories || []));
+      } catch (error) {
+        console.error("K H Food product feed unavailable", error);
+        if (isMounted) setAllProducts(getAllProducts(locale));
+      } finally {
+        if (isMounted) setLoading(false);
+      }
+    }
+
+    void loadProducts();
+    return () => {
+      isMounted = false;
+    };
+  }, [locale]);
   
   const filteredProducts = useMemo(() => {
     return allProducts.filter((p: KhProduct) => p.categorySlug === categoryId);
   }, [allProducts, categoryId]);
+
+  if (loading) {
+    return <div className="text-center py-10 text-gray-500">Loading products...</div>;
+  }
 
   if (filteredProducts.length === 0) {
     return <div className="text-center py-10 text-gray-500">No products found.</div>;

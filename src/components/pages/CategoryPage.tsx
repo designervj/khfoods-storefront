@@ -25,7 +25,14 @@ import AccordionSection from "../category/accordionSection/AccordionSection";
 import Pagination from "../category/Pagination";
 import PageHead from "../category/pageHead/PageHead";
 import { useAppDispatch } from "@/redux/store/hooks";
-import { getAllProducts, getAllCategories } from "@/lib/ecommerceData";
+import {
+  getAllProducts,
+  getAllCategories,
+  mapBackendProducts,
+  mapBackendCategories,
+  type KhProduct,
+  type KhCategory,
+} from "@/lib/ecommerceData";
 
 const ProductCardSkeleton = () => (
   <div className="product-card animate-pulse">
@@ -101,15 +108,13 @@ const CategoryPage = ({ isShopPage, sections, categoryId }: CategoryPageProps) =
     Number(searchParams.get("perPage")) || 9,
   );
 
-  const allCategories: any[] = getAllCategories(locale);
-  const categoryLoading = false;
-
-  const allProducts: any[] = getAllProducts(locale);
-  const loading = false;
+  const [allCategories, setAllCategories] = useState<KhCategory[]>(() => getAllCategories(locale));
+  const [allProducts, setAllProducts] = useState<KhProduct[]>(() => getAllProducts(locale));
+  const [loading, setLoading] = useState(true);
+  const categoryLoading = loading && allCategories.length === 0;
   const cmsFilters: any[] = [];
-  const totalProducts = allProducts.length;
   const loadingMore = false;
-  const hasFetched = true;
+  const hasFetched = !loading;
 
   const { user, isAuthenticated } = useSelector(
     (state: RootState) => state.auth,
@@ -120,6 +125,44 @@ const CategoryPage = ({ isShopPage, sections, categoryId }: CategoryPageProps) =
   >({});
   
   const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false);
+
+  useEffect(() => {
+    let isMounted = true;
+
+    async function loadProducts() {
+      setLoading(true);
+      try {
+        const response = await fetch("/api/storefront/products?perPage=100", {
+          cache: "no-store",
+        });
+        if (!response.ok) throw new Error(`Product feed returned ${response.status}`);
+        const body = await response.json();
+        const backendCategories = Array.isArray(body?.categories) ? body.categories : [];
+        const backendProducts = Array.isArray(body?.data)
+          ? body.data
+          : Array.isArray(body?.products)
+            ? body.products
+            : [];
+
+        if (!isMounted) return;
+        const categories = mapBackendCategories(backendCategories);
+        setAllCategories(categories.length ? categories : getAllCategories(locale));
+        setAllProducts(mapBackendProducts(backendProducts, backendCategories));
+      } catch (error) {
+        console.error("K H Food product feed unavailable", error);
+        if (!isMounted) return;
+        setAllCategories(getAllCategories(locale));
+        setAllProducts(getAllProducts(locale));
+      } finally {
+        if (isMounted) setLoading(false);
+      }
+    }
+
+    void loadProducts();
+    return () => {
+      isMounted = false;
+    };
+  }, [locale]);
 
   const getCatIdStr = (cat: any) => {
     if (!cat) return "";
@@ -317,8 +360,19 @@ const CategoryPage = ({ isShopPage, sections, categoryId }: CategoryPageProps) =
       );
     }
 
+    if (searchQuery.trim()) {
+      const query = searchQuery.toLowerCase().trim();
+      result = result.filter((p: KhProduct) =>
+        p.name.toLowerCase().includes(query) ||
+        p.slug.toLowerCase().includes(query) ||
+        p.description.toLowerCase().includes(query),
+      );
+    }
+
     return result;
-  }, [currentCategory, allProducts]);
+  }, [currentCategory, allProducts, searchQuery]);
+
+  const totalProducts = filteredProducts.length;
 
   // Pagination calculations
   // const totalPages = Math.ceil(totalProducts / itemsPerPage);
@@ -462,8 +516,8 @@ const CategoryPage = ({ isShopPage, sections, categoryId }: CategoryPageProps) =
                 </h3>
                 <div className="flex items-center gap-3">
                   <span className="text-[10px] font-black uppercase tracking-[2px] text-muted border border-border rounded-full px-2.5 py-1.5 bg-background">
-                    {currentCategory && currentCategory.title
-                      ? currentCategory.title
+                    {currentCategory && currentCategory.name
+                      ? currentCategory.name
                       : "All"}
                   </span>
                   <button onClick={() => setIsMobileFilterOpen(false)} className="p-2 bg-muted/10 rounded-full text-foreground/70 hover:text-foreground">
@@ -483,8 +537,8 @@ const CategoryPage = ({ isShopPage, sections, categoryId }: CategoryPageProps) =
                     </h3>
                   </div>
                   <span className="text-[10px] font-black uppercase tracking-[2px] text-muted border border-border rounded-full px-2.5 py-1.5 bg-background">
-                    {currentCategory && currentCategory.title
-                      ? currentCategory.title
+                    {currentCategory && currentCategory.name
+                      ? currentCategory.name
                       : "All"}
                   </span>
                 </div>

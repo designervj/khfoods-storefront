@@ -32,7 +32,13 @@ const LinkedinIcon = () => (
   </svg>
 );
 
-export default function ProductDetailPage({ product }: { product: KhProduct }) {
+export default function ProductDetailPage({
+  product,
+  relatedProducts: relatedProductsProp,
+}: {
+  product: KhProduct;
+  relatedProducts?: KhProduct[];
+}) {
   const params = useParams();
   const locale = (params?.locale as string) || "en";
   const [quantity, setQuantity] = useState(1);
@@ -41,7 +47,7 @@ export default function ProductDetailPage({ product }: { product: KhProduct }) {
   const [selectedImage, setSelectedImage] = useState(0);
 
   const dispatch = useAppDispatch();
-  const allProducts = getAllProducts(locale);
+  const allProducts = relatedProductsProp || getAllProducts(locale);
   const relatedProducts = allProducts.filter(p => p.categorySlug === product.categorySlug && p.id !== product.id).slice(0, 4);
 
   const currentPages = useAppSelector((state) => state.pages.currentPages);

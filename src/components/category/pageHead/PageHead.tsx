@@ -79,8 +79,6 @@ const PageHead = ({
     return "en";
   }, [pathname]);
 
-  const { totalProducts } = useAppSelector((state: any) => state.adminProducts || { totalProducts: 0 });
-
   const getCurrentSection = useMemo(() => {
     if (!currentPages) return;
     return currentPages.sections?.find(
@@ -182,7 +180,7 @@ const PageHead = ({
             );
           })} */}
           <div className="pill">
-            {totalProducts} {totalProducts === 1 ? "Product" : "Products"}
+            {productCount} {productCount === 1 ? "Product" : "Products"}
           </div>
         </div>
       </div>

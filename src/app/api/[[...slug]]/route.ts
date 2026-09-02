@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 const BACKEND_URL = process.env.FASTAPI_URL || process.env.BACKEND_API_URL || "http://localhost:8000";
+const TENANT_DB_NAME = process.env.TENANT_DB_NAME || process.env.NEXT_PUBLIC_TENANT_DB;
 
 async function getParams(context: { params: Promise<{ slug?: string[] }> }) {
   return await context.params;
@@ -13,7 +14,7 @@ export async function GET(request: NextRequest, context: { params: Promise<{ slu
   const queryString = searchParams.toString();
   const url = `${BACKEND_URL}/${slug}${queryString ? `?${queryString}` : ""}`;
   const headers = new Headers();
-  const tenantId = request.headers.get("x-tenant-db") || process.env.NEXT_PUBLIC_TENANT_DB;
+  const tenantId = request.headers.get("x-tenant-db") || TENANT_DB_NAME;
   if (tenantId) headers.set("x-tenant-db", tenantId);
   try { const response = await fetch(url, { method: "GET", headers }); const data = await response.json(); return NextResponse.json(data, { status: response.status }); }
   catch (error) { return NextResponse.json({ message: "Proxy request failed", error: String(error) }, { status: 500 }); }
@@ -26,7 +27,7 @@ export async function POST(request: NextRequest, context: { params: Promise<{ sl
   const url = `${BACKEND_URL}/${slug}`;
   const headers = new Headers();
   headers.set("Content-Type", "application/json");
-  const tenantId = request.headers.get("x-tenant-db") || process.env.NEXT_PUBLIC_TENANT_DB;
+  const tenantId = request.headers.get("x-tenant-db") || TENANT_DB_NAME;
   if (tenantId) headers.set("x-tenant-db", tenantId);
   try { const response = await fetch(url, { method: "POST", headers, body: JSON.stringify(body) }); const data = await response.json(); return NextResponse.json(data, { status: response.status }); }
   catch (error) { return NextResponse.json({ message: "Proxy request failed", error: String(error) }, { status: 500 }); }
@@ -39,9 +40,22 @@ export async function PUT(request: NextRequest, context: { params: Promise<{ slu
   const url = `${BACKEND_URL}/${slug}`;
   const headers = new Headers();
   headers.set("Content-Type", "application/json");
-  const tenantId = request.headers.get("x-tenant-db") || process.env.NEXT_PUBLIC_TENANT_DB;
+  const tenantId = request.headers.get("x-tenant-db") || TENANT_DB_NAME;
   if (tenantId) headers.set("x-tenant-db", tenantId);
   try { const response = await fetch(url, { method: "PUT", headers, body: JSON.stringify(body) }); const data = await response.json(); return NextResponse.json(data, { status: response.status }); }
+  catch (error) { return NextResponse.json({ message: "Proxy request failed", error: String(error) }, { status: 500 }); }
+}
+
+export async function PATCH(request: NextRequest, context: { params: Promise<{ slug?: string[] }> }) {
+  const { slug: slugArr } = await getParams(context);
+  const slug = slugArr?.join("/") || "";
+  const body = await request.json();
+  const url = `${BACKEND_URL}/${slug}`;
+  const headers = new Headers();
+  headers.set("Content-Type", "application/json");
+  const tenantId = request.headers.get("x-tenant-db") || TENANT_DB_NAME;
+  if (tenantId) headers.set("x-tenant-db", tenantId);
+  try { const response = await fetch(url, { method: "PATCH", headers, body: JSON.stringify(body) }); const data = await response.json(); return NextResponse.json(data, { status: response.status }); }
   catch (error) { return NextResponse.json({ message: "Proxy request failed", error: String(error) }, { status: 500 }); }
 }
 
@@ -50,7 +64,7 @@ export async function DELETE(request: NextRequest, context: { params: Promise<{ 
   const slug = slugArr?.join("/") || "";
   const url = `${BACKEND_URL}/${slug}`;
   const headers = new Headers();
-  const tenantId = request.headers.get("x-tenant-db") || process.env.NEXT_PUBLIC_TENANT_DB;
+  const tenantId = request.headers.get("x-tenant-db") || TENANT_DB_NAME;
   if (tenantId) headers.set("x-tenant-db", tenantId);
   try { const response = await fetch(url, { method: "DELETE", headers }); const data = await response.json(); return NextResponse.json(data, { status: response.status }); }
   catch (error) { return NextResponse.json({ message: "Proxy request failed", error: String(error) }, { status: 500 }); }
