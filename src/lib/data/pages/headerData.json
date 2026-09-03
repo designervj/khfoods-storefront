@@ -58,6 +58,8 @@
         }
       ]
     },
-    { "label": { "en": "CONTACT US", "hi": "संपर्क करें" }, "href": "/contact" }
+    { "label": { "en": "CONTACT US", "hi": "संपर्क करें" }, "href": "/contact" },
+    { "label": { "en": "STORE LOCATOR", "hi": "स्टोर लोकेटर" }, "href": "/store-locator" },
+    { "label": { "en": "WHOLESALE", "hi": "थोक" }, "href": "/wholesale" }
   ]
 }

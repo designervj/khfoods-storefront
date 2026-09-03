@@ -8,6 +8,7 @@ import EditModeToggle from '@/components/shared/EditModeToggle';
 import MobileBottomNav from '@/components/shared/MobileBottomNav';
 import CartDrawer from '@/components/ecommerce/CartDrawer';
 import AdminBar from '@/components/layout/AdminBar';
+import { translateStatic } from '@/lib/i18n/locale';
 import '@/styles/globals.css';
 
 /* ── Montserrat via next/font — self-hosted, zero layout shift ── */
@@ -22,6 +23,11 @@ const montserrat = Montserrat({
 export const metadata: Metadata = {
   title: 'KH Food - Premium Peanuts, Naturally Good',
   description: 'Discover premium peanut snacks at KH Food. Natural ingredients, no preservatives.',
+  icons: {
+    icon: '/Image/favicon%20(1).png',
+    shortcut: '/Image/favicon%20(1).png',
+    apple: '/Image/favicon%20(1).png',
+  },
 };
 
 interface RootLayoutProps {
@@ -31,6 +37,7 @@ interface RootLayoutProps {
 
 export default async function RootLayout({ children, params }: RootLayoutProps) {
   const { locale } = await params;
+  const t = (text: string) => translateStatic(text, locale);
 
   return (
     <html lang={locale} suppressHydrationWarning className={montserrat.variable}>
@@ -38,7 +45,7 @@ export default async function RootLayout({ children, params }: RootLayoutProps) 
         <ReduxProvider>
           <BlueprintProvider context="public">
             <AdminBar />
-            <a href="#main-content" className="skip-to-content">Skip to content</a>
+            <a href="#main-content" className="skip-to-content">{t('Skip to content')}</a>
             <Header />
             <main id="main-content" className="flex-grow pt-[var(--navbar-height)] pb-16 md:pb-0">
               {children}

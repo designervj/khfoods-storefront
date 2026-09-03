@@ -20,10 +20,10 @@ export default function ProductSection({ sections, locale, isEditable, createSav
   const products = section.content || [];
 
   return (
-    <section className="section-padding bg-white">
-      <div className="container-custom flex flex-col lg:flex-row gap-8">
+    <section className="py-14 md:py-20 bg-white">
+      <div className="container-custom flex flex-col lg:flex-row gap-6 lg:gap-8">
         <motion.div
-          className="w-full lg:w-[42%] relative rounded-2xl overflow-hidden min-h-[350px]"
+          className="w-full lg:w-[42%] relative rounded-2xl overflow-hidden min-h-[300px] sm:min-h-[340px] lg:min-h-[350px]"
           initial={{ opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
@@ -40,7 +40,7 @@ export default function ProductSection({ sections, locale, isEditable, createSav
               onSave={createSaveHandler(section.id, 'props.promoCard.title')}
               isEditable={isEditable}
               tag="h3"
-              className="text-3xl md:text-[40px] font-bold text-white mb-4 leading-tight whitespace-pre-line"
+              className="text-2xl sm:text-3xl md:text-3xl font-bold text-white mb-4 leading-tight whitespace-pre-line"
               placeholder="Promo title..."
             />
             <EditableText
@@ -70,7 +70,7 @@ export default function ProductSection({ sections, locale, isEditable, createSav
         </motion.div>
 
         <motion.div
-          className="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-6"
+          className="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-5 md:gap-6"
           initial={{ opacity: 0, x: 30 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
@@ -84,7 +84,7 @@ export default function ProductSection({ sections, locale, isEditable, createSav
 
             return (
               <Link key={product.id} href={href} className="group block">
-                <article className="relative h-[350px] rounded-2xl bg-[#f7f7f7] overflow-hidden">
+                <article className="relative h-[280px] sm:h-[320px] lg:h-[350px] rounded-2xl bg-[#f7f7f7] overflow-hidden">
                   <div className="absolute inset-0 overflow-hidden">
                     {product.props?.image && (
                       <img

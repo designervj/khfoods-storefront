@@ -7,7 +7,7 @@ import { Pagination, Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import EditableText from '@/components/shared/EditableText';
-import { getLocalizedString } from '@/lib/i18n/locale';
+import { getLocalizedString, translateStatic } from '@/lib/i18n/locale';
 
 interface FeaturedProjectsSectionProps {
   sections: Array<{ id: string; type: string; adminTitle: string; props?: Record<string, any>; content?: Array<{ id: string; type: string; props: Record<string, any> }> }>;
@@ -21,12 +21,13 @@ export default function FeaturedProjectsSection({ sections, locale, isEditable, 
   if (!section) return null;
 
   const items = section.content || [];
+  const t = (text: string) => translateStatic(text, locale);
 
   return (
-    <section className="bg-black py-20 md:py-28 relative overflow-hidden">
+    <section className="bg-[#faf7f2] py-14 md:py-20 relative overflow-hidden">
       <div
-        className="absolute inset-0 opacity-20"
-        style={{ backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px)', backgroundSize: '30px 30px' }}
+        className="absolute inset-0 opacity-60"
+        style={{ backgroundImage: 'radial-gradient(circle, rgba(234,177,89,0.22) 1px, transparent 1px)', backgroundSize: '30px 30px' }}
       />
       <div className="container-custom relative z-10">
         <motion.div
@@ -34,14 +35,14 @@ export default function FeaturedProjectsSection({ sections, locale, isEditable, 
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mb-12"
+          className="mb-10 md:mb-12"
         >
           <EditableText
             value={getLocalizedString(section.props?.heading, locale)}
             onSave={createSaveHandler(section.id, 'props.heading')}
             isEditable={isEditable}
             tag="h2"
-            className="text-white uppercase text-3xl md:text-[48px] font-bold tracking-wide"
+            className="text-black uppercase text-3xl md:text-4xl font-bold tracking-wide"
             placeholder="Section heading..."
           />
         </motion.div>
@@ -57,18 +58,18 @@ export default function FeaturedProjectsSection({ sections, locale, isEditable, 
             640: { slidesPerView: 2 },
             1024: { slidesPerView: 3 },
           }}
-          className="!pb-14"
+          className="!pb-12 md:!pb-14"
         >
           {items.map((item) => (
             <SwiperSlide key={item.id}>
               <motion.div
-                className="group relative overflow-hidden rounded-2xl cursor-pointer"
+                className="group relative overflow-hidden rounded-2xl border border-[#ead8c4] bg-white shadow-sm cursor-pointer"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
               >
-                <div className="relative h-[400px] md:h-[500px] overflow-hidden">
+                <div className="relative h-[320px] sm:h-[380px] lg:h-[500px] overflow-hidden">
                   {item.props?.image && (
                     <img
                       src={getLocalizedString(item.props.image, locale)}
@@ -93,7 +94,7 @@ export default function FeaturedProjectsSection({ sections, locale, isEditable, 
                     placeholder="Item title..."
                   />
                   <div className="flex items-center gap-2 text-white/80 mt-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <span className="text-sm font-medium uppercase tracking-wider">Explore</span>
+                    <span className="text-sm font-medium uppercase tracking-wider">{t('Explore')}</span>
                     <ArrowRight size={16} />
                   </div>
                 </div>

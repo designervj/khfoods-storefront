@@ -131,7 +131,7 @@ const PageHead = ({
           <small className="text-secondary tracking-[3px] uppercase text-[10px] font-black mb-2 block">
             {displayBadge}
           </small>
-          <h1 className="text-[46px] font-black leading-[1.05] tracking-tight">
+          <h1 className="text-3xl md:text-4xl font-bold leading-tight tracking-tight">
             {displayTitle}
           </h1>
           <p className="text-muted font-bold mt-2.5 max-w-[70ch] leading-relaxed">

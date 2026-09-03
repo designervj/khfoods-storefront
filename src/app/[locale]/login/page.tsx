@@ -1,12 +1,13 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { useAppDispatch } from "@/redux/store/hooks";
 import { loginThunk } from "@/redux/slices/ecommerce/authSlice";
 import Link from "next/link";
 import { Mail, Lock, Eye, EyeOff, ArrowRight, ArrowLeft } from "lucide-react";
 import { motion } from "framer-motion";
+import { translateStatic } from "@/lib/i18n/locale";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -15,6 +16,9 @@ export default function LoginPage() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+  const params = useParams();
+  const locale = (params?.locale as string) || "en";
+  const t = (text: string) => translateStatic(text, locale);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -36,10 +40,10 @@ export default function LoginPage() {
     try {
       const response = await dispatch(loginThunk({ email, password })).unwrap();
       if (response.user) {
-        router.push("/");
+        router.push(locale === "en" ? "/" : `/${locale}`);
       }
     } catch (err: any) {
-      setError(err || "Authentication failed");
+      setError(err || t("Authentication failed"));
     } finally {
       setLoading(false);
     }
@@ -64,14 +68,14 @@ export default function LoginPage() {
           >
             <div className="mb-6">
               <span className="px-4 py-1.5 bg-white/20 backdrop-blur-md rounded-full text-xs font-bold tracking-[0.2em] uppercase border border-white/30 text-white/90">
-                Premium Quality
+                {t('Premium Quality')}
               </span>
             </div>
-            <h1 className="text-4xl lg:text-5xl xl:text-6xl font-extrabold mb-6 leading-[1.1] tracking-tight">
-              Best Peanuts <br className="hidden xl:block" />on Earth
+            <h1 className="text-3xl md:text-4xl font-bold mb-6 leading-tight tracking-wide">
+              {t('Best Peanuts')} <br className="hidden xl:block" />{t('on Earth')}
             </h1>
-            <p className="text-white/80 text-lg leading-relaxed font-medium max-w-md">
-              Experience the perfect balance of health and taste. Sign in to manage your orders, wishlist, and exclusive offers.
+            <p className="text-white/80 text-[15px] md:text-base leading-relaxed font-medium max-w-md">
+              {t('Experience the perfect balance of health and taste. Sign in to manage your orders, wishlist, and exclusive offers.')}
             </p>
           </motion.div>
         </div>
@@ -85,7 +89,7 @@ export default function LoginPage() {
           className="absolute top-6 left-6 sm:top-8 sm:left-10 flex items-center gap-2 text-gray-500 hover:text-[#063A1D] font-bold text-sm transition-colors z-50 group bg-white/80 lg:bg-transparent backdrop-blur-sm lg:backdrop-blur-none px-4 py-2 lg:px-0 lg:py-0 rounded-full shadow-sm lg:shadow-none border border-gray-100 lg:border-none"
         >
           <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
-          Back to Home
+          {t('Back to Home')}
         </Link>
 
         {/* Decorative background blur on mobile */}
@@ -100,11 +104,11 @@ export default function LoginPage() {
             className="bg-white rounded-[2rem] p-8 sm:p-12 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100"
           >
             <div className="mb-10 text-center sm:text-left">
-              <h2 className="text-3xl sm:text-2xl font-extrabold text-[#1a202c] tracking-tight mb-3">
-                Welcome back
+              <h2 className="text-2xl sm:text-3xl font-bold text-[#1a202c] tracking-wide mb-3">
+                {t('Welcome back')}
               </h2>
               <p className="text-gray-500 font-medium">
-                Please enter your details to sign in.
+                {t('Please enter your details to sign in.')}
               </p>
             </div>
 
@@ -121,7 +125,7 @@ export default function LoginPage() {
 
             <form onSubmit={handleLogin} className="space-y-6">
               <div className="space-y-2">
-                <label className="text-sm font-bold text-gray-700 ml-1">Email Address</label>
+                <label className="text-sm font-bold text-gray-700 ml-1">{t('Email Address')}</label>
                 <div className="relative group">
                   <div className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-[#c89255] transition-colors">
                     <Mail size={20} strokeWidth={2.5} />
@@ -139,9 +143,9 @@ export default function LoginPage() {
 
               <div className="space-y-2">
                 <div className="flex justify-between items-center ml-1">
-                  <label className="text-sm font-bold text-gray-700">Password</label>
-                  <Link href="#" className="text-xs font-extrabold text-[#c89255] hover:text-[#063A1D] transition-colors">
-                    Forgot Password?
+                  <label className="text-sm font-bold text-gray-700">{t('Password')}</label>
+                  <Link href="#" className="text-xs font-bold text-[#c89255] hover:text-[#063A1D] transition-colors">
+                    {t('Forgot Password?')}
                   </Link>
                 </div>
                 <div className="relative group">
@@ -170,16 +174,16 @@ export default function LoginPage() {
                 <button 
                   type="submit" 
                   disabled={loading} 
-                  className="w-full h-14 bg-[#063A1D] text-white rounded-2xl font-extrabold text-[15px] tracking-wide uppercase flex items-center justify-center gap-3 hover:bg-[#0a4d28] active:scale-[0.98] transition-all duration-200 disabled:opacity-70 disabled:active:scale-100 shadow-[0_8px_25px_rgba(6,58,29,0.2)] group"
+                  className="w-full h-14 bg-[#063A1D] text-white rounded-2xl font-bold text-[15px] tracking-wide uppercase flex items-center justify-center gap-3 hover:bg-[#0a4d28] active:scale-[0.98] transition-all duration-200 disabled:opacity-70 disabled:active:scale-100 shadow-[0_8px_25px_rgba(6,58,29,0.2)] group"
                 >
                   {loading ? (
                     <div className="flex items-center gap-2">
                       <div className="w-4 h-4 rounded-full border-2 border-white/20 border-t-white animate-spin" />
-                      SIGNING IN...
+                      {t('SIGNING IN...')}
                     </div>
                   ) : (
                     <>
-                      SIGN IN 
+                      {t('SIGN IN')}
                       <ArrowRight size={20} strokeWidth={3} className="group-hover:translate-x-1.5 transition-transform" />
                     </>
                   )}
@@ -189,9 +193,9 @@ export default function LoginPage() {
           </motion.div>
 
           <p className="text-center text-gray-500 font-medium mt-8">
-            Don't have an account?{" "}
+            {t("Don't have an account?")}{" "}
             <Link href="/register" className="text-[#c89255] hover:text-[#063A1D] font-bold transition-colors">
-              Create an account
+              {t('Create an account')}
             </Link>
           </p>
         </div>

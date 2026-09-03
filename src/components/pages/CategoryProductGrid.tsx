@@ -3,18 +3,27 @@
 import React, { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { getAllProducts, mapBackendProducts, KhProduct } from "@/lib/ecommerceData";
+import { translateStatic } from "@/lib/i18n/locale";
 import { useParams } from "next/navigation";
 
 export default function CategoryProductGrid({ categoryId }: { categoryId: string }) {
   const params = useParams();
   const locale = (params?.locale as string) || "en";
-  const [allProducts, setAllProducts] = useState<KhProduct[]>(() => getAllProducts(locale));
+  const t = (text: string) => translateStatic(text, locale);
+  const fallbackProducts = useMemo(() => getAllProducts(locale), [locale]);
+  const [allProducts, setAllProducts] = useState<KhProduct[]>(fallbackProducts);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     let isMounted = true;
 
     async function loadProducts() {
+      if (locale === "zh") {
+        setAllProducts(fallbackProducts);
+        setLoading(false);
+        return;
+      }
+
       setLoading(true);
       try {
         const response = await fetch("/api/storefront/products?perPage=100", {
@@ -27,10 +36,16 @@ export default function CategoryProductGrid({ categoryId }: { categoryId: string
           : Array.isArray(body?.products)
             ? body.products
             : [];
-        if (isMounted) setAllProducts(mapBackendProducts(backendProducts, body?.categories || []));
+        const mappedProducts = mapBackendProducts(backendProducts, body?.categories || []);
+        const fallbackCategoryCount = fallbackProducts.filter((p) => p.categorySlug === categoryId).length;
+        const mappedCategoryCount = mappedProducts.filter((p) => p.categorySlug === categoryId).length;
+
+        if (isMounted) {
+          setAllProducts(mappedCategoryCount >= fallbackCategoryCount ? mappedProducts : fallbackProducts);
+        }
       } catch (error) {
         console.error("K H Food product feed unavailable", error);
-        if (isMounted) setAllProducts(getAllProducts(locale));
+        if (isMounted) setAllProducts(fallbackProducts);
       } finally {
         if (isMounted) setLoading(false);
       }
@@ -40,18 +55,18 @@ export default function CategoryProductGrid({ categoryId }: { categoryId: string
     return () => {
       isMounted = false;
     };
-  }, [locale]);
+  }, [categoryId, fallbackProducts]);
   
   const filteredProducts = useMemo(() => {
     return allProducts.filter((p: KhProduct) => p.categorySlug === categoryId);
   }, [allProducts, categoryId]);
 
   if (loading) {
-    return <div className="text-center py-10 text-gray-500">Loading products...</div>;
+    return <div className="text-center py-10 text-gray-500">{t('Loading products...')}</div>;
   }
 
   if (filteredProducts.length === 0) {
-    return <div className="text-center py-10 text-gray-500">No products found.</div>;
+    return <div className="text-center py-10 text-gray-500">{t('No products found.')}</div>;
   }
 
   return (
@@ -78,7 +93,7 @@ export default function CategoryProductGrid({ categoryId }: { categoryId: string
                   {bracketName && <span className="text-[13px] font-semibold text-gray-500">{bracketName}</span>}
                 </Link>
               </h3>
-              <div className="font-black text-[18px] tracking-tight mt-1 text-[#c89255]">
+              <div className="font-semibold text-[18px] tracking-tight mt-1 text-[#c89255]">
                 ${product.price?.toFixed(2) || "0.00"}
               </div>
             </div>

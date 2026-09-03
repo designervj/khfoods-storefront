@@ -12,7 +12,7 @@ export default async function ProductPage({
 }) {
   const { locale, slug } = await params;
   const liveFeed = await getLiveProducts().catch(() => null);
-  const product = liveFeed?.products.find((item) => item.slug === slug || item.id === slug) || getProductBySlug(slug, locale);
+  const product = getProductBySlug(slug, locale) || liveFeed?.products.find((item) => item.slug === slug || item.id === slug);
 
   if (!product) {
     notFound();

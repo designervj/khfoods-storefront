@@ -3,20 +3,24 @@
 import React, { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "@/redux/store/hooks";
 import { fetchOrders } from "@/redux/slices/ecommerce/ordersThunk";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import { Package, ChevronRight, ArrowRight, ShoppingBag, Calendar, CreditCard, AlertCircle } from "lucide-react";
+import { translateStatic } from "@/lib/i18n/locale";
 
 export default function OrdersPage() {
   const dispatch = useAppDispatch();
   const router = useRouter();
+  const params = useParams();
+  const locale = (params?.locale as string) || "en";
+  const t = (text: string) => translateStatic(text, locale);
 
   const { isAuthenticated, loading: authLoading } = useAppSelector((state) => state.auth);
   const { orders, loading: ordersLoading, error } = useAppSelector((state) => state.orders);
 
   useEffect(() => {
-    if (!authLoading && !isAuthenticated) router.push("/login");
-  }, [isAuthenticated, authLoading, router]);
+    if (!authLoading && !isAuthenticated) router.push(locale === "en" ? "/login" : `/${locale}/login`);
+  }, [isAuthenticated, authLoading, router, locale]);
 
   useEffect(() => {
     if (isAuthenticated) dispatch(fetchOrders());
@@ -39,22 +43,22 @@ export default function OrdersPage() {
     <div className="section-padding">
       <div className="container-custom max-w-4xl">
         <div className="flex items-center gap-2 mb-8 text-sm text-[var(--text-muted)]">
-          <Link href="/" className="hover:text-[var(--primary)]">Home</Link>
+          <Link href={locale === "en" ? "/" : `/${locale}`} className="hover:text-[var(--primary)]">{t('Home')}</Link>
           <ChevronRight size={12} />
-          <span className="font-semibold text-[var(--text)]">Orders</span>
+          <span className="font-semibold text-[var(--text)]">{t('Orders')}</span>
         </div>
 
-        <h1 className="text-3xl md:text-4xl font-bold mb-2">My Orders</h1>
-        <p className="text-[var(--text-secondary)] mb-10">View and track your order history.</p>
+        <h1 className="text-3xl md:text-4xl font-bold mb-2">{t('My Orders')}</h1>
+        <p className="text-[var(--text-secondary)] mb-10">{t('View and track your order history.')}</p>
 
         {ordersLoading ? (
           <div className="space-y-4 animate-pulse">{[1,2,3].map(n => <div key={n} className="card-theme p-8 h-32"></div>)}</div>
         ) : error ? (
           <div className="card-theme p-8 text-center">
             <AlertCircle size={40} className="mx-auto mb-4 text-[var(--error)]" />
-            <h3 className="text-lg font-bold mb-2">Failed to load orders</h3>
+            <h3 className="text-base font-bold mb-2">{t('Failed to load orders')}</h3>
             <p className="text-[var(--text-secondary)] mb-4">{error}</p>
-            <button onClick={() => dispatch(fetchOrders())} className="btn-primary">Try Again</button>
+            <button onClick={() => dispatch(fetchOrders())} className="btn-primary">{t('Try Again')}</button>
           </div>
         ) : orders.length > 0 ? (
           <div className="space-y-4">
@@ -65,16 +69,16 @@ export default function OrdersPage() {
                 <div key={orderId} className="card-theme p-6 hover:shadow-lg transition-all">
                   <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                     <div>
-                      <span className="text-xs text-[var(--text-muted)] uppercase tracking-wider font-medium">Order</span>
-                      <h3 className="text-lg font-bold">{order.orderNumber}</h3>
+                      <span className="text-xs text-[var(--text-muted)] uppercase tracking-wider font-medium">{t('Order')}</span>
+                      <h3 className="text-base font-bold">{order.orderNumber}</h3>
                     </div>
                     <div className="flex items-center gap-4 text-sm">
                       <span className="flex items-center gap-1"><Calendar size={14} /> {formatDate(order.createdAt)}</span>
-                      <span className="flex items-center gap-1"><Package size={14} /> {itemsCount} items</span>
+                      <span className="flex items-center gap-1"><Package size={14} /> {itemsCount} {t('items')}</span>
                       <span className="font-bold text-[var(--primary)]">{formatPrice(order.pricing.total)}</span>
                     </div>
-                    <Link href={`/orders/${orderId}`} className="btn-primary text-sm gap-1">
-                      View <ArrowRight size={14} />
+                    <Link href={locale === "en" ? `/orders/${orderId}` : `/${locale}/orders/${orderId}`} className="btn-primary text-sm gap-1">
+                      {t('View')} <ArrowRight size={14} />
                     </Link>
                   </div>
                 </div>
@@ -84,9 +88,9 @@ export default function OrdersPage() {
         ) : (
           <div className="card-theme p-12 text-center">
             <ShoppingBag size={48} className="mx-auto mb-4 text-[var(--text-muted)]" />
-            <h2 className="text-2xl font-bold mb-2">No orders yet</h2>
-            <p className="text-[var(--text-secondary)] mb-6">Start shopping and place your first order.</p>
-            <Link href="/product/all-product" className="btn-primary">Start Shopping</Link>
+            <h2 className="text-2xl font-bold mb-2">{t('No orders yet')}</h2>
+            <p className="text-[var(--text-secondary)] mb-6">{t('Start shopping and place your first order.')}</p>
+            <Link href={locale === "en" ? "/product/all-product" : `/${locale}/product/all-product`} className="btn-primary">{t('Start Shopping')}</Link>
           </div>
         )}
       </div>

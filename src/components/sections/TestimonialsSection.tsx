@@ -26,9 +26,9 @@ export default function TestimonialsSection({ sections, locale, isEditable, crea
   const testimonials = section.content || [];
 
   return (
-    <section className="bg-[#f5f5f7] py-20">
-      <div className="md:w-[90%] w-full md:ms-auto px-6">
-        <div className="flex items-center justify-between mb-12">
+    <section className="bg-[#f5f5f7] py-14 md:py-20">
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between mb-10 md:mb-12">
           <div>
             <EditableText
               value={getLocalizedString(section.props?.reviewCount, locale)}
@@ -73,7 +73,7 @@ export default function TestimonialsSection({ sections, locale, isEditable, crea
           modules={[Autoplay]}
           onSwiper={(swiper) => { swiperRef.current = swiper; }}
           breakpoints={{
-            768: { slidesPerView: 1.6 },
+            768: { slidesPerView: 2 },
             1024: { slidesPerView: 2.2 },
           }}
         >
@@ -83,7 +83,7 @@ export default function TestimonialsSection({ sections, locale, isEditable, crea
             return (
               <SwiperSlide key={item.id}>
                 <motion.div
-                  className="bg-white rounded-3xl shadow-sm px-10 py-10 h-[350px] flex flex-col"
+                  className="bg-white rounded-3xl shadow-sm px-6 py-8 sm:px-8 lg:px-10 lg:py-10 min-h-[320px] lg:h-[350px] flex flex-col"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}

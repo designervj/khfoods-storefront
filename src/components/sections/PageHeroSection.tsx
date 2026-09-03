@@ -44,7 +44,7 @@ export default function PageHeroSection({ sections, locale, isEditable, createSa
             onSave={createSaveHandler(section.id, 'props.title')}
             isEditable={isEditable}
             tag="h1"
-            className={`text-3xl md:text-5xl font-bold uppercase ${backgroundImage ? 'text-white' : 'text-black'}`}
+            className={`text-3xl md:text-4xl font-bold uppercase ${backgroundImage ? 'text-white' : 'text-black'}`}
             placeholder="Page title..."
           />
           {breadcrumbs.length > 0 && (

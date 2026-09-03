@@ -33,6 +33,7 @@ import {
   type KhProduct,
   type KhCategory,
 } from "@/lib/ecommerceData";
+import { translateStatic } from "@/lib/i18n/locale";
 
 const ProductCardSkeleton = () => (
   <div className="product-card animate-pulse">
@@ -47,12 +48,12 @@ const ProductCardSkeleton = () => (
   </div>
 );
 
-const LoadingState = () => (
+const LoadingState = ({ label = "Loading products..." }: { label?: string }) => (
   <div className="mx-auto px-[5%] pb-20 pt-[50px]">
     <div className="flex items-center justify-center min-h-[60vh]">
       <div className="text-center space-y-4">
         <Loader2 className="w-12 h-12 animate-spin text-secondary mx-auto" />
-        <p className="text-muted font-bold text-sm">Loading products...</p>
+        <p className="text-muted font-bold text-sm">{label}</p>
       </div>
     </div>
   </div>
@@ -69,6 +70,7 @@ const CategoryPage = ({ isShopPage, sections, categoryId }: CategoryPageProps) =
   const params = useParams();
   const id = categoryId || (params?.id as string) || "all";
   const locale = (params?.locale as string) || "en";
+  const t = (text: string) => translateStatic(text, locale);
   const router = useRouter();
   const searchParams = useSearchParams();
   const pathname = usePathname();
@@ -130,6 +132,13 @@ const CategoryPage = ({ isShopPage, sections, categoryId }: CategoryPageProps) =
     let isMounted = true;
 
     async function loadProducts() {
+      if (locale === "zh") {
+        setAllCategories(getAllCategories(locale));
+        setAllProducts(getAllProducts(locale));
+        setLoading(false);
+        return;
+      }
+
       setLoading(true);
       try {
         const response = await fetch("/api/storefront/products?perPage=100", {
@@ -145,9 +154,13 @@ const CategoryPage = ({ isShopPage, sections, categoryId }: CategoryPageProps) =
             : [];
 
         if (!isMounted) return;
+        const fallbackCategories = getAllCategories(locale);
+        const fallbackProducts = getAllProducts(locale);
         const categories = mapBackendCategories(backendCategories);
-        setAllCategories(categories.length ? categories : getAllCategories(locale));
-        setAllProducts(mapBackendProducts(backendProducts, backendCategories));
+        const mappedProducts = mapBackendProducts(backendProducts, backendCategories);
+
+        setAllCategories(categories.length ? categories : fallbackCategories);
+        setAllProducts(mappedProducts.length >= fallbackProducts.length ? mappedProducts : fallbackProducts);
       } catch (error) {
         console.error("K H Food product feed unavailable", error);
         if (!isMounted) return;
@@ -459,7 +472,7 @@ const CategoryPage = ({ isShopPage, sections, categoryId }: CategoryPageProps) =
   }, [searchParams]);
 
   if (categoryLoading) {
-    return <LoadingState />;
+    return <LoadingState label={t('Loading products...')} />;
   }
 
   return (
@@ -470,7 +483,7 @@ const CategoryPage = ({ isShopPage, sections, categoryId }: CategoryPageProps) =
       <div className="mx-auto px-[5%] pb-20 pt-[50px]">
         {/* Breadcrumbs */}
         <div className="crumbs flex items-center gap-2">
-          <Link href="/">Home</Link>{" "}
+          <Link href={locale === 'en' ? '/' : `/${locale}`}>{t('Home')}</Link>{" "}
           <ChevronRight size={12} className="opacity-50" />
           {breadCrump.length > 0 &&
             breadCrump.map((d: { href: string; label: string }, index: number) => {
@@ -510,15 +523,15 @@ const CategoryPage = ({ isShopPage, sections, categoryId }: CategoryPageProps) =
               lg:sticky lg:top-[128px] space-y-6
             `}>
               <div className="flex justify-between items-center lg:hidden mb-4 pb-4 border-b border-border">
-                <h3 className="text-xl font-black flex items-center gap-2">
+                <h3 className="text-lg font-bold flex items-center gap-2">
                   <Filter size={18} className="text-secondary" />
-                  Filters
+                  {t('Filters')}
                 </h3>
                 <div className="flex items-center gap-3">
                   <span className="text-[10px] font-black uppercase tracking-[2px] text-muted border border-border rounded-full px-2.5 py-1.5 bg-background">
                     {currentCategory && currentCategory.name
                       ? currentCategory.name
-                      : "All"}
+                      : t("All")}
                   </span>
                   <button onClick={() => setIsMobileFilterOpen(false)} className="p-2 bg-muted/10 rounded-full text-foreground/70 hover:text-foreground">
                     <X size={20} />
@@ -533,20 +546,20 @@ const CategoryPage = ({ isShopPage, sections, categoryId }: CategoryPageProps) =
                   <div className="flex items-center gap-2">
                     <Filter size={18} className="text-secondary" />
                     <h3 className="text-[26px] font-black leading-none">
-                      Filters
+                      {t('Filters')}
                     </h3>
                   </div>
                   <span className="text-[10px] font-black uppercase tracking-[2px] text-muted border border-border rounded-full px-2.5 py-1.5 bg-background">
                     {currentCategory && currentCategory.name
                       ? currentCategory.name
-                      : "All"}
+                      : t("All")}
                   </span>
                 </div>
 
                 {/* ── Category filter ── */}
                 <AccordionSection 
                   adminTitle="Category" 
-                  title="Category" 
+                  title={t("Category")} 
                   initialOpen={true} 
                   isPrimary={true}
                   colorVariant="category"
@@ -559,7 +572,7 @@ const CategoryPage = ({ isShopPage, sections, categoryId }: CategoryPageProps) =
                         !id || id === "all" ? "text-secondary" : "text-muted"
                       }`}
                     >
-                      All Products
+                      {t('All Products')}
                     </Link>
                     {allCategories.length > 0 &&
                       renderCategoryTree(allCategories)}
@@ -569,7 +582,7 @@ const CategoryPage = ({ isShopPage, sections, categoryId }: CategoryPageProps) =
                 {/* ── Rating filter ── */}
                 <AccordionSection
                   adminTitle="Rating"
-                  title="Rating"
+                  title={t("Rating")}
                   isLast={true}
                   initialOpen={true}
                   isPrimary={true}
@@ -606,7 +619,7 @@ const CategoryPage = ({ isShopPage, sections, categoryId }: CategoryPageProps) =
                     <div className="flex items-center gap-2">
                       <Filter size={18} className="text-foreground/60" />
                       <h3 className="text-[22px] font-black leading-none">
-                        Product Filters
+                        {t('Product Filters')}
                       </h3>
                     </div>
                   </div>
@@ -665,7 +678,7 @@ const CategoryPage = ({ isShopPage, sections, categoryId }: CategoryPageProps) =
                   className="w-full flex items-center justify-center gap-2 h-12 rounded-2xl border border-border bg-surface font-bold text-sm hover:bg-surface/80 transition-colors"
                 >
                   <Filter size={18} />
-                  Show Filters
+                  {t('Show Filters')}
                 </button>
               </div>
 
@@ -678,7 +691,7 @@ const CategoryPage = ({ isShopPage, sections, categoryId }: CategoryPageProps) =
                   />
                   <input
                     type="text"
-                    placeholder="Search in this category..."
+                    placeholder={t('Search in this category...')}
                     value={searchQuery}
                     onChange={handleSearchChange}
                     className="w-full h-12 pl-12 pr-6 rounded-2xl border border-border bg-surface font-bold focus:border-secondary outline-none transition-all text-sm"
@@ -686,38 +699,38 @@ const CategoryPage = ({ isShopPage, sections, categoryId }: CategoryPageProps) =
                 </div>
                 <div className="flex items-center gap-3 w-full sm:w-auto">
                   <span className="text-[11px] font-black uppercase tracking-[1px] text-muted whitespace-nowrap">
-                    Sort by:
+                    {t('Sort by:')}
                   </span>
                   <select className="h-12 px-4 rounded-2xl border border-border bg-surface font-bold text-sm outline-none focus:border-secondary cursor-pointer w-full sm:w-48">
-                    <option>Newest First</option>
-                    <option>Price: Low to High</option>
-                    <option>Price: High to Low</option>
-                    <option>Most Popular</option>
+                    <option>{t('Newest First')}</option>
+                    <option>{t('Price: Low to High')}</option>
+                    <option>{t('Price: High to Low')}</option>
+                    <option>{t('Most Popular')}</option>
                   </select>
                 </div>
               </div>
 
               {/* Products Grid */}
               {loading || !hasFetched ? (
-                <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
+                <div className="grid grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6">
                   {Array.from({ length: itemsPerPage }).map((_, i) => (
                     <ProductCardSkeleton key={i} />
                   ))}
                 </div>
               ) : (
                 <>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
+                  <div className="grid grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6">
                     {paginatedProducts?.map((product: any) => {
                       const isWishList = product.id
                         ? wishlistIds.includes(product.id)
                         : false;
 
                       return (
-                        <div key={product.id} className="product-card group">
+                        <div key={product.id} className="product-card group rounded-2xl border border-border bg-white p-3 sm:p-4 shadow-sm transition-shadow hover:shadow-md">
                           {/* <div className="badge">{product.badge}</div> */}
                           <Link
                             href={`/product/${product.slug}`}
-                            className="img-wrap block"
+                            className="img-wrap block aspect-square overflow-hidden rounded-xl bg-surface"
                           >
                             <img
                               src={
@@ -729,27 +742,28 @@ const CategoryPage = ({ isShopPage, sections, categoryId }: CategoryPageProps) =
                                 product?.name ||
                                 ""
                               }
+                              className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                             />
                           </Link>
-                          <div className="card-body">
-                            <div className="flex justify-between items-start mb-2.5">
+                          <div className="card-body pt-3 sm:pt-4">
+                            <div className="flex justify-between items-start gap-2 mb-2.5">
                               <Link
                                 href={`/product/${product.slug}`}
-                                className="font-heading text-[20px] font-black leading-[1.05] text-foreground/92 hover:text-secondary transition-colors"
+                                className="font-heading text-[14px] sm:text-[18px] lg:text-[20px] font-black leading-tight text-foreground/92 hover:text-secondary transition-colors line-clamp-2"
                               >
                                 {product.name}
                               </Link>
-                              <div className="flex items-center gap-2">
+                              <div className="flex items-center gap-1.5 sm:gap-2">
                                 <button
                                   onClick={(e) => handleWishlist(e, product)}
-                                  className="flex h-10 w-10 items-center justify-center
+                                  className="flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center
                                          rounded-full border border-border bg-white shadow-lg
-                                        opacity-0 transition-all duration-300 group-hover:opacity-100
+                                        opacity-100 lg:opacity-0 transition-all duration-300 group-hover:opacity-100
                                           hover:scale-110 shrink-0"
-                                  title="Wishlist"
+                                  title={t("Wishlist")}
                                 >
                                   <Heart
-                                    size={18}
+                                    size={16}
                                     className={
                                       isWishList
                                         ? "text-red-500 fill-red-500"
@@ -759,16 +773,16 @@ const CategoryPage = ({ isShopPage, sections, categoryId }: CategoryPageProps) =
                                 </button>
 
                                 <button
-                                  className="flex h-10 w-10 items-center justify-center rounded-full border border-border bg-white text-foreground opacity-0 shadow-lg transition-all duration-300 group-hover:opacity-100 hover:scale-110 hover:text-secondary shrink-0"
-                                  title="Quick View"
+                                  className="hidden sm:flex h-10 w-10 items-center justify-center rounded-full border border-border bg-white text-foreground opacity-100 lg:opacity-0 shadow-lg transition-all duration-300 group-hover:opacity-100 hover:scale-110 hover:text-secondary shrink-0"
+                                  title={t("Quick View")}
                                 >
                                   <Eye size={18} />
                                 </button>
                               </div>
                             </div>
                             <div className="flex justify-between items-center gap-2.5 flex-wrap font-black tracking-[1px] text-foreground/75">
-                              <span className="text-black text-[13px] uppercase tracking-[2px]">
-                                ₹{product.price}
+                              <span className="text-black text-[12px] sm:text-[13px] uppercase tracking-[1.5px] sm:tracking-[2px]">
+                                ${Number(product.price).toFixed(2)}
                               </span>
                               {/* <span className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[2px] text-primary whitespace-nowrap">
                               <Star
@@ -819,10 +833,10 @@ const CategoryPage = ({ isShopPage, sections, categoryId }: CategoryPageProps) =
                       <Search size={32} className="text-muted" />
                     </div>
                     <h3 className="text-2xl font-bold mb-2">
-                      No products found
+                      {t('No products found')}
                     </h3>
                     <p className="text-muted font-semibold mb-8">
-                      We couldn&apos;t find any products matching your search.
+                      {t("We couldn't find any products matching your search.")}
                     </p>
                     <button
                       onClick={() => {
@@ -836,7 +850,7 @@ const CategoryPage = ({ isShopPage, sections, categoryId }: CategoryPageProps) =
                       }}
                       className="text-secondary font-black text-xs uppercase tracking-[2px] border-b border-secondary pb-1"
                     >
-                      Clear Search
+                      {t('Clear Search')}
                     </button>
                   </div>
                 )}
