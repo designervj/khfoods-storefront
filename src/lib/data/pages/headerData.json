@@ -1,65 +1,65 @@
 {
   "logo": {
-    "text": { "en": "KH Food", "hi": "केएच फूड" },
+    "text": { "en": "KH Food", "hi": "केएच फूड", "zh": "KH Food" },
     "imageSrc": "/logo.png"
   },
   "topBar": {
-    "welcome": { "en": "Welcome to Khfoods!", "hi": "खाद्य में आपका स्वागत है!" },
-    "storeLocator": { "en": "Store locator", "hi": "स्टोर लोकेटर" },
-    "wholesale": { "en": "Wholesale", "hi": "थोक" }
+    "welcome": { "en": "Welcome to Khfoods!", "hi": "खाद्य में आपका स्वागत है!", "zh": "歡迎來到 KH Food！" },
+    "storeLocator": { "en": "Store locator", "hi": "स्टोर लोकेटर", "zh": "門市查詢" },
+    "wholesale": { "en": "Wholesale", "hi": "थोक", "zh": "批發" }
   },
   "navigation": [
-    { "label": { "en": "HOME", "hi": "होम" }, "href": "/" },
+    { "label": { "en": "HOME", "hi": "होम", "zh": "首頁" }, "href": "/" },
     {
-      "label": { "en": "ABOUT US", "hi": "हमारे बारे में" },
+      "label": { "en": "ABOUT US", "hi": "हमारे बारे में", "zh": "關於我們" },
       "href": "/about/history",
       "megaMenu": [
         {
-          "category": { "en": "HISTORY", "hi": "इतिहास" },
+          "category": { "en": "HISTORY", "hi": "इतिहास", "zh": "歷史" },
           "items": [
-            { "label": { "en": "Our History", "hi": "हमारा इतिहास" }, "href": "/about/history" }
+            { "label": { "en": "Our History", "hi": "हमारा इतिहास", "zh": "我們的歷史" }, "href": "/about/history" }
           ]
         },
         {
-          "category": { "en": "NUTRITION", "hi": "पोषण" },
+          "category": { "en": "NUTRITION", "hi": "पोषण", "zh": "營養" },
           "items": [
-            { "label": { "en": "Nutrition", "hi": "पोषण" }, "href": "/about/nutrition" }
+            { "label": { "en": "Nutrition", "hi": "पोषण", "zh": "營養" }, "href": "/about/nutrition" }
           ]
         },
         {
-          "category": { "en": "PROCESS", "hi": "प्रक्रिया" },
+          "category": { "en": "PROCESS", "hi": "प्रक्रिया", "zh": "流程" },
           "items": [
-            { "label": { "en": "Our Process", "hi": "हमारी प्रक्रिया" }, "href": "/about/process" }
+            { "label": { "en": "Our Process", "hi": "हमारी प्रक्रिया", "zh": "我們的流程" }, "href": "/about/process" }
           ]
         }
       ]
     },
     {
-      "label": { "en": "PRODUCTS", "hi": "उत्पाद" },
+      "label": { "en": "PRODUCTS", "hi": "उत्पाद", "zh": "產品" },
       "href": "/product/all-product",
       "megaMenu": [
         {
-          "category": { "en": "ALL PRODUCTS", "hi": "सभी उत्पाद" },
+          "category": { "en": "ALL PRODUCTS", "hi": "सभी उत्पाद", "zh": "全部產品" },
           "items": [
-            { "label": { "en": "All Products", "hi": "सभी उत्पाद" }, "href": "/product/all-product" }
+            { "label": { "en": "All Products", "hi": "सभी उत्पाद", "zh": "全部產品" }, "href": "/product/all-product" }
           ]
         },
         {
-          "category": { "en": "DOMESTIC", "hi": "घरेलू" },
+          "category": { "en": "DOMESTIC", "hi": "घरेलू", "zh": "美國境內" },
           "items": [
-            { "label": { "en": "Domestic Products", "hi": "घरेलू उत्पाद" }, "href": "/product/domestic" }
+            { "label": { "en": "Domestic Products", "hi": "घरेलू उत्पाद", "zh": "美國境內產品" }, "href": "/product/domestic" }
           ]
         },
         {
-          "category": { "en": "INTERNATIONAL", "hi": "अंतरराष्ट्रीय" },
+          "category": { "en": "INTERNATIONAL", "hi": "अंतरराष्ट्रीय", "zh": "國際" },
           "items": [
-            { "label": { "en": "International Products", "hi": "अंतरराष्ट्रीय उत्पाद" }, "href": "/product/international" }
+            { "label": { "en": "International Products", "hi": "अंतरराष्ट्रीय उत्पाद", "zh": "國際產品" }, "href": "/product/international" }
           ]
         }
       ]
     },
-    { "label": { "en": "CONTACT US", "hi": "संपर्क करें" }, "href": "/contact" },
-    { "label": { "en": "STORE LOCATOR", "hi": "स्टोर लोकेटर" }, "href": "/store-locator" },
-    { "label": { "en": "WHOLESALE", "hi": "थोक" }, "href": "/wholesale" }
+    { "label": { "en": "CONTACT US", "hi": "संपर्क करें", "zh": "聯絡我們" }, "href": "/contact" },
+    { "label": { "en": "STORE LOCATOR", "hi": "स्टोर लोकेटर", "zh": "門市查詢" }, "href": "/store-locator" },
+    { "label": { "en": "WHOLESALE", "hi": "थोक", "zh": "批發" }, "href": "/wholesale" }
   ]
 }

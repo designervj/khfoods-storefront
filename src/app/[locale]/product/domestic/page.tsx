@@ -12,6 +12,7 @@ export default function DomesticPage() {
   const params = useParams();
   const locale = (params?.locale as string) || "en";
   const t = (text: string) => translateStatic(text, locale);
+  const localizedHref = (path: string) => locale === "en" ? path : `/${locale}${path}`;
 
   const heroSections = [
     {
@@ -19,11 +20,11 @@ export default function DomesticPage() {
       type: "page-hero",
       adminTitle: "Page Hero",
       props: {
-        title: { en: "Domestic", hi: "घरेलू" },
+        title: { en: "Domestic", hi: "घरेलू", zh: "美國境內" },
         backgroundImage: "/Image/bg-banner.png",
         breadcrumb: [
-          { label: { en: "Product", hi: "उत्पाद" }, href: null },
-          { label: { en: "DOMESTIC SHIPPING", hi: "घरेलू शिपिंग" }, href: null }
+          { label: { en: "Product", hi: "उत्पाद", zh: "產品" }, href: null },
+          { label: { en: "DOMESTIC SHIPPING", hi: "घरेलू शिपिंग", zh: "美國境內配送" }, href: null }
         ]
       }
     }
@@ -98,7 +99,7 @@ export default function DomesticPage() {
               <div className="inline-block px-4 py-1.5 bg-[#ecb984]/20 text-[#c89255] font-bold text-sm tracking-widest uppercase rounded-full">{t("Our Guarantee")}</div>
               <h2 className="text-3xl md:text-4xl font-bold text-foreground uppercase tracking-wide leading-tight">{t("Committed to")} <span className="text-[#ecb984]">{t("Excellence")}</span></h2>
               <p className="text-[15px] md:text-base text-muted leading-relaxed">
-                From our California farms directly to your table, we oversee every step of the process. Our domestic shipping ensures that our peanuts retain their perfect roast, crunch, and flavor by the time they reach your doorstep. We pack our products in specially designed, air-tight packaging to lock in freshness.
+                {t("From our California farms directly to your table, we oversee every step of the process. Our domestic shipping ensures that our peanuts retain their perfect roast, crunch, and flavor by the time they reach your doorstep. We pack our products in specially designed, air-tight packaging to lock in freshness.")}
               </p>
               <ul className="space-y-4 pt-4">
                 <li className="flex items-center gap-4">
@@ -125,7 +126,7 @@ export default function DomesticPage() {
         <div className="container mx-auto px-[5%] relative z-10 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 uppercase tracking-wide pb-4">{t("Need Bulk Quantities?")}</h2>
           <p className="text-[15px] md:text-base text-white/80 max-w-2xl mx-auto mb-10 leading-relaxed">{t("We offer specialized pricing and logistics solutions for domestic distributors, retailers, and restaurants. Partner with KhFoods for reliable supply.")}</p>
-          <Link href="/contact" className="inline-flex items-center justify-center px-8 py-4 bg-[#ecb984] hover:bg-[#c89255] text-white font-bold tracking-widest uppercase transition-colors duration-300 rounded-sm">
+          <Link href={localizedHref("/contact")} className="inline-flex items-center justify-center px-8 py-4 bg-[#ecb984] hover:bg-[#c89255] text-white font-bold tracking-widest uppercase transition-colors duration-300 rounded-sm">
             {t("Contact Sales Team")}
           </Link>
         </div>

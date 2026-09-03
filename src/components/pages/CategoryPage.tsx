@@ -71,6 +71,7 @@ const CategoryPage = ({ isShopPage, sections, categoryId }: CategoryPageProps) =
   const id = categoryId || (params?.id as string) || "all";
   const locale = (params?.locale as string) || "en";
   const t = (text: string) => translateStatic(text, locale);
+  const localizedHref = (path: string) => path === "/" ? (locale === "en" ? "/" : `/${locale}`) : (locale === "en" ? path : `/${locale}${path}`);
   const router = useRouter();
   const searchParams = useSearchParams();
   const pathname = usePathname();
@@ -254,7 +255,7 @@ const CategoryPage = ({ isShopPage, sections, categoryId }: CategoryPageProps) =
 
             const titleNode = (
               <Link
-                href={`/category/${cat.slug}`}
+                href={localizedHref(`/product/${cat.slug}`)}
                 onClick={(e) => e.stopPropagation()}
                 className={`hover:text-secondary transition-colors ${fontClass} ${
                   isActive ? "text-secondary font-black" : "text-foreground/80"
@@ -286,7 +287,7 @@ const CategoryPage = ({ isShopPage, sections, categoryId }: CategoryPageProps) =
                 className="px-4 py-3.5 border-b border-border/70"
               >
                 <Link
-                  href={`/category/${cat.slug}`}
+                  href={localizedHref(`/product/${cat.slug}`)}
                   className={`hover:text-secondary transition-colors ${fontClass} ${
                     isActive ? "text-secondary font-black" : "text-foreground/80"
                   }`}
@@ -315,7 +316,7 @@ const CategoryPage = ({ isShopPage, sections, categoryId }: CategoryPageProps) =
 
           const titleNode = (
             <Link
-              href={`/category/${cat.slug}`}
+              href={localizedHref(`/product/${cat.slug}`)}
               onClick={(e) => e.stopPropagation()}
               className={`hover:text-secondary transition-colors ${fontClass} ${
                 isActive ? "text-secondary font-black" : "text-muted"
@@ -345,7 +346,7 @@ const CategoryPage = ({ isShopPage, sections, categoryId }: CategoryPageProps) =
           return (
             <div key={catIdVal} className="py-0.5">
               <Link
-                href={`/category/${cat.slug}`}
+                href={localizedHref(`/product/${cat.slug}`)}
                 className={`hover:text-secondary transition-colors ${fontClass} ${
                   isActive ? "text-secondary font-black" : "text-muted"
                 }`}
@@ -567,7 +568,7 @@ const CategoryPage = ({ isShopPage, sections, categoryId }: CategoryPageProps) =
                 >
                   <div className="space-y-2.5">
                     <Link
-                      href="/product/all-product"
+                      href={localizedHref("/product/all-product")}
                       className={`flex justify-between items-center text-sm font-bold hover:text-secondary transition-colors ${
                         !id || id === "all" ? "text-secondary" : "text-muted"
                       }`}
@@ -729,7 +730,7 @@ const CategoryPage = ({ isShopPage, sections, categoryId }: CategoryPageProps) =
                         <div key={product.id} className="product-card group rounded-2xl border border-border bg-white p-3 sm:p-4 shadow-sm transition-shadow hover:shadow-md">
                           {/* <div className="badge">{product.badge}</div> */}
                           <Link
-                            href={`/product/${product.slug}`}
+                            href={localizedHref(`/product/${product.slug}`)}
                             className="img-wrap block aspect-square overflow-hidden rounded-xl bg-surface"
                           >
                             <img
@@ -748,7 +749,7 @@ const CategoryPage = ({ isShopPage, sections, categoryId }: CategoryPageProps) =
                           <div className="card-body pt-3 sm:pt-4">
                             <div className="flex justify-between items-start gap-2 mb-2.5">
                               <Link
-                                href={`/product/${product.slug}`}
+                                href={localizedHref(`/product/${product.slug}`)}
                                 className="font-heading text-[14px] sm:text-[18px] lg:text-[20px] font-black leading-tight text-foreground/92 hover:text-secondary transition-colors line-clamp-2"
                               >
                                 {product.name}
@@ -809,6 +810,7 @@ const CategoryPage = ({ isShopPage, sections, categoryId }: CategoryPageProps) =
                       onPageChange={handlePageChange}
                       itemsPerPage={itemsPerPage}
                       onItemsPerPageChange={handleItemsPerPageChange}
+                      locale={locale}
                     />
                   )} */}
                   {totalPages > 1 && (

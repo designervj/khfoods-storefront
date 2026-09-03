@@ -17,6 +17,8 @@ export default function ProductSection({ sections, locale, isEditable, createSav
   if (!section) return null;
 
   const promoCard = section.props?.promoCard || {};
+  const rawPromoHref = getLocalizedString(promoCard.ctaLink, locale) || '/';
+  const promoHref = rawPromoHref.startsWith('/') && locale !== 'en' ? `/${locale}${rawPromoHref}` : rawPromoHref;
   const products = section.content || [];
 
   return (
@@ -54,7 +56,7 @@ export default function ProductSection({ sections, locale, isEditable, createSav
               rows={2}
             />
             <Link
-              href={promoCard.ctaLink || '/'}
+              href={promoHref}
               className="inline-flex items-center justify-center bg-white text-black rounded-full px-6 py-3 text-[13px] md:text-sm font-bold uppercase tracking-widest w-fit hover:bg-gray-100 transition-colors mt-auto"
             >
               <EditableText

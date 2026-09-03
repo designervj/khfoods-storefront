@@ -297,7 +297,7 @@ export function getAllCategories(locale: string = "en"): KhCategory[] {
   const rawCats = catsSection?.content.filter((item) => item.type === "category-item") || [];
 
   return rawCats.map((c: any) => {
-    const title = c.props.title.value[locale] || c.props.title.value.en;
+    const title = translateStatic(c.props.title.value[locale] || c.props.title.value.en, locale);
     const slug = c.props.link.value.replace("/category/", "");
     return {
       id: c.id,

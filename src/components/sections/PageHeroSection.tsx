@@ -24,6 +24,7 @@ export default function PageHeroSection({ sections, locale, isEditable, createSa
 
   const backgroundImage = section.props?.backgroundImage;
   const breadcrumbs: BreadcrumbItem[] = section.props?.breadcrumb || [];
+  const href = (path: string) => path === '/' ? (locale === 'en' ? '/' : `/${locale}`) : (locale === 'en' ? path : `/${locale}${path}`);
 
   return (
     <section
@@ -56,7 +57,7 @@ export default function PageHeroSection({ sections, locale, isEditable, createSa
                   <React.Fragment key={idx}>
                     {idx > 0 && <span className={backgroundImage ? "text-gray-400" : "text-gray-400"}>&rsaquo;</span>}
                     {item.href && !isLast ? (
-                      <Link href={item.href} className={`transition-colors ${backgroundImage ? 'text-gray-200 hover:text-white' : 'text-gray-500 hover:text-black'}`}>
+                      <Link href={href(item.href)} className={`transition-colors ${backgroundImage ? 'text-gray-200 hover:text-white' : 'text-gray-500 hover:text-black'}`}>
                         {label}
                       </Link>
                     ) : (

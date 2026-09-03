@@ -3,35 +3,35 @@ export const defaultSubCategories = [
     id: "cat-1",
     type: "item",
     props: {
-      label: { en: "Seating", hi: "बैठने की व्यवस्था" }
+      label: { en: "Domestic", hi: "घरेलू", zh: "美國境內" }
     }
   },
   {
     id: "cat-2",
     type: "item",
     props: {
-      label: { en: "Tables", hi: "टेबल" }
+      label: { en: "International", hi: "अंतरराष्ट्रीय", zh: "國際" }
     }
   },
   {
     id: "cat-3",
     type: "item",
     props: {
-      label: { en: "Lighting", hi: "लाइटिंग" }
+      label: { en: "Gift Boxes", hi: "गिफ्ट बॉक्स", zh: "禮盒" }
     }
   },
   {
     id: "cat-4",
     type: "item",
     props: {
-      label: { en: "Decor", hi: "डेकोर" }
+      label: { en: "Wholesale", hi: "थोक", zh: "批發" }
     }
   },
   {
     id: "cat-5",
     type: "item",
     props: {
-      label: { en: "Storage", hi: "स्टोरेज" }
+      label: { en: "All Products", hi: "सभी उत्पाद", zh: "全部產品" }
     }
   }
 ];
@@ -63,15 +63,18 @@ export const defaultPageHeadSection = {
   props: {
     badge: {
       en: "Our Collection",
-      hi: "हमारा संग्रह"
+      hi: "हमारा संग्रह",
+      zh: "我們的系列"
     },
     heading: {
       en: "The Full Collection",
-      hi: "पूरा संग्रह"
+      hi: "पूरा संग्रह",
+      zh: "完整系列"
     },
     description: {
-      en: "Explore our entire range of design-led furniture and home essentials. Crafted with purpose, built for life.",
-      hi: "डिजाइन-आधारित फर्नीचर और घर की आवश्यक वस्तुओं की हमारी पूरी श्रृंखला का अन्वेषण करें।"
+      en: "Explore our full collection of premium roasted peanuts, packed fresh and made with simple natural ingredients.",
+      hi: "हमारे प्रीमियम भुनी हुई मूंगफली के पूरे संग्रह को देखें, ताज़ा पैक और सरल प्राकृतिक सामग्री से बना।",
+      zh: "探索我們完整的高級烘焙花生系列，新鮮包裝並以簡單天然成分製成。"
     }
   },
   content: defaultSubCategories

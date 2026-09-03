@@ -2,7 +2,7 @@
 
 import { ArrowRight, Building2, LayoutGrid, Home } from "lucide-react";
 import EditableText from "@/components/shared/EditableText";
-import { getLocalizedString } from "@/lib/i18n/locale";
+import { getLocalizedString, translateStatic } from "@/lib/i18n/locale";
 import Link from "next/link";
 
 interface SectionBlock {
@@ -30,15 +30,15 @@ const getOfferCta = (title: string, locale: string) => {
   const normalizedTitle = title.toLowerCase();
   const localizedHref = (path: string) => locale === 'en' ? path : `/${locale}${path}`;
 
-  if (normalizedTitle.includes('wholesale') || normalizedTitle.includes('थोक')) {
-    return { label: 'SIGN UP', href: localizedHref('/contact') };
+  if (normalizedTitle.includes('wholesale') || normalizedTitle.includes('थोक') || normalizedTitle.includes('批發')) {
+    return { label: translateStatic('SIGN UP', locale), href: localizedHref('/contact') };
   }
 
-  if (normalizedTitle.includes('international') || normalizedTitle.includes('अंतरराष्ट्रीय')) {
-    return { label: 'SHOP NOW', href: localizedHref('/product/international') };
+  if (normalizedTitle.includes('international') || normalizedTitle.includes('अंतरराष्ट्रीय') || normalizedTitle.includes('國際')) {
+    return { label: translateStatic('SHOP NOW', locale), href: localizedHref('/product/international') };
   }
 
-  return { label: 'SHOP NOW', href: localizedHref('/product/all-product') };
+  return { label: translateStatic('SHOP NOW', locale), href: localizedHref('/product/all-product') };
 };
 
 export default function OurWorkSection({ sections, locale, isEditable, createSaveHandler }: OurWorkSectionProps) {

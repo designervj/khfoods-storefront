@@ -11,11 +11,13 @@ import EditableText from '@/components/shared/EditableText';
 import { getLocalizedString, translateStatic } from '@/lib/i18n/locale';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
+import { Dumbbell, Leaf, TrendingDown, Wheat } from 'lucide-react';
 
 export default function NutritionPage() {
   const params = useParams();
   const locale = (params?.locale as string) || 'en';
   const t = (text: string) => translateStatic(text, locale);
+  const localizedHref = (path: string) => locale === 'en' ? path : `/${locale}${path}`;
   const dispatch = useAppDispatch();
 
   const currentPages = useAppSelector((state) => state.pages.currentPages);
@@ -253,13 +255,18 @@ export default function NutritionPage() {
             viewport={{ once: true }}
           >
             {[
-              { title: "High Protein", icon: "💪" },
-              { title: "Low Sugar", icon: "📉" },
-              { title: "High Fiber", icon: "🌾" },
-              { title: "Unsaturated Fats", icon: "🥑" },
-            ].map((badge, i) => (
+              { title: "High Protein", icon: Dumbbell },
+              { title: "Low Sugar", icon: TrendingDown },
+              { title: "High Fiber", icon: Wheat },
+              { title: "Unsaturated Fats", icon: Leaf },
+            ].map((badge, i) => {
+              const Icon = badge.icon;
+
+              return (
               <motion.div key={i} variants={fadeInUp} className="flex flex-col items-center justify-center p-6 md:p-8 bg-white rounded-3xl hover:bg-[#fdf5ed] transition-colors duration-300 group text-center shadow-sm border border-gray-100 hover:border-[#ecb984]/30 cursor-default">
-                <span className="text-3xl md:text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">{badge.icon}</span>
+                <span className="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-[#fdf5ed] text-[#c89255] transition-transform duration-300 group-hover:scale-110 group-hover:bg-[#ecb984]/20">
+                  <Icon className="h-7 w-7" strokeWidth={1.9} />
+                </span>
                 <h3 className="font-bold text-gray-900">
                   <EditableText
                     value={sectionsObj?.badges_items?.[i]?.title || t(badge.title)}
@@ -268,7 +275,8 @@ export default function NutritionPage() {
                   />
                 </h3>
               </motion.div>
-            ))}
+              );
+            })}
           </motion.div>
         </div>
       </section>
@@ -375,7 +383,7 @@ export default function NutritionPage() {
                 multiline={true}
               />
             </p>
-            <Link href="/products" className="inline-block bg-[#eaba88] text-black font-bold text-md px-10 py-4 rounded-full hover:bg-[#d4925a] hover:scale-105 transition-transform duration-300 shadow-xl shadow-[#ecb984]/25 border border-[#d9a866]">
+            <Link href={localizedHref('/product/all-product')} className="inline-block bg-[#eaba88] text-black font-bold text-md px-10 py-4 rounded-full hover:bg-[#d4925a] hover:scale-105 transition-transform duration-300 shadow-xl shadow-[#ecb984]/25 border border-[#d9a866]">
               <EditableText
                 value={sectionsObj?.cta?.btnText || t("Shop Healthy Options")}
                 onSave={createSaveHandler('cta', 'btnText')}

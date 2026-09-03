@@ -2,10 +2,9 @@
 
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { usePathname, useParams } from 'next/navigation';
 import { useAppDispatch, useAppSelector } from '@/redux/store/hooks';
-import { selectPublicNavigation } from '@/redux/slices/blueprint';
+import { selectBlueprint, selectBusinessProfile, selectPublicNavigation } from '@/redux/slices/blueprint';
 import { openCart, selectCartItemCount } from '@/redux/slices/ecommerce/cartSlice';
 import { getLocalizedString, translateStatic } from '@/lib/i18n/locale';
 import headerData from '@/lib/data/pages/headerData.json';
@@ -111,10 +110,16 @@ export default function Header() {
   const dispatch = useAppDispatch();
 
   const blueprintNav = useAppSelector(selectPublicNavigation);
+  const blueprint = useAppSelector(selectBlueprint);
+  const businessProfile = useAppSelector(selectBusinessProfile);
   const cartCount = useAppSelector(selectCartItemCount);
 
   const navigationItems: any[] = (blueprintNav?.public as any) || (headerData.navigation as any[]);
   const topBar = (headerData as any).topBar;
+  const canonicalBrand = (blueprint as typeof blueprint & {
+    business?: { brand?: { businessDna?: { logoUrl?: string }; logoRef?: string } };
+  })?.business?.brand;
+  const logoSrc = businessProfile?.logo || canonicalBrand?.businessDna?.logoUrl || canonicalBrand?.logoRef || '/Image/khfood_logo.png';
 
   /* Close mega-menu on outside click */
   useEffect(() => {
@@ -271,12 +276,11 @@ export default function Header() {
             href={href('/')} 
             className="flex items-center flex-shrink-0 absolute left-1/2 -translate-x-1/2 lg:static lg:translate-x-0"
           >
-            <Image
-              src="/Image/khfood_logo.png"
+            <img
+              src={logoSrc}
               alt="KH Foods Logo"
               width={148}
               height={46}
-              priority
               style={{ objectFit: 'contain', height: 46, width: 'auto' }}
             />
           </Link>

@@ -3,8 +3,8 @@
   "slug": "about",
   "isPublished": true,
   "seo": {
-    "title": { "en": "About Us - KH Food", "hi": "हमारे बारे में - केएच फूड" },
-    "description": { "en": "Learn the story of KH Food - a family business crafting the finest all-natural peanuts in California since 1991.", "hi": "केएच फूड की कहानी जानें - 1991 से कैलिफोर्निया में बेहतरीन प्राकृतिक मूंगफली बनाने वाला एक परिवारिक व्यवसाय।" }
+    "title": { "en": "About Us - KH Food", "hi": "हमारे बारे में - केएच फूड", "zh": "關於我們 - KH Food" },
+    "description": { "en": "Learn the story of KH Food - a family business crafting the finest all-natural peanuts in California since 1991.", "hi": "केएच फूड की कहानी जानें - 1991 से कैलिफोर्निया में बेहतरीन प्राकृतिक मूंगफली बनाने वाला एक परिवारिक व्यवसाय।", "zh": "了解 KH Food 的故事：自 1991 年起在加州製作優質全天然花生的家族企業。" }
   },
   "sections": [
     {
@@ -12,12 +12,12 @@
       "type": "page-hero",
       "adminTitle": "Page Hero",
       "props": {
-        "title": { "en": "History", "hi": "इतिहास" },
+        "title": { "en": "History", "hi": "इतिहास", "zh": "歷史" },
         "backgroundImage": "/Image/bg-banner.png",
         "breadcrumb": [
-          { "label": { "en": "Home", "hi": "होम" }, "href": "/" },
-          { "label": { "en": "About Us", "hi": "हमारे बारे में" }, "href": null },
-          { "label": { "en": "History", "hi": "इतिहास" }, "href": "/about" }
+          { "label": { "en": "Home", "hi": "होम", "zh": "首頁" }, "href": "/" },
+          { "label": { "en": "About Us", "hi": "हमारे बारे में", "zh": "關於我們" }, "href": null },
+          { "label": { "en": "History", "hi": "इतिहास", "zh": "歷史" }, "href": "/about" }
         ]
       }
     },
@@ -26,13 +26,13 @@
       "type": "about",
       "adminTitle": "Story",
       "props": {
-        "since": { "en": "SINCE 1991", "hi": "1991 से" },
-        "title": { "en": "A Little Story", "hi": "एक छोटी कहानी" },
-        "titleHighlight": { "en": "About KH Food", "hi": "केएच फूड के बारे में" },
-        "para1": { "en": "K H Food became a company in Orange County, California in 1991. It started out with a young married couple who immigrated from Taiwan to pursue the American dream. They had the vision to become the highest quality peanut company in California.", "hi": "केएच फूड 1991 में ऑरेंज काउंटी, कैलिफोर्निया में एक कंपनी बनी। इसकी शुरुआत एक युवा विवाहित जोड़े ने की जो अमेरिकी सपने को पूरा करने के लिए ताइवान से आए थे। उनकी दृष्टि कैलिफोर्निया में सबसे उच्च गुणवत्ता वाली मूंगफली कंपनी बनने की थी।" },
-        "para2": { "en": "With only natural ingredients and absolutely no preservatives, we guarantee that our peanuts do not go through any unnatural processing before they reach your home! We not only highly value the quality and health of our products, but we also strive to bring out the natural deliciousness of peanuts that leave you both satiated and satisfied.", "hi": "केवल प्राकृतिक सामग्री और बिल्कुल बिना परिरक्षकों के, हम गारंटी देते हैं कि हमारी मूंगफली आपके घर तक पहुंचने से पहले किसी भी अप्राकृतिक प्रसंस्करण से नहीं गुजरती! हम न केवल अपने उत्पादों की गुणवत्ता और स्वास्थ्य को अत्यधिक महत्व देते हैं, बल्कि हम मूंगफली की प्राकृतिक स्वादिष्टता को बाहर लाने का भी प्रयास करते हैं।" },
+        "since": { "en": "SINCE 1991", "hi": "1991 से", "zh": "自 1991 年起" },
+        "title": { "en": "A Little Story", "hi": "एक छोटी कहानी", "zh": "我們的小故事" },
+        "titleHighlight": { "en": "About KH Food", "hi": "केएच फूड के बारे में", "zh": "關於 KH Food" },
+        "para1": { "en": "K H Food became a company in Orange County, California in 1991. It started out with a young married couple who immigrated from Taiwan to pursue the American dream. They had the vision to become the highest quality peanut company in California.", "hi": "केएच फूड 1991 में ऑरेंज काउंटी, कैलिफोर्निया में एक कंपनी बनी। इसकी शुरुआत एक युवा विवाहित जोड़े ने की जो अमेरिकी सपने को पूरा करने के लिए ताइवान से आए थे। उनकी दृष्टि कैलिफोर्निया में सबसे उच्च गुणवत्ता वाली मूंगफली कंपनी बनने की थी।", "zh": "KH Food 於 1991 年在加州橙縣成立。品牌由一對從台灣移民、追尋美國夢的年輕夫妻創立，他們的願景是成為加州最高品質的花生公司。" },
+        "para2": { "en": "With only natural ingredients and absolutely no preservatives, we guarantee that our peanuts do not go through any unnatural processing before they reach your home! We not only highly value the quality and health of our products, but we also strive to bring out the natural deliciousness of peanuts that leave you both satiated and satisfied.", "hi": "केवल प्राकृतिक सामग्री और बिल्कुल बिना परिरक्षकों के, हम गारंटी देते हैं कि हमारी मूंगफली आपके घर तक पहुंचने से पहले किसी भी अप्राकृतिक प्रसंस्करण से नहीं गुजरती! हम न केवल अपने उत्पादों की गुणवत्ता और स्वास्थ्य को अत्यधिक महत्व देते हैं, बल्कि हम मूंगफली की प्राकृतिक स्वादिष्टता को बाहर लाने का भी प्रयास करते हैं।", "zh": "我們只使用天然成分且完全不添加防腐劑，確保花生送到您家前不經過任何非天然加工。我們重視產品品質與健康，也努力呈現花生天然的美味，讓您吃得滿足又安心。" },
         "image": { "en": "https://khfood.com/wp-content/uploads/2020/11/About-Us-Photo-1-2.png", "hi": "https://khfood.com/wp-content/uploads/2020/11/About-Us-Photo-1-2.png" },
-        "badge": { "en": "OVER 30 YEARS", "hi": "30 से अधिक वर्ष" }
+        "badge": { "en": "OVER 30 YEARS", "hi": "30 से अधिक वर्ष", "zh": "超過 30 年" }
       }
     },
     {
@@ -40,16 +40,16 @@
       "type": "values-grid",
       "adminTitle": "What We Value",
       "props": {
-        "title": { "en": "What We Value", "hi": "हम क्या महत्व देते हैं" },
-        "subtitle": { "en": "Let's Taste All Natural", "hi": "आइए पूरी तरह प्राकृतिक स्वाद लें" }
+        "title": { "en": "What We Value", "hi": "हम क्या महत्व देते हैं", "zh": "我們重視什麼" },
+        "subtitle": { "en": "Let's Taste All Natural", "hi": "आइए पूरी तरह प्राकृतिक स्वाद लें", "zh": "一起品嚐全天然滋味" }
       },
       "content": [
         {
           "id": "value-1",
           "type": "value-item",
           "props": {
-            "title": { "en": "Health", "hi": "स्वास्थ्य" },
-            "description": { "en": "We prioritize your health by using only natural ingredients with no preservatives or artificial additives.", "hi": "हम केवल प्राकृतिक सामग्री का उपयोग करके आपके स्वास्थ्य को प्राथमिकता देते हैं।" },
+            "title": { "en": "Health", "hi": "स्वास्थ्य", "zh": "健康" },
+            "description": { "en": "We prioritize your health by using only natural ingredients with no preservatives or artificial additives.", "hi": "हम केवल प्राकृतिक सामग्री का उपयोग करके आपके स्वास्थ्य को प्राथमिकता देते हैं।", "zh": "我們只使用天然成分，不添加防腐劑或人工添加物，把您的健康放在第一位。" },
             "image": { "en": "https://khfood.com/wp-content/uploads/2019/12/1-1.jpg", "hi": "https://khfood.com/wp-content/uploads/2019/12/1-1.jpg" }
           }
         },
@@ -57,8 +57,8 @@
           "id": "value-2",
           "type": "value-item",
           "props": {
-            "title": { "en": "Quality", "hi": "गुणवत्ता" },
-            "description": { "en": "From farm to table, we ensure the highest quality standards in every batch of peanuts we produce.", "hi": "फार्म से टेबल तक, हम हर बैच में उच्चतम गुणवत्ता मानकों को सुनिश्चित करते हैं।" },
+            "title": { "en": "Quality", "hi": "गुणवत्ता", "zh": "品質" },
+            "description": { "en": "From farm to table, we ensure the highest quality standards in every batch of peanuts we produce.", "hi": "फार्म से टेबल तक, हम हर बैच में उच्चतम गुणवत्ता मानकों को सुनिश्चित करते हैं।", "zh": "從農場到餐桌，我們確保每一批花生都符合最高品質標準。" },
             "image": { "en": "https://khfood.com/wp-content/uploads/2019/12/3-1.jpg", "hi": "https://khfood.com/wp-content/uploads/2019/12/3-1.jpg" }
           }
         },
@@ -66,8 +66,8 @@
           "id": "value-3",
           "type": "value-item",
           "props": {
-            "title": { "en": "Taste", "hi": "स्वाद" },
-            "description": { "en": "We bring out the natural deliciousness of peanuts that leave you both satiated and satisfied.", "hi": "हम मूंगफली की प्राकृतिक स्वादिष्टता को बाहर लाते हैं जो आपको संतुष्ट और संतृप्त दोनों छोड़ती है।" },
+            "title": { "en": "Taste", "hi": "स्वाद", "zh": "風味" },
+            "description": { "en": "We bring out the natural deliciousness of peanuts that leave you both satiated and satisfied.", "hi": "हम मूंगफली की प्राकृतिक स्वादिष्टता को बाहर लाते हैं जो आपको संतुष्ट और संतृप्त दोनों छोड़ती है।", "zh": "我們呈現花生天然的美味，帶來飽足且令人滿意的口感。" },
             "image": { "en": "https://khfood.com/wp-content/uploads/2019/12/2.jpg", "hi": "https://khfood.com/wp-content/uploads/2019/12/2.jpg" }
           }
         }
@@ -78,8 +78,8 @@
       "type": "text",
       "adminTitle": "Mission",
       "props": {
-        "heading": { "en": "Our Mission", "hi": "हमारा मिशन" },
-        "content": { "en": "To process and manufacture the best peanuts in the world using natural ingredients and no preservatives. Based in La Puente, California, we serve customers across the United States with premium quality peanut products. We are committed to bringing the taste of natural goodness to every table.", "hi": "प्राकृतिक सामग्री और बिना परिरक्षकों के दुनिया में सबसे अच्छी मूंगफली बनाना। ला पुएंते, कैलिफोर्निया में स्थित, हम प्रीमियम गुणवत्ता वाले मूंगफली उत्पादों के साथ संयुक्त राज्य भर में ग्राहकों की सेवा करते हैं। हम हर टेबल पर प्राकृतिक अच्छाई का स्वाद लाने के लिए प्रतिबद्ध हैं।" }
+        "heading": { "en": "Our Mission", "hi": "हमारा मिशन", "zh": "我們的使命" },
+        "content": { "en": "To process and manufacture the best peanuts in the world using natural ingredients and no preservatives. Based in La Puente, California, we serve customers across the United States with premium quality peanut products. We are committed to bringing the taste of natural goodness to every table.", "hi": "प्राकृतिक सामग्री और बिना परिरक्षकों के दुनिया में सबसे अच्छी मूंगफली बनाना। ला पुएंते, कैलिफोर्निया में स्थित, हम प्रीमियम गुणवत्ता वाले मूंगफली उत्पादों के साथ संयुक्त राज्य भर में ग्राहकों की सेवा करते हैं। हम हर टेबल पर प्राकृतिक अच्छाई का स्वाद लाने के लिए प्रतिबद्ध हैं।", "zh": "使用天然成分且不添加防腐劑，製作世界上最好的花生。我們位於加州 La Puente，以高品質花生產品服務全美客戶，致力於把天然美味帶到每一張餐桌。" }
       }
     }
   ]

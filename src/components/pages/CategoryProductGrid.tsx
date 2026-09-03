@@ -10,6 +10,7 @@ export default function CategoryProductGrid({ categoryId }: { categoryId: string
   const params = useParams();
   const locale = (params?.locale as string) || "en";
   const t = (text: string) => translateStatic(text, locale);
+  const localizedHref = (path: string) => locale === "en" ? path : `/${locale}${path}`;
   const fallbackProducts = useMemo(() => getAllProducts(locale), [locale]);
   const [allProducts, setAllProducts] = useState<KhProduct[]>(fallbackProducts);
   const [loading, setLoading] = useState(true);
@@ -55,7 +56,7 @@ export default function CategoryProductGrid({ categoryId }: { categoryId: string
     return () => {
       isMounted = false;
     };
-  }, [categoryId, fallbackProducts]);
+  }, [categoryId, fallbackProducts, locale]);
   
   const filteredProducts = useMemo(() => {
     return allProducts.filter((p: KhProduct) => p.categorySlug === categoryId);
@@ -79,7 +80,7 @@ export default function CategoryProductGrid({ categoryId }: { categoryId: string
 
         return (
           <div key={product.id} className="bg-white rounded-md p-0 shadow-[0_4px_25px_-5px_rgba(0,0,0,0.06)] border border-gray-100 hover:shadow-[0_8px_35px_-5px_rgba(0,0,0,0.12)] transition-all duration-300 flex flex-col h-full">
-            <Link href={`/product/${product.slug}`} className="block relative aspect-[4/3] flex items-center justify-center p-2 mb-2">
+            <Link href={localizedHref(`/product/${product.slug}`)} className="block relative aspect-[4/3] flex items-center justify-center p-2 mb-2">
               <img 
                 src={product.image || product?.gallery?.[0]?.url || "/assets/Image/Sofa.jpg"} 
                 alt={product.name} 
@@ -88,7 +89,7 @@ export default function CategoryProductGrid({ categoryId }: { categoryId: string
             </Link>
             <div className="bg-[#faf7f2] rounded-b-md py-5 px-3 text-center flex flex-col justify-center gap-1.5 flex-1 min-h-[120px] border border-[#f0e8df]">
               <h3 className="font-bold text-[16px] leading-snug text-[#2d3748]">
-                <Link href={`/product/${product.slug}`} className="hover:text-[#c89255] transition-colors flex flex-col gap-1">
+                <Link href={localizedHref(`/product/${product.slug}`)} className="hover:text-[#c89255] transition-colors flex flex-col gap-1">
                   <span>{mainName}</span>
                   {bracketName && <span className="text-[13px] font-semibold text-gray-500">{bracketName}</span>}
                 </Link>

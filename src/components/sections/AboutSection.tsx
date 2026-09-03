@@ -43,6 +43,8 @@ export default function AboutSection({ sections, locale, isEditable, createSaveH
   const ctaLink = section.props?.ctaLink;
   const image = section.props?.image;
   const badge = section.props?.badge;
+  const rawCtaLink = getLocalizedString(ctaLink, locale) || '#';
+  const localizedCtaLink = rawCtaLink.startsWith('/') && locale !== 'en' ? `/${locale}${rawCtaLink}` : rawCtaLink;
 
   return (
     <motion.section
@@ -117,7 +119,7 @@ export default function AboutSection({ sections, locale, isEditable, createSaveH
               </div>
               <div>
                 <Link
-                  href={getLocalizedString(ctaLink, locale) || '#'}
+                  href={localizedCtaLink}
                   className="text-black text-[13px] uppercase tracking-widest font-medium hover:text-gray-500 transition-colors inline-block mt-2"
                 >
                   <EditableText

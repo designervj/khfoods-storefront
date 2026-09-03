@@ -38,7 +38,7 @@ export default function ProcessPage() {
     return (
       <div className="min-h-screen flex items-center justify-center bg-[#fafafa]">
         <div className="animate-pulse text-[#c89255] font-semibold text-lg tracking-widest uppercase">
-          Loading Process...
+          {t('Loading Process...')}
         </div>
       </div>
     );

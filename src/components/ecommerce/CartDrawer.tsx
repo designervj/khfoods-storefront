@@ -24,6 +24,7 @@ export default function CartDrawer() {
   const params = useParams();
   const locale = (params?.locale as string) || "en";
   const t = (text: string) => translateStatic(text, locale);
+  const localizedHref = (path: string) => locale === "en" ? path : `/${locale}${path}`;
   const dispatch = useAppDispatch();
   const isOpen = useSelector(selectIsCartOpen);
   const items = useSelector(selectCartItems);
@@ -106,7 +107,7 @@ export default function CartDrawer() {
                           </h3>
                           {item.variantName && (
                             <p className="text-xs text-gray-500 mt-1">
-                              Variant: {item.variantName}
+                              {t('Variant:')} {item.variantName}
                             </p>
                           )}
                           <div className="flex items-center gap-2 mt-2">
@@ -136,7 +137,7 @@ export default function CartDrawer() {
                           </div>
                           
                           <div className="flex items-center gap-2 text-gray-500">
-                            <Link href={`/product/${item.productId}`} onClick={handleClose} className="p-1 hover:text-gray-900 transition-colors">
+                            <Link href={localizedHref(`/product/${item.productId}`)} onClick={handleClose} className="p-1 hover:text-gray-900 transition-colors">
                               <Edit2 size={14} />
                             </Link>
                             <button

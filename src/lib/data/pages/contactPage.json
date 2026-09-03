@@ -3,8 +3,8 @@
   "slug": "contact",
   "isPublished": true,
   "seo": {
-    "title": { "en": "Contact Us - KH Food", "hi": "संपर्क करें - केएच फूड" },
-    "description": { "en": "Get in touch with KH Food. Call us at (714) 639-1201 or visit us in La Puente, California.", "hi": "केएच फूड से संपर्क करें। (714) 639-1201 पर कॉल करें या ला पुएंते, कैलिफोर्निया में हमसे मिलें।" }
+    "title": { "en": "Contact Us - KH Food", "hi": "संपर्क करें - केएच फूड", "zh": "聯絡我們 - KH Food" },
+    "description": { "en": "Get in touch with KH Food. Call us at (714) 639-1201 or visit us in La Puente, California.", "hi": "केएच फूड से संपर्क करें। (714) 639-1201 पर कॉल करें या ला पुएंते, कैलिफोर्निया में हमसे मिलें।", "zh": "聯絡 KH Food。請致電 (714) 639-1201，或前往加州 La Puente 拜訪我們。" }
   },
   "sections": [
     {
@@ -12,8 +12,8 @@
       "type": "hero",
       "adminTitle": "Contact Hero",
       "props": {
-        "heading": { "en": "Contact Us", "hi": "संपर्क करें" },
-        "subheading": { "en": "Thank You for Choosing Us", "hi": "हमें चुनने के लिए धन्यवाद" }
+        "heading": { "en": "Contact Us", "hi": "संपर्क करें", "zh": "聯絡我們" },
+        "subheading": { "en": "Thank You for Choosing Us", "hi": "हमें चुनने के लिए धन्यवाद", "zh": "感謝您選擇我們" }
       }
     },
     {
@@ -21,9 +21,9 @@
       "type": "contact-info",
       "adminTitle": "Contact Info",
       "props": {
-        "title": { "en": "Get in Touch", "hi": "संपर्क करें" },
-        "subtitle": { "en": "Thank You for Choosing Us", "hi": "हमें चुनने के लिए धन्यवाद" },
-        "address": { "en": "585 Yorbita Rd., La Puente, CA 91744", "hi": "585 यॉर्बिटा रोड, ला पुएंते, CA 91744" },
+        "title": { "en": "Get in Touch", "hi": "संपर्क करें", "zh": "與我們聯絡" },
+        "subtitle": { "en": "Thank You for Choosing Us", "hi": "हमें चुनने के लिए धन्यवाद", "zh": "感謝您選擇我們" },
+        "address": { "en": "585 Yorbita Rd., La Puente, CA 91744", "hi": "585 यॉर्बिटा रोड, ला पुएंते, CA 91744", "zh": "585 Yorbita Rd., La Puente, CA 91744" },
         "phone": { "en": "(714) 639-1201", "hi": "(714) 639-1201" },
         "fax": { "en": "(714) 639-1211", "hi": "(714) 639-1211" },
         "email": { "en": "contact@khfood.com", "hi": "contact@khfood.com" }
@@ -34,59 +34,59 @@
       "type": "contact-form",
       "adminTitle": "Contact Form",
       "props": {
-        "heading": { "en": "Write us and we will get back to you", "hi": "हमें लिखें और हम आपसे संपर्क करेंगे" },
-        "smsDisclosure": { "en": "By clicking SUBMIT you consent to receiving SMS messages. Messages and Data rates may apply. Message frequency will vary. Reply Stop to Opt-out of messaging. Reply Help for Customer Care Contact Information.", "hi": "SUBMIT पर क्लिक करके आप SMS संदेश प्राप्त करने की सहमति देते हैं। संदेश और डेटा दरें लागू हो सकती हैं। संदेश आवृत्ति भिन्न होगी।" },
-        "privacyLink": { "en": "/privacy", "hi": "/privacy" }
+        "heading": { "en": "Write us and we will get back to you", "hi": "हमें लिखें और हम आपसे संपर्क करेंगे", "zh": "寫信給我們，我們會盡快回覆" },
+        "smsDisclosure": { "en": "By clicking SUBMIT you consent to receiving SMS messages. Messages and Data rates may apply. Message frequency will vary. Reply Stop to Opt-out of messaging. Reply Help for Customer Care Contact Information.", "hi": "SUBMIT पर क्लिक करके आप SMS संदेश प्राप्त करने की सहमति देते हैं। संदेश और डेटा दरें लागू हो सकती हैं। संदेश आवृत्ति भिन्न होगी।", "zh": "點擊送出即表示您同意接收簡訊。可能產生訊息與數據費用，訊息頻率會有所不同。回覆 Stop 可取消接收訊息，回覆 Help 可取得客服聯絡資訊。" },
+        "privacyLink": { "en": "/privacy", "hi": "/privacy", "zh": "/privacy" }
       },
       "content": [
         {
           "id": "field-1",
           "type": "form-field",
           "props": {
-            "label": { "en": "Your name", "hi": "आपका नाम" },
+            "label": { "en": "Your name", "hi": "आपका नाम", "zh": "您的姓名" },
             "type": { "en": "text", "hi": "text" },
-            "required": { "en": "true", "hi": "true" },
-            "placeholder": { "en": "Enter your name", "hi": "अपना नाम दर्ज करें" }
+            "required": { "en": "true", "hi": "true", "zh": "true" },
+            "placeholder": { "en": "Enter your name", "hi": "अपना नाम दर्ज करें", "zh": "輸入您的姓名" }
           }
         },
         {
           "id": "field-2",
           "type": "form-field",
           "props": {
-            "label": { "en": "Contact Number", "hi": "संपर्क नंबर" },
+            "label": { "en": "Contact Number", "hi": "संपर्क नंबर", "zh": "聯絡電話" },
             "type": { "en": "tel", "hi": "tel" },
-            "required": { "en": "true", "hi": "true" },
-            "placeholder": { "en": "Enter your phone number", "hi": "अपना फोन नंबर दर्ज करें" }
+            "required": { "en": "true", "hi": "true", "zh": "true" },
+            "placeholder": { "en": "Enter your phone number", "hi": "अपना फोन नंबर दर्ज करें", "zh": "輸入您的電話號碼" }
           }
         },
         {
           "id": "field-3",
           "type": "form-field",
           "props": {
-            "label": { "en": "Your email", "hi": "आपका ईमेल" },
+            "label": { "en": "Your email", "hi": "आपका ईमेल", "zh": "您的電子郵件" },
             "type": { "en": "email", "hi": "email" },
-            "required": { "en": "true", "hi": "true" },
-            "placeholder": { "en": "Enter your email", "hi": "अपना ईमेल दर्ज करें" }
+            "required": { "en": "true", "hi": "true", "zh": "true" },
+            "placeholder": { "en": "Enter your email", "hi": "अपना ईमेल दर्ज करें", "zh": "輸入您的電子郵件" }
           }
         },
         {
           "id": "field-4",
           "type": "form-field",
           "props": {
-            "label": { "en": "Subject", "hi": "विषय" },
+            "label": { "en": "Subject", "hi": "विषय", "zh": "主旨" },
             "type": { "en": "text", "hi": "text" },
-            "required": { "en": "false", "hi": "false" },
-            "placeholder": { "en": "Enter subject", "hi": "विषय दर्ज करें" }
+            "required": { "en": "false", "hi": "false", "zh": "false" },
+            "placeholder": { "en": "Enter subject", "hi": "विषय दर्ज करें", "zh": "輸入主旨" }
           }
         },
         {
           "id": "field-5",
           "type": "form-field",
           "props": {
-            "label": { "en": "Your message", "hi": "आपका संदेश" },
+            "label": { "en": "Your message", "hi": "आपका संदेश", "zh": "您的訊息" },
             "type": { "en": "textarea", "hi": "textarea" },
-            "required": { "en": "false", "hi": "false" },
-            "placeholder": { "en": "Enter your message (optional)", "hi": "अपना संदेश दर्ज करें (वैकल्पिक)" }
+            "required": { "en": "false", "hi": "false", "zh": "false" },
+            "placeholder": { "en": "Enter your message (optional)", "hi": "अपना संदेश दर्ज करें (वैकल्पिक)", "zh": "輸入您的訊息（選填）" }
           }
         }
       ]

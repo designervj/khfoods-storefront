@@ -3,8 +3,8 @@
   "slug": "faq",
   "isPublished": true,
   "seo": {
-    "title": { "en": "FAQ - KH Food", "hi": "अक्सर पूछे जाने वाले प्रश्न - केएच फूड" },
-    "description": { "en": "Frequently asked questions about KH Food products.", "hi": "केएच फूड उत्पादों के बारे में अक्सर पूछे जाने वाले प्रश्न।" }
+    "title": { "en": "FAQ - KH Food", "hi": "अक्सर पूछे जाने वाले प्रश्न - केएच फूड", "zh": "常見問題 - KH Food" },
+    "description": { "en": "Frequently asked questions about KH Food products.", "hi": "केएच फूड उत्पादों के बारे में अक्सर पूछे जाने वाले प्रश्न।", "zh": "關於 KH Food 產品的常見問題。" }
   },
   "sections": [
     {
@@ -12,8 +12,8 @@
       "type": "text",
       "adminTitle": "FAQ Header",
       "props": {
-        "heading": { "en": "Frequently Asked Questions", "hi": "अक्सर पूछे जाने वाले प्रश्न" },
-        "subheading": { "en": "Find answers to common questions about our products", "hi": "हमारे उत्पादों के बारे में सामान्य प्रश्नों के उत्तर खोजें" }
+        "heading": { "en": "Frequently Asked Questions", "hi": "अक्सर पूछे जाने वाले प्रश्न", "zh": "常見問題" },
+        "subheading": { "en": "Find answers to common questions about our products", "hi": "हमारे उत्पादों के बारे में सामान्य प्रश्नों के उत्तर खोजें", "zh": "尋找關於我們產品的常見問題解答" }
       }
     },
     {
@@ -25,32 +25,32 @@
           "id": "faq-1",
           "type": "faq-item",
           "props": {
-            "question": { "en": "Are your products 100% natural?", "hi": "क्या आपके उत्पाद 100% प्राकृतिक हैं?" },
-            "answer": { "en": "Yes! We use only natural ingredients with no preservatives or artificial additives.", "hi": "हाँ! हम बिना परिरक्षकों या कृत्रिम योजकों के केवल प्राकृतिक सामग्री का उपयोग करते हैं।" }
+            "question": { "en": "Are your products 100% natural?", "hi": "क्या आपके उत्पाद 100% प्राकृतिक हैं?", "zh": "你們的產品是 100% 天然的嗎？" },
+            "answer": { "en": "Yes! We use only natural ingredients with no preservatives or artificial additives.", "hi": "हाँ! हम बिना परिरक्षकों या कृत्रिम योजकों के केवल प्राकृतिक सामग्री का उपयोग करते हैं।", "zh": "是的！我們只使用天然成分，不添加防腐劑或人工添加物。" }
           }
         },
         {
           "id": "faq-2",
           "type": "faq-item",
           "props": {
-            "question": { "en": "Where are your products made?", "hi": "आपके उत्पाद कहाँ बनाए जाते हैं?" },
-            "answer": { "en": "All our products are processed and packaged at our facility in La Puente, California.", "hi": "हमारे सभी उत्पाद ला पुएंते, कैलिफोर्निया में हमारी सुविधा में संसाधित और पैक किए जाते हैं।" }
+            "question": { "en": "Where are your products made?", "hi": "आपके उत्पाद कहाँ बनाए जाते हैं?", "zh": "你們的產品在哪裡製造？" },
+            "answer": { "en": "All our products are processed and packaged at our facility in La Puente, California.", "hi": "हमारे सभी उत्पाद ला पुएंते, कैलिफोर्निया में हमारी सुविधा में संसाधित और पैक किए जाते हैं।", "zh": "我們所有產品都在加州 La Puente 的工廠加工與包裝。" }
           }
         },
         {
           "id": "faq-3",
           "type": "faq-item",
           "props": {
-            "question": { "en": "Do you offer wholesale options?", "hi": "क्या आप थोक विकल्प प्रदान करते हैं?" },
-            "answer": { "en": "Yes, we offer wholesale pricing for bulk orders. Please contact us for more information.", "hi": "हाँ, हम बल्क ऑर्डर के लिए थोक मूल्य निर्धारण प्रदान करते हैं। कृपया अधिक जानकारी के लिए हमसे संपर्क करें।" }
+            "question": { "en": "Do you offer wholesale options?", "hi": "क्या आप थोक विकल्प प्रदान करते हैं?", "zh": "你們提供批發選項嗎？" },
+            "answer": { "en": "Yes, we offer wholesale pricing for bulk orders. Please contact us for more information.", "hi": "हाँ, हम बल्क ऑर्डर के लिए थोक मूल्य निर्धारण प्रदान करते हैं। कृपया अधिक जानकारी के लिए हमसे संपर्क करें।", "zh": "是的，我們為大量訂購提供批發價格。請聯絡我們了解更多資訊。" }
           }
         },
         {
           "id": "faq-4",
           "type": "faq-item",
           "props": {
-            "question": { "en": "What is your return policy?", "hi": "आपकी वापसी नीति क्या है?" },
-            "answer": { "en": "We stand behind our products. If you're not satisfied, contact us within 30 days for a resolution.", "hi": "हम अपने उत्पादों के पीछे खड़े हैं। यदि आप संतुष्ट नहीं हैं, तो समाधान के लिए 30 दिनों के भीतर हमसे संपर्क करें।" }
+            "question": { "en": "What is your return policy?", "hi": "आपकी वापसी नीति क्या है?", "zh": "你們的退貨政策是什麼？" },
+            "answer": { "en": "We stand behind our products. If you're not satisfied, contact us within 30 days for a resolution.", "hi": "हम अपने उत्पादों के पीछे खड़े हैं। यदि आप संतुष्ट नहीं हैं, तो समाधान के लिए 30 दिनों के भीतर हमसे संपर्क करें।", "zh": "我們對產品品質負責。如您不滿意，請在 30 天內聯絡我們協助處理。" }
           }
         }
       ]

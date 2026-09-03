@@ -1,16 +1,16 @@
 {
   "brand": {
-    "name": { "en": "KH Food", "hi": "केएच फूड" },
-    "description": { "en": "Premium peanuts, naturally good. Since 1985.", "hi": "प्रीमियम मूंगफली, प्राकृतिक रूप से अच्छी। 1985 से।" }
+    "name": { "en": "KH Food", "hi": "केएच फूड", "zh": "KH Food" },
+    "description": { "en": "Premium peanuts, naturally good. Since 1985.", "hi": "प्रीमियम मूंगफली, प्राकृतिक रूप से अच्छी। 1985 से।", "zh": "高級花生，天然美味。自 1985 年起。" }
   },
   "quickLinks": [
-    { "label": { "en": "Shop", "hi": "दुकान" }, "href": "/product/all-product" },
-    { "label": { "en": "About Us", "hi": "हमारे बारे में" }, "href": "/about/history" },
-    { "label": { "en": "Contact", "hi": "संपर्क" }, "href": "/contact" },
-    { "label": { "en": "FAQ", "hi": "सामान्य प्रश्न" }, "href": "/faq" }
+    { "label": { "en": "Shop", "hi": "दुकान", "zh": "購買" }, "href": "/product/all-product" },
+    { "label": { "en": "About Us", "hi": "हमारे बारे में", "zh": "關於我們" }, "href": "/about/history" },
+    { "label": { "en": "Contact", "hi": "संपर्क", "zh": "聯絡" }, "href": "/contact" },
+    { "label": { "en": "FAQ", "hi": "सामान्य प्रश्न", "zh": "常見問題" }, "href": "/faq" }
   ],
   "contact": {
-    "address": { "en": "585 Yorbita Rd., La Puente, CA 91744", "hi": "585 यॉर्बिटा रोड, ला पुएंते, CA 91744" },
+    "address": { "en": "585 Yorbita Rd., La Puente, CA 91744", "hi": "585 यॉर्बिटा रोड, ला पुएंते, CA 91744", "zh": "585 Yorbita Rd., La Puente, CA 91744" },
     "phone": "(714) 639-1201",
     "email": "contact@khfood.com"
   },
@@ -19,11 +19,11 @@
     { "platform": "facebook", "url": "https://facebook.com/khfood" }
   ],
   "bottomBar": {
-    "copyright": { "en": "© {year} KH Food. All rights reserved.", "hi": "© {year} केएच फूड। सर्वाधिकार सुरक्षित।" },
+    "copyright": { "en": "© {year} KH Food. All rights reserved.", "hi": "© {year} केएच फूड। सर्वाधिकार सुरक्षित।", "zh": "© {year} KH Food. 版權所有。" },
     "links": [
-      { "label": { "en": "Privacy Policy", "hi": "गोपनीयता नीति" }, "href": "/privacy" },
-      { "label": { "en": "Terms of Service", "hi": "सेवा की शर्तें" }, "href": "/terms" },
-      { "label": { "en": "Returns Policy", "hi": "वापसी नीति" }, "href": "/returns" }
+      { "label": { "en": "Privacy Policy", "hi": "गोपनीयता नीति", "zh": "隱私政策" }, "href": "/privacy" },
+      { "label": { "en": "Terms of Service", "hi": "सेवा की शर्तें", "zh": "服務條款" }, "href": "/terms" },
+      { "label": { "en": "Returns Policy", "hi": "वापसी नीति", "zh": "退貨政策" }, "href": "/returns" }
     ]
   }
 }

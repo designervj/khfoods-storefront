@@ -17,6 +17,8 @@ export default function BlogSection({ sections, locale, isEditable, createSaveHa
 
   const featured = section.props?.featured;
   const articles = section.content || [];
+  const ctaLink = getLocalizedString(section.props?.ctaLink, locale) || '#';
+  const localizedCtaLink = ctaLink.startsWith('/') && locale !== 'en' ? `/${locale}${ctaLink}` : ctaLink;
 
   return (
     <section className="py-14 md:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -43,7 +45,7 @@ export default function BlogSection({ sections, locale, isEditable, createSaveHa
         </div>
         {section.props?.ctaButton && (
           <Link
-            href={locale === 'en' ? section.props?.ctaLink || '#' : `/${locale}${section.props?.ctaLink || ''}`}
+            href={localizedCtaLink}
             className="mt-4 sm:mt-0 inline-flex items-center gap-2 text-[13px] font-medium uppercase tracking-widest text-gray-600 hover:text-black transition-colors"
           >
             {getLocalizedString(section.props?.ctaButton, locale)}

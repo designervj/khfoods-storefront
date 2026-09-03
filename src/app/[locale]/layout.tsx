@@ -11,6 +11,10 @@ import AdminBar from '@/components/layout/AdminBar';
 import { translateStatic } from '@/lib/i18n/locale';
 import '@/styles/globals.css';
 
+const FALLBACK_FAVICON = '/Image/favicon%20(1).png';
+const BACKEND_URL = process.env.FASTAPI_URL || process.env.BACKEND_API_URL || 'http://localhost:8000';
+const TENANT_DB_NAME = process.env.TENANT_DB_NAME || process.env.NEXT_PUBLIC_TENANT_DB;
+
 /* ── Montserrat via next/font — self-hosted, zero layout shift ── */
 const montserrat = Montserrat({
   subsets: ['latin'],
@@ -20,15 +24,46 @@ const montserrat = Montserrat({
   display: 'swap',
 });
 
-export const metadata: Metadata = {
-  title: 'KH Food - Premium Peanuts, Naturally Good',
-  description: 'Discover premium peanut snacks at KH Food. Natural ingredients, no preservatives.',
-  icons: {
-    icon: '/Image/favicon%20(1).png',
-    shortcut: '/Image/favicon%20(1).png',
-    apple: '/Image/favicon%20(1).png',
-  },
-};
+export const dynamic = 'force-dynamic';
+
+async function getBlueprintFavicon(): Promise<string> {
+  try {
+    const headers = new Headers();
+    if (TENANT_DB_NAME) headers.set('x-tenant-db', TENANT_DB_NAME);
+
+    const response = await fetch(`${BACKEND_URL}/platform/business-blueprint`, {
+      headers,
+      cache: 'no-store',
+    });
+
+    if (!response.ok) return FALLBACK_FAVICON;
+
+    const json = await response.json();
+    const payload = json?.data?.payload || json?.payload || json?.data || json;
+    return (
+      payload?.business_profile?.favicon ||
+      payload?.business?.brand?.businessDna?.faviconUrl ||
+      payload?.business?.brand?.faviconRef ||
+      FALLBACK_FAVICON
+    );
+  } catch {
+    return FALLBACK_FAVICON;
+  }
+}
+
+export async function generateMetadata(): Promise<Metadata> {
+  const favicon = await getBlueprintFavicon();
+
+  return {
+    title: 'KH Food - Premium Peanuts, Naturally Good',
+    description: 'Discover premium peanut snacks at KH Food. Natural ingredients, no preservatives.',
+    icons: {
+      icon: favicon,
+      shortcut: favicon,
+      apple: favicon,
+    },
+  };
+}
 
 interface RootLayoutProps {
   children: React.ReactNode;

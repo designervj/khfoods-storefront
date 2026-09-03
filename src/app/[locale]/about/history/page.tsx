@@ -246,7 +246,7 @@ export default function AboutPage() {
             ].map((stat, i) => (
               <motion.div key={i} variants={fadeInUp} className="flex flex-col gap-2">
                 <span className="text-3xl md:text-4xl font-bold">{stat.value}</span>
-                <span className="text-sm md:text-base font-semibold uppercase tracking-wider opacity-80">{stat.label}</span>
+                <span className="text-sm md:text-base font-semibold uppercase tracking-wider opacity-80">{t(stat.label)}</span>
               </motion.div>
             ))}
           </motion.div>

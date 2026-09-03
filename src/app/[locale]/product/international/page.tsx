@@ -12,6 +12,7 @@ export default function InternationalPage() {
   const params = useParams();
   const locale = (params?.locale as string) || "en";
   const t = (text: string) => translateStatic(text, locale);
+  const localizedHref = (path: string) => locale === "en" ? path : `/${locale}${path}`;
 
   const heroSections = [
     {
@@ -19,11 +20,11 @@ export default function InternationalPage() {
       type: "page-hero",
       adminTitle: "Page Hero",
       props: {
-        title: { en: "International", hi: "अंतरराष्ट्रीय" },
+        title: { en: "International", hi: "अंतरराष्ट्रीय", zh: "國際" },
         backgroundImage: "/Image/bg-banner.png",
         breadcrumb: [
-          { label: { en: "Product", hi: "उत्पाद" }, href: null },
-          { label: { en: "INTERNATIONAL SHIPPING", hi: "अंतरराष्ट्रीय शिपिंग" }, href: null }
+          { label: { en: "Product", hi: "उत्पाद", zh: "產品" }, href: null },
+          { label: { en: "INTERNATIONAL SHIPPING", hi: "अंतरराष्ट्रीय शिपिंग", zh: "國際配送" }, href: null }
         ]
       }
     }
@@ -99,7 +100,7 @@ export default function InternationalPage() {
               <div className="inline-block px-4 py-1.5 bg-[#ecb984]/20 text-[#c89255] font-bold text-sm tracking-widest uppercase rounded-full">{t("Global Promise")}</div>
               <h2 className="text-3xl md:text-4xl font-bold text-foreground uppercase tracking-wide leading-tight">{t("Crossing")} <span className="text-[#ecb984]">{t("Borders")}</span></h2>
               <p className="text-[15px] md:text-base text-muted leading-relaxed">
-                Taking our local California heritage to the global stage requires precision and care. We utilize industry-leading export packaging methods designed to combat moisture, humidity, and pressure changes during international transit. No matter where you are located, you receive the same unmatched crunch and flavor.
+                {t("Taking our local California heritage to the global stage requires precision and care. We utilize industry-leading export packaging methods designed to combat moisture, humidity, and pressure changes during international transit. No matter where you are located, you receive the same unmatched crunch and flavor.")}
               </p>
               <ul className="space-y-4 pt-4">
                 <li className="flex items-center gap-4">
@@ -126,7 +127,7 @@ export default function InternationalPage() {
         <div className="container mx-auto px-[5%] relative z-10 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 uppercase tracking-wide pb-4">{t("Become an Importer")}</h2>
           <p className="text-[15px] md:text-base text-white/80 max-w-2xl mx-auto mb-10 leading-relaxed">{t("Looking to introduce premium California peanuts to your local market? We welcome international partnerships, distributors, and bulk importers.")}</p>
-          <Link href="/contact" className="inline-flex items-center justify-center px-8 py-4 bg-[#ecb984] hover:bg-[#c89255] text-white font-bold tracking-widest uppercase transition-colors duration-300 rounded-sm">
+          <Link href={localizedHref("/contact")} className="inline-flex items-center justify-center px-8 py-4 bg-[#ecb984] hover:bg-[#c89255] text-white font-bold tracking-widest uppercase transition-colors duration-300 rounded-sm">
             {t("Inquire About Export")}
           </Link>
         </div>

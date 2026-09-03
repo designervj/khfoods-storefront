@@ -5,11 +5,13 @@
   "seo": {
     "title": {
       "en": "Our Process - KH Food",
-      "hi": "हमारी प्रक्रिया - केएच फूड"
+      "hi": "हमारी प्रक्रिया - केएच फूड",
+      "zh": "我們的流程 - KH Food"
     },
     "description": {
       "en": "Learn about the process of making KH Food's premium peanuts.",
-      "hi": "केएच फूड की प्रीमियम मूंगफली बनाने की प्रक्रिया के बारे में जानें।"
+      "hi": "केएच फूड की प्रीमियम मूंगफली बनाने की प्रक्रिया के बारे में जानें।",
+      "zh": "了解 KH Food 優質花生的製作流程。"
     }
   },
   "sections": [
@@ -20,28 +22,32 @@
       "props": {
         "title": {
           "en": "Our Process",
-          "hi": "हमारी प्रक्रिया"
+          "hi": "हमारी प्रक्रिया",
+          "zh": "我們的流程"
         },
         "backgroundImage": "/Image/bg-banner.png",
         "breadcrumb": [
           {
             "label": {
               "en": "Home",
-              "hi": "होम"
+              "hi": "होम",
+              "zh": "首頁"
             },
             "href": "/"
           },
           {
             "label": {
               "en": "About Us",
-              "hi": "हमारे बारे में"
+              "hi": "हमारे बारे में",
+              "zh": "關於我們"
             },
             "href": null
           },
           {
             "label": {
               "en": "Our Process",
-              "hi": "हमारी प्रक्रिया"
+              "hi": "हमारी प्रक्रिया",
+              "zh": "我們的流程"
             },
             "href": "/process"
           }

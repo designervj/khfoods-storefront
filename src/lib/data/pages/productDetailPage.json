@@ -8,11 +8,11 @@
       "type": "product-tabs",
       "adminTitle": "Product Tabs",
       "props": {
-        "descriptionTab": { "en": "Description", "hi": "विवरण" },
-        "additionalTab": { "en": "Additional information", "hi": "अतिरिक्त जानकारी" },
-        "reviewsTab": { "en": "Reviews", "hi": "समीक्षाएँ" },
-        "descriptionContent1": { "en": "Are you looking for a healthy snack? Look no further than KH Roasted Peanuts! Our peanuts are roasted perfectly without any oil, making them a healthier alternative to other snacks. And because they're packed with protein and fiber, they'll keep you full and satisfied until your next meal.", "hi": "क्या आप एक स्वस्थ नाश्ते की तलाश में हैं? केएच भुनी हुई मूंगफली से आगे मत देखो!" },
-        "descriptionContent2": { "en": "Enjoy our peanuts as a snack on the go or sprinkle them on your salad.", "hi": "चलते-फिरते नाश्ते के रूप में हमारी मूंगफली का आनंद लें या उन्हें अपने सलाद पर छिड़कें।" }
+        "descriptionTab": { "en": "Description", "hi": "विवरण", "zh": "描述" },
+        "additionalTab": { "en": "Additional information", "hi": "अतिरिक्त जानकारी", "zh": "其他資訊" },
+        "reviewsTab": { "en": "Reviews", "hi": "समीक्षाएँ", "zh": "評論" },
+        "descriptionContent1": { "en": "Are you looking for a healthy snack? Look no further than KH Roasted Peanuts! Our peanuts are roasted perfectly without any oil, making them a healthier alternative to other snacks. And because they're packed with protein and fiber, they'll keep you full and satisfied until your next meal.", "hi": "क्या आप एक स्वस्थ नाश्ते की तलाश में हैं? केएच भुनी हुई मूंगफली से आगे मत देखो!", "zh": "正在尋找健康點心嗎？KH 烘焙花生就是您的理想選擇！我們的花生不加油完美烘焙，比一般零食更健康。富含蛋白質與纖維，能讓您在下一餐前保持飽足與滿足。" },
+        "descriptionContent2": { "en": "Enjoy our peanuts as a snack on the go or sprinkle them on your salad.", "hi": "चलते-फिरते नाश्ते के रूप में हमारी मूंगफली का आनंद लें या उन्हें अपने सलाद पर छिड़कें।", "zh": "可作為隨身點心享用，也可以撒在沙拉上增添口感。" }
       },
       "content": []
     },
@@ -21,7 +21,7 @@
       "type": "related-products",
       "adminTitle": "Related Products",
       "props": {
-        "title": { "en": "Related products", "hi": "संबंधित उत्पाद" }
+        "title": { "en": "Related products", "hi": "संबंधित उत्पाद", "zh": "相關產品" }
       },
       "content": []
     }

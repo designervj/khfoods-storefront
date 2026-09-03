@@ -2,17 +2,20 @@
   "id": "page_ecommerce",
   "title": {
     "en": "Premium Foods | KH Foods",
-    "hi": "प्रीमियम फूड्स | केएच फूड्स"
+    "hi": "प्रीमियम फूड्स | केएच फूड्स",
+    "zh": "高級食品 | KH Foods"
   },
   "slug": "ecommerce",
   "isPublished": true,
   "metaTitle": {
     "en": "Shop Premium Foods Online - KH Foods",
-    "hi": "प्रीमियम फूड्स ऑनलाइन खरीदें - केएच फूड्स"
+    "hi": "प्रीमियम फूड्स ऑनलाइन खरीदें - केएच फूड्स",
+    "zh": "線上選購高級食品 - KH Foods"
   },
   "metaDescription": {
     "en": "Explore our exclusive collection of premium spices, snacks, and pickles.",
-    "hi": "प्रीमियम मसालों, स्नैक्स और अचार के हमारे विशेष संग्रह का अन्वेषण करें।"
+    "hi": "प्रीमियम मसालों, स्नैक्स और अचार के हमारे विशेष संग्रह का अन्वेषण करें।",
+    "zh": "探索我們精選的高級香料、點心與醃製食品系列。"
   },
   "content": [
     {
@@ -24,28 +27,32 @@
           "type": "text",
           "value": {
             "en": "New Arrivals",
-            "hi": "नये आगमन"
+              "hi": "नये आगमन",
+              "zh": "新品上市"
           }
         },
         "title": {
           "type": "text",
           "value": {
             "en": "Authentic Taste, Delivered",
-            "hi": "प्रामाणिक स्वाद, डिलीवर किया गया"
+              "hi": "प्रामाणिक स्वाद, डिलीवर किया गया",
+              "zh": "道地風味，送到您手中"
           }
         },
         "description": {
           "type": "textarea",
           "value": {
             "en": "Discover premium foods that blend authentic recipes with exceptional quality.",
-            "hi": "प्रीमियम फूड्स की खोज करें जो असाधारण गुणवत्ता के साथ प्रामाणिक व्यंजनों को मिश्रित करते हैं।"
+              "hi": "प्रीमियम फूड्स की खोज करें जो असाधारण गुणवत्ता के साथ प्रामाणिक व्यंजनों को मिश्रित करते हैं।",
+              "zh": "探索融合道地配方與卓越品質的高級食品。"
           }
         },
         "primaryCTA": {
           "type": "text",
           "value": {
             "en": "Shop Now",
-            "hi": "अभी खरीदें"
+              "hi": "अभी खरीदें",
+              "zh": "立即購買"
           }
         },
         "primaryLink": {
@@ -68,14 +75,16 @@
           "type": "text",
           "value": {
             "en": "Categories",
-            "hi": "श्रेणियाँ"
+              "hi": "श्रेणियाँ",
+              "zh": "分類"
           }
         },
         "title": {
           "type": "text",
           "value": {
             "en": "Shop by Category",
-            "hi": "श्रेणी के अनुसार खरीदारी करें"
+              "hi": "श्रेणी के अनुसार खरीदारी करें",
+              "zh": "依分類購買"
           }
         }
       },
@@ -87,7 +96,8 @@
             "title": {
               "value": {
                 "en": "Domestic",
-                "hi": "Domestic"
+                "hi": "Domestic",
+                "zh": "美國境內"
               }
             },
             "image": {
@@ -105,7 +115,8 @@
             "title": {
               "value": {
                 "en": "International",
-                "hi": "International"
+                "hi": "International",
+                "zh": "國際"
               }
             },
             "image": {
@@ -127,14 +138,16 @@
           "type": "text",
           "value": {
             "en": "Top Picks",
-            "hi": "शीर्ष चयन"
+              "hi": "शीर्ष चयन",
+              "zh": "精選推薦"
           }
         },
         "title": {
           "type": "text",
           "value": {
             "en": "Trending Now",
-            "hi": "अभी ट्रेंडिंग"
+              "hi": "अभी ट्रेंडिंग",
+              "zh": "熱門商品"
           }
         }
       },
@@ -146,7 +159,8 @@
             "title": {
               "value": {
                 "en": "Roasted Peanuts: 14 Packs",
-                "hi": "Roasted Peanuts: 14 Packs"
+                "hi": "Roasted Peanuts: 14 Packs",
+                "zh": "烘焙花生：14 盒"
               }
             },
             "price": {
@@ -158,7 +172,8 @@
             "category": {
               "value": {
                 "en": "Domestic",
-                "hi": "Domestic"
+                "hi": "Domestic",
+                "zh": "美國境內"
               }
             },
             "link": {
@@ -179,7 +194,8 @@
             "title": {
               "value": {
                 "en": "Roasted Peanuts: 21 Packs",
-                "hi": "Roasted Peanuts: 21 Packs"
+                "hi": "Roasted Peanuts: 21 Packs",
+                "zh": "烘焙花生：21 盒"
               }
             },
             "price": {
@@ -191,7 +207,8 @@
             "category": {
               "value": {
                 "en": "Domestic",
-                "hi": "Domestic"
+                "hi": "Domestic",
+                "zh": "美國境內"
               }
             },
             "link": {
@@ -212,7 +229,8 @@
             "title": {
               "value": {
                 "en": "Roasted Peanuts:   6 Bags",
-                "hi": "Roasted Peanuts:   6 Bags"
+                "hi": "Roasted Peanuts:   6 Bags",
+                "zh": "烘焙花生：6 袋"
               }
             },
             "price": {
@@ -224,7 +242,8 @@
             "category": {
               "value": {
                 "en": "Domestic",
-                "hi": "Domestic"
+                "hi": "Domestic",
+                "zh": "美國境內"
               }
             },
             "link": {
@@ -245,7 +264,8 @@
             "title": {
               "value": {
                 "en": "Roasted Peanuts: 8 Packs",
-                "hi": "Roasted Peanuts: 8 Packs"
+                "hi": "Roasted Peanuts: 8 Packs",
+                "zh": "烘焙花生：8 盒"
               }
             },
             "price": {
@@ -257,7 +277,8 @@
             "category": {
               "value": {
                 "en": "Domestic",
-                "hi": "Domestic"
+                "hi": "Domestic",
+                "zh": "美國境內"
               }
             },
             "link": {
@@ -278,7 +299,8 @@
             "title": {
               "value": {
                 "en": "Roasted Peanuts: 6 Bags (Taiwan)",
-                "hi": "Roasted Peanuts: 6 Bags (Taiwan)"
+                "hi": "Roasted Peanuts: 6 Bags (Taiwan)",
+                "zh": "烘焙花生：6 袋（台灣）"
               }
             },
             "price": {
@@ -290,7 +312,8 @@
             "category": {
               "value": {
                 "en": "International",
-                "hi": "International"
+                "hi": "International",
+                "zh": "國際"
               }
             },
             "link": {
@@ -311,7 +334,8 @@
             "title": {
               "value": {
                 "en": "Roasted Peanuts: 12 Bags (Taiwan)",
-                "hi": "Roasted Peanuts: 12 Bags (Taiwan)"
+                "hi": "Roasted Peanuts: 12 Bags (Taiwan)",
+                "zh": "烘焙花生：12 袋（台灣）"
               }
             },
             "price": {
@@ -323,7 +347,8 @@
             "category": {
               "value": {
                 "en": "International",
-                "hi": "International"
+                "hi": "International",
+                "zh": "國際"
               }
             },
             "link": {
@@ -344,7 +369,8 @@
             "title": {
               "value": {
                 "en": "Roasted Peanuts: 14 Packs (Taiwan)",
-                "hi": "Roasted Peanuts: 14 Packs (Taiwan)"
+                "hi": "Roasted Peanuts: 14 Packs (Taiwan)",
+                "zh": "烘焙花生：14 盒（台灣）"
               }
             },
             "price": {
@@ -356,7 +382,8 @@
             "category": {
               "value": {
                 "en": "International",
-                "hi": "International"
+                "hi": "International",
+                "zh": "國際"
               }
             },
             "link": {
@@ -377,7 +404,8 @@
             "title": {
               "value": {
                 "en": "Roasted Peanuts: 24 Packs (Taiwan)",
-                "hi": "Roasted Peanuts: 24 Packs (Taiwan)"
+                "hi": "Roasted Peanuts: 24 Packs (Taiwan)",
+                "zh": "烘焙花生：24 盒（台灣）"
               }
             },
             "price": {
@@ -389,7 +417,8 @@
             "category": {
               "value": {
                 "en": "International",
-                "hi": "International"
+                "hi": "International",
+                "zh": "國際"
               }
             },
             "link": {

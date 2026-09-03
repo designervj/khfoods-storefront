@@ -1,7 +1,15 @@
+"use client";
+
 import React from 'react';
 import { ShoppingCart, Lock, Users, Heart } from 'lucide-react';
+import { useParams } from 'next/navigation';
+import { translateStatic } from '@/lib/i18n/locale';
 
 export default function FeaturesBar() {
+  const params = useParams();
+  const locale = (params?.locale as string) || 'en';
+  const t = (text: string) => translateStatic(text, locale);
+
   const features = [
     {
       icon: <ShoppingCart size={24} strokeWidth={2} color="white" />,
@@ -35,8 +43,8 @@ export default function FeaturesBar() {
                 {item.icon}
               </div>
               <div className="flex flex-col">
-                <span className="text-[#1a202c] font-bold tracking-wide uppercase text-[15px]">{item.title}</span>
-                <span className="text-gray-600 font-medium text-[14px]">{item.subtitle}</span>
+                <span className="text-[#1a202c] font-bold tracking-wide uppercase text-[15px]">{t(item.title)}</span>
+                <span className="text-gray-600 font-medium text-[14px]">{t(item.subtitle)}</span>
               </div>
             </div>
           ))}

@@ -8,8 +8,34 @@ const getTenantHeader = () => ({
   "x-tenant-db": process.env.NEXT_PUBLIC_TENANT_DB || "",
 });
 
+function isRecord(value: unknown): value is Record<string, any> {
+  return Boolean(value) && typeof value === "object" && !Array.isArray(value);
+}
+
+function normalizeBlueprintDocument(value: unknown): { payload: BlueprintPayload } & Record<string, unknown> {
+  const document = isRecord(value) ? value : {};
+  const payload = isRecord(document.payload) ? document.payload : document;
+  const brand = isRecord(payload.business?.brand) ? payload.business.brand : {};
+  const businessDna = isRecord(brand.businessDna) ? brand.businessDna : {};
+  const logo = payload.business_profile?.logo || businessDna.logoUrl || brand.logoRef;
+  const favicon = payload.business_profile?.favicon || businessDna.faviconUrl || brand.faviconRef;
+
+  return {
+    ...document,
+    payload: {
+      ...payload,
+      business_profile: {
+        ...(isRecord(payload.business_profile) ? payload.business_profile : {}),
+        ...(logo ? { logo } : {}),
+        ...(favicon ? { favicon } : {}),
+      },
+    },
+  } as { payload: BlueprintPayload } & Record<string, unknown>;
+}
+
 async function fetchWithTenant(url: string, options: RequestInit = {}) {
   const response = await fetch(url, {
+    cache: "no-store",
     ...options,
     headers: { "Content-Type": "application/json", ...getTenantHeader(), ...options.headers },
   });
@@ -25,7 +51,7 @@ export const fetchBlueprintThunk = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const response = await fetchWithTenant("/api/platform/business-blueprint");
-      return response.data;
+      return normalizeBlueprintDocument(response.data);
     } catch (error: any) {
       return rejectWithValue(error.message);
     }
@@ -40,7 +66,7 @@ export const updateBlueprintThunk = createAsyncThunk(
         method: "PUT",
         body: JSON.stringify({ payload }),
       });
-      return response.data;
+      return normalizeBlueprintDocument(response.data);
     } catch (error: any) {
       return rejectWithValue(error.message);
     }
@@ -65,7 +91,7 @@ export const updateThemeThunk = createAsyncThunk(
         method: "PUT",
         body: JSON.stringify({ payload: updatedPayload }),
       });
-      return response.data;
+      return normalizeBlueprintDocument(response.data);
     } catch (error: any) {
       return rejectWithValue(error.message);
     }
@@ -87,7 +113,7 @@ export const updateBrandValueThunk = createAsyncThunk(
         method: "PUT",
         body: JSON.stringify({ payload: updatedPayload }),
       });
-      return response.data;
+      return normalizeBlueprintDocument(response.data);
     } catch (error: any) {
       return rejectWithValue(error.message);
     }
@@ -109,7 +135,7 @@ export const updateBusinessProfileThunk = createAsyncThunk(
         method: "PUT",
         body: JSON.stringify({ payload: updatedPayload }),
       });
-      return response.data;
+      return normalizeBlueprintDocument(response.data);
     } catch (error: any) {
       return rejectWithValue(error.message);
     }
@@ -134,7 +160,7 @@ export const updateNavigationThunk = createAsyncThunk(
         method: "PUT",
         body: JSON.stringify({ payload: updatedPayload }),
       });
-      return response.data;
+      return normalizeBlueprintDocument(response.data);
     } catch (error: any) {
       return rejectWithValue(error.message);
     }

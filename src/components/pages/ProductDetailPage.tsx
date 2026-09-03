@@ -56,6 +56,7 @@ export default function ProductDetailPage({
   const params = useParams();
   const locale = (params?.locale as string) || "en";
   const t = (text: string) => translateStatic(text, locale);
+  const localizedHref = (path: string) => path === '/' ? (locale === 'en' ? '/' : `/${locale}`) : (locale === 'en' ? path : `/${locale}${path}`);
   const [quantity, setQuantity] = useState(1);
   const [activeTab, setActiveTab] = useState("description");
   const [isAdded, setIsAdded] = useState(false);
@@ -105,9 +106,9 @@ export default function ProductDetailPage({
       <div className="bg-[#f7f7f7] py-6 md:py-8 border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <nav className="flex flex-wrap items-center text-sm md:text-[15px] font-normal gap-y-1">
-            <Link href={locale === 'en' ? '/' : `/${locale}`} className="text-[#e2a865] hover:text-[#c48d4e] transition-colors whitespace-nowrap">{t('Home')}</Link>
+            <Link href={localizedHref('/')} className="text-[#e2a865] hover:text-[#c48d4e] transition-colors whitespace-nowrap">{t('Home')}</Link>
             <span className="mx-2 text-gray-400">/</span>
-            <Link href={locale === 'en' ? `/category/${product.categorySlug}` : `/${locale}/category/${product.categorySlug}`} className="text-[#e2a865] hover:text-[#c48d4e] transition-colors whitespace-nowrap">
+            <Link href={localizedHref(`/product/${product.categorySlug}`)} className="text-[#e2a865] hover:text-[#c48d4e] transition-colors whitespace-nowrap">
               {product.categoryName}
             </Link>
             <span className="mx-2 text-gray-400">/</span>
@@ -180,7 +181,7 @@ export default function ProductDetailPage({
                   className="w-full sm:w-auto bg-[#3b2f2d] hover:bg-[#2b2220] text-white px-8 h-11 text-[13px] font-semibold tracking-wide transition-colors flex items-center justify-center gap-2 uppercase"
                 >
                   {isAdded ? (
-                    <><Check size={16} /> Added</>
+                    <><Check size={16} /> {t('Added')}</>
                   ) : (
                     t("Add to cart")
                   )}
@@ -211,7 +212,7 @@ export default function ProductDetailPage({
               <div className="text-[15px]">
                 <span className="font-normal mr-1">{t("SKU:")}</span> {sku} <span className="mx-1">/</span>
                 <span className="font-normal mr-1">{t("Category:")}</span>
-                <Link href={`/category/${product.categorySlug}`} className="text-[#e2a865] hover:text-[#c48d4e] transition-colors">{product.categoryName}</Link>
+                <Link href={localizedHref(`/product/${product.categorySlug}`)} className="text-[#e2a865] hover:text-[#c48d4e] transition-colors">{product.categoryName}</Link>
               </div>
             </div>
 
