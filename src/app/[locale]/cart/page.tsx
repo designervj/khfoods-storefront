@@ -29,16 +29,18 @@ export default function CartPage() {
   const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
   return (
-    <main className="section-padding">
-      <div className="container-custom">
-        <h1 className="text-3xl md:text-4xl font-bold mb-8">{getLocalizedString(currentPages?.sections?.[0]?.props?.heading, locale) || t('Your Cart')}</h1>
+    <main className="bg-white px-4 pb-28 pt-8 md:px-0 md:py-[var(--section-padding)]">
+      <div className="container-custom px-0 md:px-4">
+        <h1 className="mb-8 text-[28px] font-bold leading-tight text-[#111111] md:mb-10 md:text-3xl pb-8">{getLocalizedString(currentPages?.sections?.[0]?.props?.heading, locale) || t('Your Cart')}</h1>
 
         {cartItems.length === 0 ? (
-          <div className="text-center py-16">
-            <ShoppingBag size={64} className="mx-auto mb-6 text-[var(--text-muted)]" />
-            <h2 className="text-2xl font-semibold mb-4">{t('Your cart is empty')}</h2>
-            <p className="text-[var(--text-secondary)] mb-8">{t("Looks like you haven't added anything yet.")}</p>
-            <Link href={getLocalizedHref('/product/all-product')} className="btn-primary">{t('Continue Shopping')}</Link>
+          <div className="mx-auto flex min-h-[360px] max-w-sm flex-col items-center justify-center rounded-[28px] bg-white px-4 py-8 text-center md:min-h-[420px] md:max-w-xl md:border md:border-[#eee2d5] md:shadow-[0_16px_45px_rgba(17,17,17,0.06)]">
+            <ShoppingBag size={56} className="mb-5 text-gray-400 md:size-16" />
+            <h2 className="mb-2 text-[22px] font-bold leading-tight text-[#111111] md:text-2xl">{t('Your cart is empty')}</h2>
+            <p className="mb-7 max-w-xs text-sm leading-5 text-gray-500">{t("Looks like you haven't added anything yet.")}</p>
+            <Link href={getLocalizedHref('/shop')} className="inline-flex min-h-11 items-center justify-center rounded-full bg-[#eaba88] px-7 text-sm font-bold text-[#111111] transition hover:bg-[#d4925a]">
+              {t('Continue Shopping')}
+            </Link>
           </div>
         ) : (
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">

@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import EditableText from '@/components/shared/EditableText';
 import { getLocalizedString } from '@/lib/i18n/locale';
 
@@ -22,23 +23,25 @@ export default function PageHeroSection({ sections, locale, isEditable, createSa
   const section = sections.find(s => s.adminTitle === (heroTitle || 'Page Hero'));
   if (!section) return null;
 
-  const backgroundImage = section.props?.backgroundImage;
+  const backgroundImage = section.props?.backgroundImage as string | undefined;
   const breadcrumbs: BreadcrumbItem[] = section.props?.breadcrumb || [];
   const href = (path: string) => path === '/' ? (locale === 'en' ? '/' : `/${locale}`) : (locale === 'en' ? path : `/${locale}${path}`);
 
   return (
-    <section
-      className={`relative overflow-hidden ${!backgroundImage ? 'bg-[#f5f5f7]' : ''}`}
-      style={{
-        backgroundImage: backgroundImage ? `url(${backgroundImage})` : undefined,
-        backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'center',
-        backgroundSize: 'cover',
-      }}
-    >
-      {backgroundImage && <div className="absolute inset-0 bg-black/40 z-0"></div>}
+    <section className={`relative isolate overflow-hidden ${!backgroundImage ? 'bg-[#f5f5f7]' : 'bg-[#f6efe3]'}`}>
+      {backgroundImage && (
+        <Image
+          src={backgroundImage}
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="absolute inset-0 z-0 h-full w-full object-cover object-[18%_center] sm:object-center"
+        />
+      )}
+      {backgroundImage && <div className="absolute inset-0 z-10 bg-black/35"></div>}
       
-      <div className="relative z-10 mx-auto max-w-7xl py-16 md:py-24 min-h-[260px] md:min-h-[320px] flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8">
+      <div className="relative z-20 mx-auto max-w-7xl py-16 md:py-24 min-h-[260px] md:min-h-[320px] flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8">
         <div className="text-center">
           <EditableText
             value={getLocalizedString(section.props?.title, locale)}

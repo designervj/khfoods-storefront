@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useCallback, useState } from 'react';
+import Image from 'next/image';
 import { useParams } from 'next/navigation';
 import { useAppSelector, useAppDispatch } from '@/redux/store/hooks';
 import { setCurrentPageBySlug } from '@/redux/slices/pages/pagesSlice';
@@ -39,9 +40,16 @@ export default function ContactPage() {
   return (
     <main>
       {hero && (
-        <section className="relative isolate overflow-hidden bg-[#1c1c1a] pt-24 md:pt-28">
-          <div className="absolute inset-0 -z-10 bg-[url('/Image/bg-banner.png')] bg-cover bg-center opacity-95" />
-          <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(28,28,26,0.78)_0%,rgba(28,28,26,0.58)_42%,rgba(28,28,26,0.18)_68%,rgba(28,28,26,0)_100%)]" />
+        <section className="relative isolate overflow-hidden bg-[#f6efe3] pt-24 md:pt-28">
+          <Image
+            src="/Image/bg-banner.png"
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            className="absolute inset-0 -z-20 h-full w-full object-cover object-[18%_center] sm:object-center"
+          />
+          <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(28,28,26,0.78)_0%,rgba(28,28,26,0.52)_42%,rgba(28,28,26,0.18)_68%,rgba(28,28,26,0.04)_100%)]" />
           {/* <div className="absolute inset-x-0 bottom-0 -z-10 h-16 bg-gradient-to-t from-[#f7f4ef] to-transparent" /> */}
           <div className="mx-auto flex min-h-[250px] max-w-7xl items-center justify-center px-4 pb-10 text-center sm:px-6 lg:px-8">
             <div className="max-w-2xl">

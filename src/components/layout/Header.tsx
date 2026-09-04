@@ -160,9 +160,9 @@ export default function Header() {
 
   const href = (path: string) =>
     path === '/' ? (locale === 'en' ? '/' : `/${locale}`) : (locale === 'en' ? path : `/${locale}${path}`);
+  const pathWithoutLocale = pathname.replace(/^\/(en|zh)(?=\/|$)/, '') || '/';
 
   const localeHref = (nextLocale: string) => {
-    const pathWithoutLocale = pathname.replace(/^\/(en|zh)(?=\/|$)/, '') || '/';
     return nextLocale === 'en' ? pathWithoutLocale : `/${nextLocale}${pathWithoutLocale === '/' ? '' : pathWithoutLocale}`;
   };
 
@@ -170,7 +170,8 @@ export default function Header() {
   const t = (text: string) => translateStatic(text, locale);
 
   const isActive = (item: any) =>
-    pathname === item.href || (item.href !== '/' && pathname?.startsWith(item.href));
+    pathWithoutLocale === item.href || (item.href !== '/' && pathWithoutLocale?.startsWith(item.href));
+  const isShopActive = pathWithoutLocale === '/shop';
 
   return (
     <header ref={headerRef} className={`fixed top-0 left-0 right-0 z-50 transition-transform duration-300 ${isVisible ? 'translate-y-0' : '-translate-y-full'}`}>
@@ -325,9 +326,9 @@ export default function Header() {
           {/* SHOP + Cart */}
           <div className="flex items-center gap-4 md:gap-8 z-10">
             <Link
-              href={href('/product/all-product')}
+              href={href('/shop')}
               className="hidden lg:flex items-center gap-2 hover:!text-[#D4A820] transition-colors"
-              style={{ color: '#ffffff' }}
+              style={{ color: isShopActive ? '#D4A820' : '#ffffff' }}
             >
               <span style={{ fontSize: 13, fontWeight: 700, letterSpacing: '0.16em', color: 'inherit' }}>{t('SHOP')}</span>
             </Link>

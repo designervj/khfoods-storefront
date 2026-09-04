@@ -41,7 +41,7 @@ export default function WholesalePage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-10 text-center md:mb-12">
             <p className="mb-3 text-xs font-bold uppercase tracking-[0.25em] text-[#9a6b35]">{t('Quick And Easy Setup')}</p>
-            <h2 className="text-3xl font-bold uppercase text-black md:text-4xl">{t('Become a Wholesale Member')}</h2>
+            <h2 className="text-2xl font-bold uppercase leading-tight text-black md:text-4xl">{t('Become a Wholesale Member')}</h2>
             <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-gray-600 md:text-base">
               {t('Submit your business information and our account team will follow up with next steps, pricing guidance, and product availability.')}
             </p>
@@ -71,7 +71,7 @@ export default function WholesalePage() {
         <div className="mx-auto grid max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-8">
           <div className="rounded-[28px] bg-[#3b2f2d] p-7 text-white md:p-9">
             <p className="mb-3 text-xs font-bold uppercase tracking-[0.3em] text-[#FFD100]">{t('For Retailers')}</p>
-            <h2 className="text-3xl font-bold uppercase leading-tight md:text-4xl">{t('Ready for bulk peanut supply?')}</h2>
+            <h2 className="text-2xl font-bold uppercase leading-tight md:text-4xl">{t('Ready for bulk peanut supply?')}</h2>
             <p className="mt-4 text-sm leading-7 text-white/75">
               {t('KH Food supports stores, distributors, restaurants, gifting programs, and specialty markets with premium peanut products.')}
             </p>

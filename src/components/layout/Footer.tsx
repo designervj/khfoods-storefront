@@ -57,8 +57,8 @@ export default function Footer() {
       <div className="max-w-[1280px] mx-auto px-6 py-12 md:py-16">
         
         {/* ROW 1: Brand & Socials */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
-          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 max-w-3xl">
+        <div className="flex flex-col items-center justify-between gap-8 text-center md:flex-row md:items-center md:text-left">
+          <div className="flex max-w-3xl flex-col items-center gap-6 sm:flex-row md:items-center">
             <Link href={href('/')} className="flex-shrink-0">
               <Image 
                 src="/Image/khfood_logo.png" 
@@ -152,15 +152,17 @@ export default function Footer() {
               {t('SUBSCRIBE TO THE KHFOOD MAILING LIST TO RECEIVE UPDATES ON NEW ARRIVALS, SPECIAL OFFERS AND OTHER DISCOUNT INFORMATION.')}
             </p>
           </div>
-          <div className="w-full lg:w-auto rounded-full border border-white/10 bg-[#242424] p-1.5 shadow-sm sm:flex sm:items-center">
+          <div className="w-full rounded-[28px] border border-white/10 bg-white/[0.04] p-2 shadow-[0_18px_45px_rgba(0,0,0,0.25)] sm:rounded-full lg:w-auto">
+            <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
             <input 
               type="email" 
               placeholder={t('Enter your email')}
-              className="h-12 w-full bg-transparent px-5 text-sm text-white outline-none placeholder:text-gray-500 sm:w-[340px]"
+              className="h-12 w-full rounded-full border border-white/10 bg-[#141412] px-5 text-sm text-white outline-none transition-colors placeholder:text-gray-500 focus:border-[#FFD100]/70 sm:w-[320px]"
             />
-            <button className="mt-2 h-12 w-full rounded-full bg-[#FFD100] px-8 text-sm font-bold uppercase tracking-wider text-black transition-colors hover:bg-[#eab900] sm:mt-0 sm:w-auto">
+            <button className="h-12 w-full rounded-full bg-[#FFD100] px-7 text-xs font-extrabold uppercase tracking-wider text-black shadow-[0_10px_24px_rgba(255,209,0,0.22)] transition-all hover:bg-[#eab900] active:translate-y-px sm:w-auto">
               {t('SUBSCRIBE')}
             </button>
+            </div>
           </div>
         </div>
 

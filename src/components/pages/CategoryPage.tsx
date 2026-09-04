@@ -24,6 +24,7 @@ import Link from "next/link";
 import AccordionSection from "../category/accordionSection/AccordionSection";
 import Pagination from "../category/Pagination";
 import PageHead from "../category/pageHead/PageHead";
+import PageHeroSection from "../sections/PageHeroSection";
 import { useAppDispatch } from "@/redux/store/hooks";
 import {
   getAllProducts,
@@ -474,6 +475,80 @@ const CategoryPage = ({ isShopPage, sections, categoryId }: CategoryPageProps) =
 
   if (categoryLoading) {
     return <LoadingState label={t('Loading products...')} />;
+  }
+
+  if (isShopPage) {
+    const heroSections = [
+      {
+        id: "shop-page-hero",
+        type: "page-hero",
+        adminTitle: "Page Hero",
+        props: {
+          title: { en: "Shop", hi: "दुकान", zh: "購買" },
+          backgroundImage: "/Image/bg-banner.png",
+          breadcrumb: [
+            { label: { en: "Home", hi: "होम", zh: "首頁" }, href: "/" },
+            { label: { en: "Shop", hi: "दुकान", zh: "購買" }, href: null },
+          ],
+        },
+      },
+    ];
+
+    const productCard = (product: KhProduct) => (
+      <div key={product.id} className="flex h-full flex-col rounded-md border border-gray-100 bg-white p-0 shadow-[0_4px_25px_-5px_rgba(0,0,0,0.06)] transition-all duration-300 hover:shadow-[0_8px_35px_-5px_rgba(0,0,0,0.12)]">
+        <Link href={localizedHref(`/product/${product.slug}`)} className="relative mb-2 flex aspect-[4/3] items-center justify-center p-2">
+          <img 
+            src={product.image || product.gallery?.[0]?.url || "/Image/product.png"} 
+            alt={product.name} 
+            className="max-h-full max-w-full object-contain transition-transform duration-500 hover:scale-105"
+          />
+        </Link>
+        <div className="flex min-h-[120px] flex-1 flex-col justify-center gap-1.5 rounded-b-md border border-[#f0e8df] bg-[#faf7f2] px-3 py-5 text-center">
+          <h3 className="text-[16px] font-bold leading-snug text-[#2d3748]">
+            <Link href={localizedHref(`/product/${product.slug}`)} className="flex flex-col gap-1 transition-colors hover:text-[#c89255]">
+              <span>{product.name.match(/^(.*?)\s*(\(.*?\))?$/)?.[1] || product.name}</span>
+              {product.name.match(/^(.*?)\s*(\(.*?\))?$/)?.[2] && (
+                <span className="text-[13px] font-semibold text-gray-500">{product.name.match(/^(.*?)\s*(\(.*?\))?$/)?.[2]}</span>
+              )}
+            </Link>
+          </h3>
+          <div className="mt-1 text-[18px] font-semibold tracking-tight text-[#c89255]">
+            ${product.price?.toFixed(2) || "0.00"}
+          </div>
+        </div>
+      </div>
+    );
+
+    return (
+      <main className="bg-[#fafafa]">
+        <PageHeroSection 
+          sections={heroSections}
+          locale={locale}
+          isEditable={false}
+          createSaveHandler={() => async () => {}}
+          heroTitle="Page Hero"
+        />
+
+        <section className="bg-white py-14 md:py-20">
+          <div className="container mx-auto px-[5%]">
+            <div className="mb-8 text-center">
+              <h2 className="mb-3 text-3xl font-bold uppercase tracking-wide text-foreground">{t("All Products")}</h2>
+              <p className="text-[15px] text-gray-600">{t("Showing all")} {allProducts.length} {t("results")}</p>
+            </div>
+
+            {allProducts.length > 0 ? (
+              <div className="grid grid-cols-2 gap-4 md:grid-cols-3 md:gap-6 xl:grid-cols-4">
+                {allProducts.map(productCard)}
+              </div>
+            ) : (
+              <div className="py-10 text-center text-gray-500">
+                {t("No products found")}
+              </div>
+            )}
+          </div>
+        </section>
+      </main>
+    );
   }
 
   return (

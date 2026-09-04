@@ -1,6 +1,7 @@
 'use client';
 
 import { BriefcaseBusiness, LocateFixed, MapPin, Navigation, Phone, Search } from 'lucide-react';
+import Image from 'next/image';
 import { useParams } from 'next/navigation';
 import { translateStatic } from '@/lib/i18n/locale';
 
@@ -49,9 +50,16 @@ export default function StoreLocatorPage() {
 
   return (
     <main className="bg-white">
-      <section className="relative isolate overflow-hidden bg-[#1c1c1a] pt-24 md:pt-28">
-        <div className="absolute inset-0 -z-10 bg-[url('/Image/bg-banner.png')] bg-cover bg-center opacity-90" />
-        <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(28,28,26,0.86),rgba(28,28,26,0.58),rgba(28,28,26,0.18))]" />
+      <section className="relative isolate overflow-hidden bg-[#f6efe3] pt-24 md:pt-28">
+        <Image
+          src="/Image/bg-banner.png"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="absolute inset-0 -z-20 h-full w-full object-cover object-[18%_center] sm:object-center"
+        />
+        <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(28,28,26,0.82),rgba(28,28,26,0.54),rgba(28,28,26,0.2))]" />
         <div className="mx-auto flex min-h-[240px] max-w-7xl items-center justify-center px-4 pb-10 text-center sm:px-6 md:min-h-[320px] lg:px-8">
           <div className="max-w-3xl">
             <p className="mb-3 text-xs font-bold uppercase tracking-[0.32em] text-[#FFD100]">{t('KH Food Retail Partners')}</p>
@@ -71,7 +79,7 @@ export default function StoreLocatorPage() {
       <section className="bg-[#f7f4ef] py-10 md:py-14">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-8 text-center">
-            <h2 className="text-3xl font-bold uppercase tracking-wide text-black md:text-4xl">{t('Search Location')}</h2>
+            <h2 className="text-2xl font-bold uppercase tracking-wide text-black md:text-4xl">{t('Search Location')}</h2>
             <p className="mx-auto mt-3 max-w-2xl text-sm leading-6 text-gray-600">
               {t('Find nearby stores carrying KH Food peanuts. Search by location or choose a distance range to explore retail partners near you.')}
             </p>
