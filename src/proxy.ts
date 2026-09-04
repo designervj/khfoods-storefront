@@ -3,6 +3,17 @@ import type { NextRequest } from "next/server";
 
 const LOCALES = ["en", "hi"];
 const DEFAULT_LOCALE = "en";
+const LOCAL_HOSTS = new Set(["localhost", "127.0.0.1", "::1"]);
+
+function normalizeLocalProxyUrl(url: URL) {
+  if (!LOCAL_HOSTS.has(url.hostname)) {
+    return url;
+  }
+
+  url.protocol = "http:";
+  url.hostname = "127.0.0.1";
+  return url;
+}
 
 export function proxy(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
@@ -16,16 +27,12 @@ export function proxy(request: NextRequest) {
   const hasLocale = LOCALES.includes(firstSegment as any);
 
   if (hasLocale) {
-    if (firstSegment === DEFAULT_LOCALE) {
-      const newPathname = pathname.replace(`/${DEFAULT_LOCALE}`, "") || "/";
-      return NextResponse.redirect(new URL(newPathname, request.url));
-    }
     return NextResponse.next();
   }
 
   const url = request.nextUrl.clone();
   url.pathname = `/${DEFAULT_LOCALE}${pathname === "/" ? "" : pathname}`;
-  return NextResponse.rewrite(url);
+  return NextResponse.rewrite(normalizeLocalProxyUrl(url));
 }
 
 export const config = {
