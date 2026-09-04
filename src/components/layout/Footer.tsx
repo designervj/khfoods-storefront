@@ -152,16 +152,16 @@ export default function Footer() {
               {t('SUBSCRIBE TO THE KHFOOD MAILING LIST TO RECEIVE UPDATES ON NEW ARRIVALS, SPECIAL OFFERS AND OTHER DISCOUNT INFORMATION.')}
             </p>
           </div>
-          <div className="w-full rounded-[28px] border border-white/10 bg-white/[0.04] p-2 shadow-[0_18px_45px_rgba(0,0,0,0.25)] sm:rounded-full lg:w-auto">
+          <div className="w-full max-w-[440px] rounded-[28px] border border-white/10 bg-white/[0.04] p-2 shadow-[0_18px_45px_rgba(0,0,0,0.25)] sm:rounded-full lg:w-auto lg:max-w-none">
             <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
-            <input 
-              type="email" 
-              placeholder={t('Enter your email')}
-              className="h-12 w-full rounded-full border border-white/10 bg-[#141412] px-5 text-sm text-white outline-none transition-colors placeholder:text-gray-500 focus:border-[#FFD100]/70 sm:w-[320px]"
-            />
-            <button className="h-12 w-full rounded-full bg-[#FFD100] px-7 text-xs font-extrabold uppercase tracking-wider text-black shadow-[0_10px_24px_rgba(255,209,0,0.22)] transition-all hover:bg-[#eab900] active:translate-y-px sm:w-auto">
-              {t('SUBSCRIBE')}
-            </button>
+              <input 
+                type="email" 
+                placeholder={t('Enter your email')}
+                className="h-12 w-full rounded-full border border-white/10 bg-[#141412] px-5 text-sm text-white outline-none transition-colors placeholder:text-gray-500 focus:border-[#FFD100]/70 focus:ring-2 focus:ring-[#FFD100]/15 sm:w-[320px]"
+              />
+              <button className="h-12 w-full rounded-full bg-[#FFD100] px-7 text-xs font-extrabold uppercase tracking-wider text-black shadow-[0_10px_24px_rgba(255,209,0,0.22)] transition-all hover:bg-[#eab900] hover:shadow-[0_12px_28px_rgba(255,209,0,0.3)] active:translate-y-px sm:w-auto">
+                {t('SUBSCRIBE')}
+              </button>
             </div>
           </div>
         </div>
