@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useParams, usePathname } from 'next/navigation';
+import { translateStatic } from '@/lib/i18n/locale';
 
 const footerLinkClass = "relative inline-flex text-gray-300 transition-colors duration-200 after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:w-0 after:bg-[#FFD100] after:transition-all after:duration-200 hover:text-[#FFD100] hover:after:w-full focus-visible:outline-none focus-visible:text-[#FFD100] focus-visible:after:w-full text-[15px]";
 
@@ -20,6 +21,7 @@ export default function Footer() {
   const params = useParams();
   const pathname = usePathname();
   const locale = (params?.locale as string) || 'en';
+  const t = (text: string) => translateStatic(text, locale);
   
   if (pathname.includes('/login') || pathname.includes('/register')) return null;
 
@@ -34,15 +36,15 @@ export default function Footer() {
   const quickLinks = [
     { label: 'Home', path: '/' },
     { label: 'FAQS', path: '/faq' },
-    { label: 'Wholesale', path: '/contact' },
+    { label: 'Wholesale', path: '/wholesale' },
     { label: 'Contact Us', path: '/contact' },
-    { label: 'Store Locator', path: '/contact' },
+    { label: 'Store Locator', path: '/store-locator' },
   ];
 
   const aboutUsLinks = [
-    { label: 'History', path: '/about' },
-    { label: 'Nutrition', path: '/nutrition' },
-    { label: 'Process', path: '/process' },
+    { label: 'History', path: '/about/history' },
+    { label: 'Nutrition', path: '/about/nutrition' },
+    { label: 'Process', path: '/about/process' },
   ];
 
   const productsLinks = [
@@ -55,8 +57,8 @@ export default function Footer() {
       <div className="max-w-[1280px] mx-auto px-6 py-12 md:py-16">
         
         {/* ROW 1: Brand & Socials */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
-          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 max-w-3xl">
+        <div className="flex flex-col items-center justify-between gap-8 text-center md:flex-row md:items-center md:text-left">
+          <div className="flex max-w-3xl flex-col items-center gap-6 sm:flex-row md:items-center">
             <Link href={href('/')} className="flex-shrink-0">
               <Image 
                 src="/Image/khfood_logo.png" 
@@ -67,7 +69,7 @@ export default function Footer() {
               />
             </Link>
             <p className="text-gray-400 text-sm leading-relaxed max-w-xl">
-              KH Food became a company in Orange County, California in 1991. They had the vision to become the highest quality peanut company in California.
+              {t('KH Food became a company in Orange County, California in 1991. They had the vision to become the highest quality peanut company in California.')}
             </p>
           </div>
           
@@ -89,12 +91,12 @@ export default function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-8">
           {/* Col 1 */}
           <div>
-            <h3 className="text-md font-bold uppercase tracking-wide mb-6 pb-4">QUICK LINKS</h3>
+            <h3 className="text-md font-bold uppercase tracking-wide mb-6 pb-4">{t('QUICK LINKS')}</h3>
             <ul className="flex flex-col gap-3">
               {quickLinks.map((link, i) => (
                 <li key={i}>
                   <Link href={href(link.path)} className={footerLinkClass}>
-                    {link.label}
+                    {t(link.label)}
                   </Link>
                 </li>
               ))}
@@ -103,12 +105,12 @@ export default function Footer() {
           
           {/* Col 2 */}
           <div>
-            <h3 className="text-md font-bold uppercase tracking-wide mb-6 pb-4">ABOUT US</h3>
+            <h3 className="text-md font-bold uppercase tracking-wide mb-6 pb-4">{t('ABOUT US')}</h3>
             <ul className="flex flex-col gap-3">
               {aboutUsLinks.map((link, i) => (
                 <li key={i}>
                   <Link href={href(link.path)} className={footerLinkClass}>
-                    {link.label}
+                    {t(link.label)}
                   </Link>
                 </li>
               ))}
@@ -117,12 +119,12 @@ export default function Footer() {
 
           {/* Col 3 */}
           <div>
-            <h3 className="text-md font-bold uppercase tracking-wide mb-6 pb-4">PRODUCTS</h3>
+            <h3 className="text-md font-bold uppercase tracking-wide mb-6 pb-4">{t('PRODUCTS')}</h3>
             <ul className="flex flex-col gap-3">
               {productsLinks.map((link, i) => (
                 <li key={i}>
                   <Link href={href(link.path)} className={footerLinkClass}>
-                    {link.label}
+                    {t(link.label)}
                   </Link>
                 </li>
               ))}
@@ -131,7 +133,7 @@ export default function Footer() {
 
           {/* Col 4 */}
           <div>
-            <h3 className="text-md font-bold uppercase tracking-wide mb-6 pb-4">CONTACT US</h3>
+            <h3 className="text-md font-bold uppercase tracking-wide mb-6 pb-4">{t('CONTACT US')}</h3>
             <ul className="flex flex-col gap-3">
               <li className="text-gray-300 text-[15px]">(714)639-1201</li>
               <li className="text-gray-300 text-[15px]">contact@khfood.com</li>
@@ -145,20 +147,22 @@ export default function Footer() {
         {/* ROW 3: Newsletter */}
         <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-8">
           <div className="max-w-xl">
-            <h3 className="text-md md:text-xl font-bold uppercase tracking-wide mb-4">SIGN UP TO NEWSLETTER</h3>
+            <h3 className="text-md md:text-lg font-bold uppercase tracking-wide mb-4">{t('SIGN UP TO NEWSLETTER')}</h3>
             <p className="text-gray-400 text-sm leading-relaxed uppercase tracking-wider">
-              SUBSCRIBE TO THE KHFOOD MAILING LIST TO RECEIVE UPDATES ON NEW ARRIVALS, SPECIAL OFFERS AND OTHER DISCOUNT INFORMATION.
+              {t('SUBSCRIBE TO THE KHFOOD MAILING LIST TO RECEIVE UPDATES ON NEW ARRIVALS, SPECIAL OFFERS AND OTHER DISCOUNT INFORMATION.')}
             </p>
           </div>
-          <div className="w-full lg:w-auto flex flex-col sm:flex-row shadow-sm">
+          <div className="w-full rounded-[28px] border border-white/10 bg-white/[0.04] p-2 shadow-[0_18px_45px_rgba(0,0,0,0.25)] sm:rounded-full lg:w-auto">
+            <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
             <input 
               type="email" 
-              placeholder="Enter your email" 
-              className="bg-[#2a2a2a] text-white px-5 py-4 w-full sm:w-[320px] focus:outline-none placeholder:text-gray-500 rounded-t-sm sm:rounded-l-sm sm:rounded-tr-none"
+              placeholder={t('Enter your email')}
+              className="h-12 w-full rounded-full border border-white/10 bg-[#141412] px-5 text-sm text-white outline-none transition-colors placeholder:text-gray-500 focus:border-[#FFD100]/70 sm:w-[320px]"
             />
-            <button className="bg-[#FFD100] hover:bg-[#eab900] text-black font-bold uppercase tracking-wider px-8 py-4 transition-colors whitespace-nowrap rounded-b-sm sm:rounded-r-sm sm:rounded-bl-none text-[15px] w-full sm:w-auto">
-              SUBSCRIBE
+            <button className="h-12 w-full rounded-full bg-[#FFD100] px-7 text-xs font-extrabold uppercase tracking-wider text-black shadow-[0_10px_24px_rgba(255,209,0,0.22)] transition-all hover:bg-[#eab900] active:translate-y-px sm:w-auto">
+              {t('SUBSCRIBE')}
             </button>
+            </div>
           </div>
         </div>
 
@@ -167,7 +171,7 @@ export default function Footer() {
       {/* Copyright */}
       <div className="w-full bg-[#111111] py-4 text-center">
         <p className="text-gray-600 text-xs">
-          © {currentYear} KHFood. All rights reserved.
+          © {currentYear} KHFood. {t('All rights reserved.')}
         </p>
       </div>
     </footer>

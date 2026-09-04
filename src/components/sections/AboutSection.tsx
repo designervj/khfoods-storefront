@@ -43,10 +43,12 @@ export default function AboutSection({ sections, locale, isEditable, createSaveH
   const ctaLink = section.props?.ctaLink;
   const image = section.props?.image;
   const badge = section.props?.badge;
+  const rawCtaLink = getLocalizedString(ctaLink, locale) || '#';
+  const localizedCtaLink = rawCtaLink.startsWith('/') && locale !== 'en' ? `/${locale}${rawCtaLink}` : rawCtaLink;
 
   return (
     <motion.section
-      className="w-full bg-white text-black py-10 md:py-20 px-4 sm:px-6 lg:px-8"
+      className="w-full bg-white text-black py-14 md:py-20 px-4 sm:px-6 lg:px-8"
       variants={containerVariants}
       initial="hidden"
       whileInView="visible"
@@ -57,7 +59,7 @@ export default function AboutSection({ sections, locale, isEditable, createSaveH
           <div className="flex flex-col gap-4 md:gap-6">
             <motion.div
               variants={itemVariants}
-              className="bg-[#F9F9F9] rounded-[2rem] p-8 md:p-12 lg:p-14 flex flex-col justify-center h-full min-h-[300px]"
+              className="bg-[#F9F9F9] rounded-[2rem] p-6 sm:p-8 md:p-10 lg:p-14 flex flex-col justify-center h-full min-h-[300px]"
             >
               <EditableText
                 value={getLocalizedString(since, locale)}
@@ -67,7 +69,7 @@ export default function AboutSection({ sections, locale, isEditable, createSaveH
                 className="uppercase tracking-widest text-xs font-bold text-[#ecb984] mb-3"
                 placeholder="SINCE 1990"
               />
-              <h2 className="text-3xl sm:text-3xl md:text-3xl font-bold leading-tight mb-4">
+              <h2 className="text-2xl sm:text-3xl md:text-3xl font-bold leading-tight mb-4">
                 <EditableText
                   value={getLocalizedString(title, locale)}
                   onSave={createSaveHandler(section.id, 'props.title')}
@@ -105,9 +107,19 @@ export default function AboutSection({ sections, locale, isEditable, createSaveH
                   rows={3}
                 />
               </div>
+              <div className="mb-6 inline-flex w-fit items-center rounded-2xl border border-[#ead8c4] bg-white px-5 py-3 shadow-sm">
+                <EditableText
+                  value={getLocalizedString(badge, locale)}
+                  onSave={createSaveHandler(section.id, 'props.badge')}
+                  isEditable={isEditable}
+                  tag="span"
+                  className="text-[13px] font-bold uppercase tracking-wide text-black"
+                  placeholder="Badge text"
+                />
+              </div>
               <div>
                 <Link
-                  href={getLocalizedString(ctaLink, locale) || '#'}
+                  href={localizedCtaLink}
                   className="text-black text-[13px] uppercase tracking-widest font-medium hover:text-gray-500 transition-colors inline-block mt-2"
                 >
                   <EditableText
@@ -123,21 +135,13 @@ export default function AboutSection({ sections, locale, isEditable, createSaveH
           </div>
           <motion.div
             variants={itemVariants}
-            className="h-[500px] lg:h-auto w-full relative overflow-hidden rounded-[2rem]"
+            className="h-[320px] sm:h-[420px] lg:h-auto w-full relative overflow-visible rounded-[2rem]"
           >
-            <img
-              src={getLocalizedString(image, locale)}
-              alt="About KH Food"
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute bottom-6 left-6 bg-white py-3 px-6 rounded-xl">
-              <EditableText
-                value={getLocalizedString(badge, locale)}
-                onSave={createSaveHandler(section.id, 'props.badge')}
-                isEditable={isEditable}
-                tag="p"
-                className="font-bold text-[15px] tracking-wide text-black"
-                placeholder="Badge text"
+            <div className="absolute inset-0 overflow-hidden rounded-[2rem]">
+              <img
+                src={getLocalizedString(image, locale)}
+                alt="About KH Food"
+                className="w-full h-full object-cover"
               />
             </div>
           </motion.div>

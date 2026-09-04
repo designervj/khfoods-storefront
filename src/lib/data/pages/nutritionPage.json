@@ -3,8 +3,8 @@
   "slug": "nutrition",
   "isPublished": true,
   "seo": {
-    "title": { "en": "Nutrition - KH Food", "hi": "पोषण - केएच फूड" },
-    "description": { "en": "Discover the health benefits and nutritional value of KH Food's premium peanuts.", "hi": "केएच फूड की प्रीमियम मूंगफली के स्वास्थ्य लाभ और पोषण मूल्य की खोज करें।" }
+    "title": { "en": "Nutrition - KH Food", "hi": "पोषण - केएच फूड", "zh": "營養 - KH Food" },
+    "description": { "en": "Discover the health benefits and nutritional value of KH Food's premium peanuts.", "hi": "केएच फूड की प्रीमियम मूंगफली के स्वास्थ्य लाभ और पोषण मूल्य की खोज करें।", "zh": "探索 KH Food 高級花生的健康益處與營養價值。" }
   },
   "sections": [
     {
@@ -12,12 +12,12 @@
       "type": "page-hero",
       "adminTitle": "Page Hero",
       "props": {
-        "title": { "en": "Nutrition", "hi": "पोषण" },
+        "title": { "en": "Nutrition", "hi": "पोषण", "zh": "營養" },
         "backgroundImage": "/Image/bg-banner.png",
         "breadcrumb": [
-          { "label": { "en": "Home", "hi": "होम" }, "href": "/" },
-          { "label": { "en": "About Us", "hi": "हमारे बारे में" }, "href": null },
-          { "label": { "en": "Nutrition", "hi": "पोषण" }, "href": "/nutrition" }
+          { "label": { "en": "Home", "hi": "होम", "zh": "首頁" }, "href": "/" },
+          { "label": { "en": "About Us", "hi": "हमारे बारे में", "zh": "關於我們" }, "href": null },
+          { "label": { "en": "Nutrition", "hi": "पोषण", "zh": "營養" }, "href": "/nutrition" }
         ]
       }
     },
@@ -26,29 +26,29 @@
       "type": "benefits-grid",
       "adminTitle": "Health Benefits",
       "props": {
-        "title": { "en": "Why Choose Our Peanuts?", "hi": "हमारी मूंगफली क्यों चुनें?" },
-        "subtitle": { "en": "Packed with goodness in every bite", "hi": "हर बाइट में अच्छाई" }
+        "title": { "en": "Why Choose Our Peanuts?", "hi": "हमारी मूंगफली क्यों चुनें?", "zh": "為什麼選擇我們的花生？" },
+        "subtitle": { "en": "Packed with goodness in every bite", "hi": "हर बाइट में अच्छाई", "zh": "每一口都充滿美味與營養" }
       },
       "content": [
         {
           "id": "benefit-1",
           "props": {
-            "title": { "en": "High in Protein", "hi": "प्रोटीन से भरपूर" },
-            "description": { "en": "Essential for muscle growth and repair, making it a perfect post-workout snack.", "hi": "मांसपेशियों के विकास के लिए आवश्यक।" }
+            "title": { "en": "High in Protein", "hi": "प्रोटीन से भरपूर", "zh": "高蛋白" },
+            "description": { "en": "Essential for muscle growth and repair, making it a perfect post-workout snack.", "hi": "मांसपेशियों के विकास के लिए आवश्यक।", "zh": "有助於肌肉生長與修復，是運動後的理想點心。" }
           }
         },
         {
           "id": "benefit-2",
           "props": {
-            "title": { "en": "Heart Healthy", "hi": "दिल के लिए स्वस्थ" },
-            "description": { "en": "Rich in monounsaturated fats that support cardiovascular health.", "hi": "मोनोअनसैचुरेटेड वसा से भरपूर।" }
+            "title": { "en": "Heart Healthy", "hi": "दिल के लिए स्वस्थ", "zh": "有益心臟健康" },
+            "description": { "en": "Rich in monounsaturated fats that support cardiovascular health.", "hi": "मोनोअनसैचुरेटेड वसा से भरपूर।", "zh": "富含有助於心血管健康的單元不飽和脂肪。" }
           }
         },
         {
           "id": "benefit-3",
           "props": {
-            "title": { "en": "All Natural", "hi": "पूरी तरह से प्राकृतिक" },
-            "description": { "en": "Zero preservatives, zero artificial flavors. Just pure, wholesome peanuts.", "hi": "कोई प्रिजर्वेटिव नहीं, बस शुद्ध मूंगफली।" }
+            "title": { "en": "All Natural", "hi": "पूरी तरह से प्राकृतिक", "zh": "全天然" },
+            "description": { "en": "Zero preservatives, zero artificial flavors. Just pure, wholesome peanuts.", "hi": "कोई प्रिजर्वेटिव नहीं, बस शुद्ध मूंगफली।", "zh": "不含防腐劑、不含人工香料，只有純粹健康的花生。" }
           }
         }
       ]
@@ -58,17 +58,17 @@
       "type": "facts-split",
       "adminTitle": "Nutrition Facts",
       "props": {
-        "title": { "en": "Nutritional Breakdown", "hi": "पोषण संबंधी जानकारी" },
-        "description": { "en": "A quick look at what makes our peanuts the smart choice for snacking.", "hi": "हमारी मूंगफली के पोषण की एक झलक।" },
+        "title": { "en": "Nutritional Breakdown", "hi": "पोषण संबंधी जानकारी", "zh": "營養分析" },
+        "description": { "en": "A quick look at what makes our peanuts the smart choice for snacking.", "hi": "हमारी मूंगफली के पोषण की एक झलक।", "zh": "快速了解為什麼我們的花生是聰明的點心選擇。" },
         "image": "/Image/Peanut.jpg",
-        "fact1_label": { "en": "Calories", "hi": "कैलोरी" },
-        "fact1_value": { "en": "160 kcal", "hi": "160 kcal" },
-        "fact2_label": { "en": "Protein", "hi": "प्रोटीन" },
-        "fact2_value": { "en": "7g", "hi": "7g" },
-        "fact3_label": { "en": "Fiber", "hi": "फाइबर" },
-        "fact3_value": { "en": "2.4g", "hi": "2.4g" },
-        "fact4_label": { "en": "Healthy Fats", "hi": "स्वस्थ वसा" },
-        "fact4_value": { "en": "14g", "hi": "14g" }
+        "fact1_label": { "en": "Calories", "hi": "कैलोरी", "zh": "熱量" },
+        "fact1_value": { "en": "160 kcal", "hi": "160 kcal", "zh": "160 千卡" },
+        "fact2_label": { "en": "Protein", "hi": "प्रोटीन", "zh": "蛋白質" },
+        "fact2_value": { "en": "7g", "hi": "7g", "zh": "7 克" },
+        "fact3_label": { "en": "Fiber", "hi": "फाइबर", "zh": "纖維" },
+        "fact3_value": { "en": "2.4g", "hi": "2.4g", "zh": "2.4 克" },
+        "fact4_label": { "en": "Healthy Fats", "hi": "स्वस्थ वसा", "zh": "健康脂肪" },
+        "fact4_value": { "en": "14g", "hi": "14g", "zh": "14 克" }
       }
     }
   ]

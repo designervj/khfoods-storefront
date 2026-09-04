@@ -21,7 +21,7 @@ export default function BrandSliderSection({ sections, locale, isEditable, creat
   const autoplayDelay = section.props?.autoplayDelay || 3000;
 
   return (
-    <section className="bg-white md:py-20 py-8">
+    <section className="bg-white py-8 md:py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Swiper
           modules={[Autoplay]}
@@ -37,7 +37,7 @@ export default function BrandSliderSection({ sections, locale, isEditable, creat
             640: { slidesPerView: 4 },
             1024: { slidesPerView: 5 },
           }}
-          className="!py-4"
+          className="!py-2 md:!py-4"
         >
           {brands.map((brand) => (
             <SwiperSlide key={brand.id}>
@@ -45,7 +45,7 @@ export default function BrandSliderSection({ sections, locale, isEditable, creat
                 <img
                   src={getLocalizedString(brand.props.image, locale)}
                   alt={getLocalizedString(brand.props.name, locale)}
-                  className="h-24 object-contain"
+                  className="h-14 sm:h-20 md:h-24 object-contain"
                 />
               </div>
             </SwiperSlide>

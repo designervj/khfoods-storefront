@@ -3,8 +3,8 @@
   "slug": "privacy",
   "isPublished": true,
   "seo": {
-    "title": { "en": "Privacy Policy - KH Food", "hi": "गोपनीयता नीति - केएच फूड" },
-    "description": { "en": "KH Food privacy policy.", "hi": "केएच फूड गोपनीयता नीति।" }
+    "title": { "en": "Privacy Policy - KH Food", "hi": "गोपनीयता नीति - केएच फूड", "zh": "隱私政策 - KH Food" },
+    "description": { "en": "KH Food privacy policy.", "hi": "केएच फूड गोपनीयता नीति।", "zh": "KH Food 隱私政策。" }
   },
   "sections": [
     {
@@ -12,8 +12,8 @@
       "type": "text",
       "adminTitle": "Privacy Content",
       "props": {
-        "heading": { "en": "Privacy Policy", "hi": "गोपनीयता नीति" },
-        "content": { "en": "Your privacy is important to us...", "hi": "आपकी गोपनीयता हमारे लिए महत्वपूर्ण है..." }
+        "heading": { "en": "Privacy Policy", "hi": "गोपनीयता नीति", "zh": "隱私政策" },
+        "content": { "en": "Your privacy is important to us...", "hi": "आपकी गोपनीयता हमारे लिए महत्वपूर्ण है...", "zh": "您的隱私對我們很重要..." }
       }
     }
   ]

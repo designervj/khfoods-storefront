@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
-const LOCALES = ["en", "hi"];
+const LOCALES = ["en", "zh"];
 const DEFAULT_LOCALE = "en";
 const LOCAL_HOSTS = new Set(["localhost", "127.0.0.1", "::1"]);
 

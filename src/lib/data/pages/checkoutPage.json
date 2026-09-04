@@ -3,8 +3,8 @@
   "slug": "checkout",
   "isPublished": true,
   "seo": {
-    "title": { "en": "Checkout - KH Food", "hi": "चेकआउट - केएच फूड" },
-    "description": { "en": "Complete your purchase.", "hi": "अपनी खरीदारी पूरी करें।" }
+    "title": { "en": "Checkout - KH Food", "hi": "चेकआउट - केएच फूड", "zh": "結帳 - KH Food" },
+    "description": { "en": "Complete your purchase.", "hi": "अपनी खरीदारी पूरी करें।", "zh": "完成您的購買。" }
   },
   "sections": [
     {
@@ -12,7 +12,7 @@
       "type": "text",
       "adminTitle": "Checkout Header",
       "props": {
-        "heading": { "en": "Checkout", "hi": "चेकआउट" }
+        "heading": { "en": "Checkout", "hi": "चेकआउट", "zh": "結帳" }
       }
     }
   ]

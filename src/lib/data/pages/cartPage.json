@@ -3,8 +3,8 @@
   "slug": "cart",
   "isPublished": true,
   "seo": {
-    "title": { "en": "Cart - KH Food", "hi": "कार्ट - केएच फूड" },
-    "description": { "en": "Review your shopping cart.", "hi": "अपनी खरीदारी टोकरी की समीक्षा करें।" }
+    "title": { "en": "Cart - KH Food", "hi": "कार्ट - केएच फूड", "zh": "購物車 - KH Food" },
+    "description": { "en": "Review your shopping cart.", "hi": "अपनी खरीदारी टोकरी की समीक्षा करें।", "zh": "查看您的購物車。" }
   },
   "sections": [
     {
@@ -12,7 +12,7 @@
       "type": "text",
       "adminTitle": "Cart Header",
       "props": {
-        "heading": { "en": "Your Cart", "hi": "आपकी टोकरी" }
+        "heading": { "en": "Your Cart", "hi": "आपकी टोकरी", "zh": "您的購物車" }
       }
     }
   ]

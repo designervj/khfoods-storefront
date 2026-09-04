@@ -32,7 +32,7 @@ export default function HeroSection({ sections, locale, isEditable, createSaveHa
   const ctaLink = section.props?.ctaLink;
 
   return (
-    <section className="relative w-full h-[100svh] overflow-hidden">
+    <section className="relative w-full h-[78svh] min-h-[520px] sm:h-[86svh] md:h-[100svh] overflow-hidden">
       <video
         className="absolute inset-0 w-full h-full object-cover"
         src={getLocalizedString(videoSrc, locale)}
@@ -77,7 +77,7 @@ export default function HeroSection({ sections, locale, isEditable, createSaveHa
           </motion.h1>
         </div>
       </div>
-      <div className="absolute bottom-[90px] sm:bottom-28 md:bottom-16 w-full px-5 sm:px-10 flex justify-end z-20">
+      <div className="absolute bottom-[72px] sm:bottom-28 md:bottom-16 w-full px-5 sm:px-10 flex justify-end z-20">
         <motion.div
           initial={{ opacity: 0, y: 25 }}
           animate={{ opacity: 1, y: 0 }}

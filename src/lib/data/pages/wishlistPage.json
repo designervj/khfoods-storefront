@@ -3,8 +3,8 @@
   "slug": "wishlist",
   "isPublished": true,
   "seo": {
-    "title": { "en": "Wishlist - KH Food", "hi": "इच्छा सूची - केएच फूड" },
-    "description": { "en": "Your saved items.", "hi": "आपकी सहेजी गई वस्तुएं।" }
+    "title": { "en": "Wishlist - KH Food", "hi": "इच्छा सूची - केएच फूड", "zh": "願望清單 - KH Food" },
+    "description": { "en": "Your saved items.", "hi": "आपकी सहेजी गई वस्तुएं।", "zh": "您儲存的商品。" }
   },
   "sections": [
     {
@@ -12,7 +12,7 @@
       "type": "text",
       "adminTitle": "Wishlist Header",
       "props": {
-        "heading": { "en": "My Wishlist", "hi": "मेरी इच्छा सूची" }
+        "heading": { "en": "My Wishlist", "hi": "मेरी इच्छा सूची", "zh": "我的願望清單" }
       }
     }
   ]

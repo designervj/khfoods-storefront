@@ -1,6 +1,7 @@
 "use client";
 
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { translateStatic } from "@/lib/i18n/locale";
 
 /* ─── Pagination Component ──────────────────────────────── */
 interface PaginationProps {
@@ -9,6 +10,7 @@ interface PaginationProps {
   onPageChange: (page: number) => void;
   itemsPerPage: number;
   onItemsPerPageChange: (items: number) => void;
+  locale?: string;
 }
 
 const Pagination = ({
@@ -17,7 +19,10 @@ const Pagination = ({
   onPageChange,
   itemsPerPage,
   onItemsPerPageChange,
+  locale = "en",
 }: PaginationProps) => {
+  const t = (text: string) => translateStatic(text, locale);
+
   const getPageNumbers = () => {
     const pages = [];
     const maxVisible = 5;
@@ -52,17 +57,17 @@ const Pagination = ({
       {/* Items per page selector */}
       <div className="flex items-center gap-3">
         <span className="text-[11px] font-black uppercase tracking-[1px] text-muted whitespace-nowrap">
-          Show:
+          {t("Show:")}
         </span>
         <select
           value={itemsPerPage}
           onChange={(e) => onItemsPerPageChange(Number(e.target.value))}
           className="h-10 px-4 rounded-xl border border-border bg-surface font-bold text-sm outline-none focus:border-secondary cursor-pointer"
         >
-          <option value={9}>9 per page</option>
-          <option value={12}>12 per page</option>
-          <option value={24}>24 per page</option>
-          <option value={48}>48 per page</option>
+          <option value={9}>9 {t("per page")}</option>
+          <option value={12}>12 {t("per page")}</option>
+          <option value={24}>24 {t("per page")}</option>
+          <option value={48}>48 {t("per page")}</option>
         </select>
       </div>
 
@@ -110,7 +115,7 @@ const Pagination = ({
 
       {/* Page info */}
       <div className="text-[11px] font-black uppercase tracking-[1px] text-muted">
-        Page {currentPage} of {totalPages}
+        {t("Page")} {currentPage} {t("of")} {totalPages}
       </div>
     </div>
   );

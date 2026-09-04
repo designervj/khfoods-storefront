@@ -4,13 +4,14 @@ import { useEffect } from 'react';
 import { useParams } from 'next/navigation';
 import { useAppSelector, useAppDispatch } from '@/redux/store/hooks';
 import { setCurrentPageBySlug } from '@/redux/slices/pages/pagesSlice';
-import { getLocalizedString } from '@/lib/i18n/locale';
+import { getLocalizedString, translateStatic } from '@/lib/i18n/locale';
 import Link from 'next/link';
 import { Heart } from 'lucide-react';
 
 export default function WishlistPage() {
   const params = useParams();
   const locale = (params?.locale as string) || 'en';
+  const t = (text: string) => translateStatic(text, locale);
   const dispatch = useAppDispatch();
 
   const currentPages = useAppSelector((state) => state.pages.currentPages);
@@ -28,14 +29,14 @@ export default function WishlistPage() {
   return (
     <main className="section-padding">
       <div className="container-custom">
-        <h1 className="text-3xl md:text-4xl font-bold mb-8">{currentPages?.sections?.[0]?.props?.heading?.[locale] || 'My Wishlist'}</h1>
+        <h1 className="text-3xl md:text-4xl font-bold mb-8">{getLocalizedString(currentPages?.sections?.[0]?.props?.heading, locale) || t('My Wishlist')}</h1>
 
         {wishlist.length === 0 ? (
           <div className="text-center py-16">
             <Heart size={64} className="mx-auto mb-6 text-[var(--text-muted)]" />
-            <h2 className="text-2xl font-semibold mb-4">Your wishlist is empty</h2>
-            <p className="text-[var(--text-secondary)] mb-8">Save items you love to your wishlist.</p>
-            <Link href={getLocalizedHref('/product/all-product')} className="btn-primary">Explore Products</Link>
+            <h2 className="text-2xl font-semibold mb-4">{t('Your wishlist is empty')}</h2>
+            <p className="text-[var(--text-secondary)] mb-8">{t('Save items you love to your wishlist.')}</p>
+            <Link href={getLocalizedHref('/product/all-product')} className="btn-primary">{t('Explore Products')}</Link>
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">

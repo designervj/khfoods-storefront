@@ -5,6 +5,7 @@ type CategoryType = any;
 import React, { useMemo } from "react";
 import { useParams, usePathname } from "next/navigation";
 import { useAppSelector } from "@/redux/store/hooks";
+import { getLocalizedString, translateStatic } from "@/lib/i18n/locale";
 
 import { defaultSubCategories, defaultPills } from "./pageHeadData";
 import Link from "next/link";
@@ -29,6 +30,9 @@ const PageHead = ({
 
   const category = useParams();
   const id = category.id;
+  const locale = (category?.locale as string) || "en";
+  const t = (text: string) => translateStatic(text, locale);
+  const localizedHref = (path: string) => path === "/" ? (locale === "en" ? "/" : `/${locale}`) : (locale === "en" ? path : `/${locale}${path}`);
 
   const { allCategories, categoryLoading } = useAppSelector(
     (state: any) => state.adminCategories || { allCategories: [], categoryLoading: false },
@@ -73,12 +77,6 @@ const PageHead = ({
     ? { children: tree }
     : tree[0];
 
-  const lang = useMemo(() => {
-    const segments = pathname.split("/").filter(Boolean);
-    if (segments[0] === "hi") return "hi";
-    return "en";
-  }, [pathname]);
-
   const getCurrentSection = useMemo(() => {
     if (!currentPages) return;
     return currentPages.sections?.find(
@@ -91,38 +89,32 @@ const PageHead = ({
 
   // Extract content with fallbacks
   const badge =
-    p.badge?.[lang] ||
-    p.badge?.en ||
-    p.badge ||
-    (currentCategory ? "Category" : "Collection");
+    getLocalizedString(p.badge, locale) ||
+    (currentCategory ? t("Category") : t("Collection"));
   const heading =
-    p.heading?.[lang] ||
-    p.heading?.en ||
-    p.heading ||
-    (currentCategory ? currentCategory.name : "The Full Collection");
+    getLocalizedString(p.heading, locale) ||
+    (currentCategory ? currentCategory.name : t("The Full Collection"));
   const description =
-    p.description?.[lang] ||
-    p.description?.en ||
-    p.description ||
+    getLocalizedString(p.description, locale) ||
     (currentCategory
       ? currentCategory.description
-      : "Explore our entire range of design-led furniture and home essentials. Crafted with purpose, built for life.");
+      : t("Explore our full collection of premium roasted peanuts, packed fresh and made with simple natural ingredients."));
 
   const subCategories = section?.content || defaultSubCategories;
 
   const pills = p.pills || defaultPills(productCount);
 
-  const displayBadge = isShopPage ? "Collection" : badge;
+  const displayBadge = isShopPage ? t("Collection") : badge;
   const displayTitle = isShopPage
-    ? "Shop"
+    ? t("Shop")
     : parent && parent !== "all"
     ? parent.name
-    : "All Products";
+    : t("All Products");
   const displayDescription = isShopPage
-    ? "Explore our entire range of design-led furniture and home essentials. Crafted with purpose, built for life."
+    ? t("Explore our full collection of premium roasted peanuts, packed fresh and made with simple natural ingredients.")
     : parent && parent !== "all"
-    ? parent.description
-    : "Explore our entire range of design-led furniture and home essentials. Crafted with purpose, built for life.";
+    ? parent.description || description
+    : t("Explore our full collection of premium roasted peanuts, packed fresh and made with simple natural ingredients.");
 
   return (
     <section className="pagehead">
@@ -131,7 +123,7 @@ const PageHead = ({
           <small className="text-secondary tracking-[3px] uppercase text-[10px] font-black mb-2 block">
             {displayBadge}
           </small>
-          <h1 className="text-[46px] font-black leading-[1.05] tracking-tight">
+          <h1 className="text-3xl md:text-4xl font-bold leading-tight tracking-tight">
             {displayTitle}
           </h1>
           <p className="text-muted font-bold mt-2.5 max-w-[70ch] leading-relaxed">
@@ -146,17 +138,15 @@ const PageHead = ({
                 const subTitle =
                   typeof sub === "string"
                     ? sub
-                    : sub.props?.label?.[lang] ||
-                      sub.props?.label?.en ||
-                      sub.props?.title?.[lang] ||
-                      sub.props?.title?.en ||
+                    : getLocalizedString(sub.props?.label, locale) ||
+                      getLocalizedString(sub.props?.title, locale) ||
                       sub.name ||
                       "";
                 if (!subTitle) return null;
                 return (
                   <Link
                     key={idx}
-                    href={`/category/${sub.slug}`}
+                    href={localizedHref(`/product/${sub.slug}`)}
                     className="h-10 px-4 rounded-full 
                     border border-border bg-white/65 dark:bg-surface/62 backdrop-blur-md text-[10px] font-black
                      uppercase tracking-[2px] hover:border-secondary hover:bg-secondary/10 transition-all flex items-center justify-center"
@@ -180,7 +170,7 @@ const PageHead = ({
             );
           })} */}
           <div className="pill">
-            {productCount} {productCount === 1 ? "Product" : "Products"}
+            {productCount} {productCount === 1 ? t("Product") : t("Product Count Plural")}
           </div>
         </div>
       </div>

@@ -2,14 +2,12 @@
 
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { usePathname, useParams } from 'next/navigation';
-import { useAppSelector } from '@/redux/store/hooks';
-import { selectPublicNavigation } from '@/redux/slices/blueprint';
-import { selectCartItemCount } from '@/redux/slices/ecommerce/cartSlice';
-import { getLocalizedString } from '@/lib/i18n/locale';
+import { useAppDispatch, useAppSelector } from '@/redux/store/hooks';
+import { selectBlueprint, selectBusinessProfile, selectPublicNavigation } from '@/redux/slices/blueprint';
+import { openCart, selectCartItemCount } from '@/redux/slices/ecommerce/cartSlice';
+import { getLocalizedString, translateStatic } from '@/lib/i18n/locale';
 import headerData from '@/lib/data/pages/headerData.json';
-import CartSidebar from '@/components/shared/CartSidebar';
 
 /* ═══════════════════════════════════════════════════════════════════
    SVG ICONS — pixel-perfect matches from the reference image
@@ -104,23 +102,31 @@ export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const [mobileOpenIndex, setMobileOpenIndex] = useState<number | null>(null);
-  const [isCartSidebarOpen, setIsCartSidebarOpen] = useState(false);
+  const [isLanguageOpen, setIsLanguageOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
   const headerRef = useRef<HTMLElement>(null);
+  const dispatch = useAppDispatch();
 
   const blueprintNav = useAppSelector(selectPublicNavigation);
+  const blueprint = useAppSelector(selectBlueprint);
+  const businessProfile = useAppSelector(selectBusinessProfile);
   const cartCount = useAppSelector(selectCartItemCount);
 
   const navigationItems: any[] = (blueprintNav?.public as any) || (headerData.navigation as any[]);
   const topBar = (headerData as any).topBar;
+  const canonicalBrand = (blueprint as typeof blueprint & {
+    business?: { brand?: { businessDna?: { logoUrl?: string }; logoRef?: string } };
+  })?.business?.brand;
+  const logoSrc = businessProfile?.logo || canonicalBrand?.businessDna?.logoUrl || canonicalBrand?.logoRef || '/Image/khfood_logo.png';
 
   /* Close mega-menu on outside click */
   useEffect(() => {
     const handler = (e: MouseEvent) => {
       if (headerRef.current && !headerRef.current.contains(e.target as Node)) {
         setOpenIndex(null);
+        setIsLanguageOpen(false);
       }
     };
     document.addEventListener('mousedown', handler);
@@ -131,6 +137,7 @@ export default function Header() {
   useEffect(() => {
     const controlNavbar = () => {
       if (typeof window !== 'undefined') {
+        setIsLanguageOpen(false);
         if (window.scrollY > lastScrollY && window.scrollY > 80) {
           setIsVisible(false);
         } else {
@@ -147,20 +154,30 @@ export default function Header() {
   /* Close on route change */
   useEffect(() => {
     setOpenIndex(null);
+    setIsLanguageOpen(false);
     setIsMobileMenuOpen(false);
   }, [pathname]);
 
   const href = (path: string) =>
     path === '/' ? (locale === 'en' ? '/' : `/${locale}`) : (locale === 'en' ? path : `/${locale}${path}`);
+  const pathWithoutLocale = pathname.replace(/^\/(en|zh)(?=\/|$)/, '') || '/';
+
+  const localeHref = (nextLocale: string) => {
+    return nextLocale === 'en' ? pathWithoutLocale : `/${nextLocale}${pathWithoutLocale === '/' ? '' : pathWithoutLocale}`;
+  };
+
+  const currentLocaleLabel = locale === 'zh' ? '繁體中文' : 'English';
+  const t = (text: string) => translateStatic(text, locale);
 
   const isActive = (item: any) =>
-    pathname === item.href || (item.href !== '/' && pathname?.startsWith(item.href));
+    pathWithoutLocale === item.href || (item.href !== '/' && pathWithoutLocale?.startsWith(item.href));
+  const isShopActive = pathWithoutLocale === '/shop';
 
   return (
     <header ref={headerRef} className={`fixed top-0 left-0 right-0 z-50 transition-transform duration-300 ${isVisible ? 'translate-y-0' : '-translate-y-full'}`}>
 
       {/* ── TOP UTILITY BAR ──────────────────────────────────────── */}
-      <div style={{ backgroundColor: '#f5d9a8' }} className="hidden md:block">
+      <div style={{ backgroundColor: '#f5d9a8' }} className="hidden lg:block">
         <div
           className="flex items-center justify-between"
           style={{ maxWidth: 1280, margin: '0 auto', padding: '0 24px', height: 36 }}
@@ -173,7 +190,7 @@ export default function Header() {
           {/* Right utilities */}
           <div style={{ display: 'flex', alignItems: 'center', gap: 18, fontSize: 12, color: '#3d2800', fontWeight: 500 }}>
             {/* Store locator */}
-            <Link href={href('/contact')} style={{ color: 'inherit', textDecoration: 'none' }}
+            <Link href={href('/store-locator')} style={{ color: 'inherit', textDecoration: 'none' }}
               className="hover:opacity-70 transition-opacity">
               {topBar ? getLocalizedString(topBar.storeLocator, locale) : 'Store locator'}
             </Link>
@@ -181,7 +198,7 @@ export default function Header() {
             <span style={{ color: '#c9a06a' }}>|</span>
 
             {/* Wholesale */}
-            <Link href={href('/contact')} style={{ color: 'inherit', textDecoration: 'none' }}
+            <Link href={href('/wholesale')} style={{ color: 'inherit', textDecoration: 'none' }}
               className="hover:opacity-70 transition-opacity">
               {topBar ? getLocalizedString(topBar.wholesale, locale) : 'Wholesale'}
             </Link>
@@ -189,10 +206,28 @@ export default function Header() {
             <span style={{ color: '#c9a06a' }}>|</span>
 
             {/* Language selector */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: 4, cursor: 'pointer' }}
-              className="hover:opacity-70 transition-opacity">
-              <LangIcon />
-              <span style={{ fontWeight: 600, fontSize: 11 }}>{locale === 'hi' ? 'HI' : 'EN'}</span>
+            <div className="relative">
+              <button
+                type="button"
+                onClick={() => setIsLanguageOpen((open) => !open)}
+                style={{ display: 'flex', alignItems: 'center', gap: 5, cursor: 'pointer', color: 'inherit', background: 'none', border: 0, padding: 0 }}
+                className="hover:opacity-70 transition-opacity"
+                aria-expanded={isLanguageOpen}
+              >
+                <LangIcon />
+                <span style={{ fontWeight: 600, fontSize: 11 }}>{currentLocaleLabel}</span>
+                <ChevDown open={isLanguageOpen} />
+              </button>
+              {isLanguageOpen && (
+                <div className="absolute right-0 top-[calc(100%+10px)] z-[80] w-36 overflow-hidden rounded-none bg-[#f5d9a8] py-3 shadow-xl ring-1 ring-[#c9a06a]/30">
+                  <Link href={localeHref('en')} onClick={() => setIsLanguageOpen(false)} className="block px-5 py-2.5 text-sm font-semibold text-[#3d2800] transition-colors hover:bg-[#eaba88]/45">
+                    English
+                  </Link>
+                  <Link href={localeHref('zh')} onClick={() => setIsLanguageOpen(false)} className="block px-5 py-2.5 text-sm font-semibold text-[#3d2800] transition-colors hover:bg-[#eaba88]/45">
+                    繁體中文
+                  </Link>
+                </div>
+              )}
             </div>
 
             <span style={{ color: '#c9a06a' }}>|</span>
@@ -226,7 +261,7 @@ export default function Header() {
           style={{ maxWidth: 1280, margin: '0 auto', padding: '0 24px', height: 68, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}
         >
           {/* MOBILE HAMBURGER (LEFT) */}
-          <div className="flex md:hidden items-center z-10">
+          <div className="flex lg:hidden items-center z-10">
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#fff', padding: 6 }}
@@ -240,20 +275,19 @@ export default function Header() {
           {/* LOGO (CENTER ON MOBILE, LEFT ON DESKTOP) */}
           <Link 
             href={href('/')} 
-            className="flex items-center flex-shrink-0 absolute left-1/2 -translate-x-1/2 md:static md:translate-x-0"
+            className="flex items-center flex-shrink-0 absolute left-1/2 -translate-x-1/2 lg:static lg:translate-x-0"
           >
-            <Image
-              src="/Image/khfood_logo.png"
+            <img
+              src={logoSrc}
               alt="KH Foods Logo"
               width={148}
               height={46}
-              priority
               style={{ objectFit: 'contain', height: 46, width: 'auto' }}
             />
           </Link>
 
           {/* DESKTOP NAV */}
-          <nav className="hidden md:flex items-center gap-0">
+          <nav className="hidden lg:flex items-center gap-0">
             {navigationItems.map((item: any, index: number) => {
               const hasMega = item.megaMenu && item.megaMenu.length > 0;
               const active = isActive(item);
@@ -292,16 +326,16 @@ export default function Header() {
           {/* SHOP + Cart */}
           <div className="flex items-center gap-4 md:gap-8 z-10">
             <Link
-              href={href('/product/all-product')}
-              className="hidden md:flex items-center gap-2 hover:!text-[#D4A820] transition-colors"
-              style={{ color: '#ffffff' }}
+              href={href('/shop')}
+              className="hidden lg:flex items-center gap-2 hover:!text-[#D4A820] transition-colors"
+              style={{ color: isShopActive ? '#D4A820' : '#ffffff' }}
             >
-              <span style={{ fontSize: 13, fontWeight: 700, letterSpacing: '0.16em', color: 'inherit' }}>SHOP</span>
+              <span style={{ fontSize: 13, fontWeight: 700, letterSpacing: '0.16em', color: 'inherit' }}>{t('SHOP')}</span>
             </Link>
 
             {/* We can add a Search icon here in the future if needed to fully match the screenshot */}
             <button
-              onClick={() => setIsCartSidebarOpen(true)}
+              onClick={() => dispatch(openCart())}
               style={{ display: 'flex', alignItems: 'center', background: 'none', border: 'none', cursor: 'pointer', color: '#ffffff' }}
               className="hover:!text-[#D4A820] transition-colors"
             >
@@ -391,7 +425,7 @@ export default function Header() {
 
       {/* ── MOBILE MENU ──────────────────────────────────────────── */}
       {isMobileMenuOpen && (
-        <div style={{ backgroundColor: '#1c1c1a', borderTop: '1px solid rgba(255,255,255,0.08)', maxHeight: 'calc(100vh - 68px)', overflowY: 'auto' }} className="md:hidden">
+        <div style={{ backgroundColor: '#1c1c1a', borderTop: '1px solid rgba(255,255,255,0.08)', maxHeight: 'calc(100vh - 68px)', overflowY: 'auto' }} className="lg:hidden">
           <div style={{ maxWidth: 1280, margin: '0 auto', padding: '12px 24px 20px' }}>
             {navigationItems.map((item: any, index: number) => {
               const hasMega = item.megaMenu && item.megaMenu.length > 0;
@@ -455,12 +489,11 @@ export default function Header() {
               }}
             >
               <BagIcon />
-              SHOP ({cartCount})
+              {t('SHOP')} ({cartCount})
             </Link>
           </div>
         </div>
       )}
-      <CartSidebar isOpen={isCartSidebarOpen} onClose={() => setIsCartSidebarOpen(false)} />
     </header>
   );
 }

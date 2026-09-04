@@ -14,10 +14,12 @@ import FeaturedProjectsSection from '@/components/sections/FeaturedProjectsSecti
 import TestimonialsSection from '@/components/sections/TestimonialsSection';
 import BlogSection from '@/components/sections/BlogSection';
 import BrandSliderSection from '@/components/sections/BrandSliderSection';
+import { translateStatic } from '@/lib/i18n/locale';
 
 export default function HomePage() {
   const params = useParams();
   const locale = (params?.locale as string) || 'en';
+  const t = (text: string) => translateStatic(text, locale);
   const dispatch = useAppDispatch();
 
   const currentPages = useAppSelector((state) => state.pages.currentPages);
@@ -32,7 +34,7 @@ export default function HomePage() {
   }, [dispatch, currentPages, locale]);
 
   if (!currentPages || !currentPages.sections) {
-    return <div className="min-h-screen flex items-center justify-center"><div className="animate-pulse text-[var(--text-muted)]">Loading...</div></div>;
+    return <div className="min-h-screen flex items-center justify-center"><div className="animate-pulse text-[var(--text-muted)]">{t('Loading...')}</div></div>;
   }
 
   const sections = currentPages.sections;

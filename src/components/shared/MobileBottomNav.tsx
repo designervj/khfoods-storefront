@@ -5,6 +5,7 @@ import { usePathname, useParams } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import { useAppSelector } from '@/redux/store/hooks';
 import { selectCartItemCount } from '@/redux/slices/ecommerce/cartSlice';
+import { translateStatic } from '@/lib/i18n/locale';
 
 // Icons based on the user's screenshot
 const HomeIcon = () => (
@@ -45,10 +46,9 @@ export default function MobileBottomNav() {
   const pathname = usePathname();
   const params = useParams();
   const locale = (params?.locale as string) || 'en';
+  const t = (text: string) => translateStatic(text, locale);
   
   const cartCount = useAppSelector(selectCartItemCount);
-
-  if (pathname.includes('/login') || pathname.includes('/register')) return null;
 
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
@@ -89,8 +89,10 @@ export default function MobileBottomNav() {
     { label: 'Cart', icon: BagIcon, path: '/cart' },
   ];
 
+  if (pathname.includes('/login') || pathname.includes('/register')) return null;
+
   return (
-    <div className={`md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 z-[100] shadow-[0_-2px_10px_rgba(0,0,0,0.05)] pb-[env(safe-area-inset-bottom)] transition-transform duration-300 ${isVisible ? 'translate-y-0' : 'translate-y-[200%]'}`}>
+    <div className={`lg:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 z-[100] shadow-[0_-2px_10px_rgba(0,0,0,0.05)] pb-[env(safe-area-inset-bottom)] transition-transform duration-300 ${isVisible ? 'translate-y-0' : 'translate-y-[200%]'}`}>
       <div className="flex items-center justify-between px-2 h-16">
         {navItems.map((item, index) => {
           const isActive = pathname === href(item.path);
@@ -113,7 +115,7 @@ export default function MobileBottomNav() {
                 )}
               </div>
               <span className="text-[10px] font-medium tracking-wide">
-                {item.label}
+                {t(item.label)}
               </span>
             </Link>
           );

@@ -17,10 +17,12 @@ export default function BlogSection({ sections, locale, isEditable, createSaveHa
 
   const featured = section.props?.featured;
   const articles = section.content || [];
+  const ctaLink = getLocalizedString(section.props?.ctaLink, locale) || '#';
+  const localizedCtaLink = ctaLink.startsWith('/') && locale !== 'en' ? `/${locale}${ctaLink}` : ctaLink;
 
   return (
-    <section className="py-12 sm:py-16 lg:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-10 sm:mb-14">
+    <section className="py-14 md:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-5 mb-10 md:mb-12">
         <div>
           <EditableText
             value={getLocalizedString(section.props?.subtitle, locale)}
@@ -35,7 +37,7 @@ export default function BlogSection({ sections, locale, isEditable, createSaveHa
             onSave={createSaveHandler(section.id, 'props.title')}
             isEditable={isEditable}
             tag="h2"
-            className="text-3xl sm:text-3xl lg:text-3xl font-bold uppercase tracking-tight text-black"
+            className="text-2xl sm:text-3xl lg:text-3xl font-bold uppercase tracking-tight text-black"
             placeholder="Title..."
             multiline
             rows={2}
@@ -43,7 +45,7 @@ export default function BlogSection({ sections, locale, isEditable, createSaveHa
         </div>
         {section.props?.ctaButton && (
           <Link
-            href={locale === 'en' ? section.props?.ctaLink || '#' : `/${locale}${section.props?.ctaLink || ''}`}
+            href={localizedCtaLink}
             className="mt-4 sm:mt-0 inline-flex items-center gap-2 text-[13px] font-medium uppercase tracking-widest text-gray-600 hover:text-black transition-colors"
           >
             {getLocalizedString(section.props?.ctaButton, locale)}
@@ -54,14 +56,14 @@ export default function BlogSection({ sections, locale, isEditable, createSaveHa
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
         {featured && (
-          <div className="relative rounded-2xl overflow-hidden group">
+          <div className="relative h-[360px] sm:h-[420px] lg:h-[480px] rounded-2xl overflow-hidden group">
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent z-10" />
             <img
               src={getLocalizedString(featured.image, locale)}
               alt={getLocalizedString(featured.title, locale)}
-              className="h-[260px] sm:h-[360px] md:h-[420px] lg:h-[480px] w-full object-cover"
+              className="absolute inset-0 block h-full w-full object-cover"
             />
-            <div className="absolute bottom-0 left-0 right-0 z-20 p-6 sm:p-8">
+            <div className="absolute bottom-0 left-0 right-0 z-20 px-6 pt-6 pb-4 sm:px-8 sm:pt-8 sm:pb-5">
               <div className="mb-4">
                 <EditableText
                   value={getLocalizedString(featured.category, locale)}
@@ -77,7 +79,7 @@ export default function BlogSection({ sections, locale, isEditable, createSaveHa
                 onSave={createSaveHandler(section.id, 'props.featured.title')}
                 isEditable={isEditable}
                 tag="h3"
-                className="text-2xl sm:text-[28px] font-bold text-white mb-2 leading-tight"
+                className="text-xl sm:text-2xl font-bold text-white mb-2 leading-tight"
                 placeholder="Featured title..."
               />
               <EditableText
@@ -101,7 +103,7 @@ export default function BlogSection({ sections, locale, isEditable, createSaveHa
                 <img
                   src={getLocalizedString(article.props.image, locale)}
                   alt={getLocalizedString(article.props.title, locale)}
-                  className="w-full h-[180px] sm:h-[150px] object-cover rounded-xl"
+                  className="block w-full h-[180px] sm:h-[150px] object-cover rounded-xl"
                 />
               </div>
               <div className="flex-1 min-w-0">
@@ -118,7 +120,7 @@ export default function BlogSection({ sections, locale, isEditable, createSaveHa
                   onSave={createSaveHandler(section.id, `content.${idx}.props.title`)}
                   isEditable={isEditable}
                   tag="h4"
-                  className="font-bold text-lg md:text-xl leading-tight mb-2 text-black"
+                  className="font-bold text-base md:text-lg leading-tight mb-2 text-black"
                   placeholder="Article title..."
                 />
                 <EditableText

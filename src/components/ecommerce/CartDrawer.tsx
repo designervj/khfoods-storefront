@@ -16,10 +16,15 @@ import {
   selectIsCartOpen,
 } from "@/redux/slices/ecommerce/cartSlice";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
+import { translateStatic } from "@/lib/i18n/locale";
 
 export default function CartDrawer() {
   const router = useRouter();
+  const params = useParams();
+  const locale = (params?.locale as string) || "en";
+  const t = (text: string) => translateStatic(text, locale);
+  const localizedHref = (path: string) => locale === "en" ? path : `/${locale}${path}`;
   const dispatch = useAppDispatch();
   const isOpen = useSelector(selectIsCartOpen);
   const items = useSelector(selectCartItems);
@@ -63,12 +68,12 @@ export default function CartDrawer() {
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ type: "spring", damping: 25, stiffness: 200 }}
-            className="fixed inset-y-0 right-0 w-full max-w-[400px] bg-white z-[2000] flex flex-col shadow-2xl border-l border-gray-200"
+            className="fixed inset-y-0 left-0 right-0 sm:left-auto w-full sm:max-w-[420px] bg-white z-[2000] flex flex-col shadow-2xl sm:border-l border-gray-200 overflow-hidden"
           >
             {/* Header */}
-            <div className="flex items-center justify-between p-6 border-b border-gray-200">
-              <h2 className="text-xl font-bold text-gray-900">
-                Shopping Cart ({cartCount})
+            <div className="shrink-0 flex items-center justify-between p-4 sm:p-6 border-b border-gray-200">
+              <h2 className="text-lg font-bold text-gray-900">
+                {t('Shopping Cart')} ({cartCount})
               </h2>
               <button
                 onClick={handleClose}
@@ -79,16 +84,16 @@ export default function CartDrawer() {
             </div>
 
             {/* Cart Items */}
-            <div className="flex-1 overflow-y-auto p-6 space-y-6">
+            <div className="min-h-0 flex-1 overflow-y-auto p-4 sm:p-6 space-y-5 sm:space-y-6 overscroll-contain">
               {items.length === 0 ? (
                 <div className="text-center py-12 text-gray-500 font-bold">
-                  Your cart is empty.
+                  {t('Your cart is empty.')}
                 </div>
               ) : (
                 items.map((item) => {
                   return (
-                    <div key={item.id} className="flex gap-4">
-                      <div className="w-24 h-24 rounded-2xl border border-gray-200 overflow-hidden bg-gray-50 shrink-0">
+                    <div key={item.id} className="flex gap-3 sm:gap-4">
+                      <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl border border-gray-200 overflow-hidden bg-gray-50 shrink-0">
                         <img
                           src={item.image || "/images/placeholder.jpg"}
                           alt={item.name}
@@ -102,7 +107,7 @@ export default function CartDrawer() {
                           </h3>
                           {item.variantName && (
                             <p className="text-xs text-gray-500 mt-1">
-                              Variant: {item.variantName}
+                              {t('Variant:')} {item.variantName}
                             </p>
                           )}
                           <div className="flex items-center gap-2 mt-2">
@@ -132,7 +137,7 @@ export default function CartDrawer() {
                           </div>
                           
                           <div className="flex items-center gap-2 text-gray-500">
-                            <Link href={`/product/${item.productId}`} onClick={handleClose} className="p-1 hover:text-gray-900 transition-colors">
+                            <Link href={localizedHref(`/product/${item.productId}`)} onClick={handleClose} className="p-1 hover:text-gray-900 transition-colors">
                               <Edit2 size={14} />
                             </Link>
                             <button
@@ -154,28 +159,28 @@ export default function CartDrawer() {
             <div className="grid grid-cols-2 border-y border-gray-200 divide-x divide-gray-200">
               <button
                 onClick={() => setActivePanel("note")}
-                className="flex items-center justify-center gap-2 py-4 text-sm font-bold text-gray-500 hover:text-gray-900 transition-colors hover:bg-gray-50"
+                className="flex items-center justify-center gap-2 py-3.5 sm:py-4 text-sm font-bold text-gray-500 hover:text-gray-900 transition-colors hover:bg-gray-50"
               >
-                <Calendar size={16} /> Add Note
+                <Calendar size={16} /> {t('Add Note')}
               </button>
               <button
                 onClick={() => setActivePanel("estimate")}
-                className="flex items-center justify-center gap-2 py-4 text-sm font-bold text-gray-500 hover:text-gray-900 transition-colors hover:bg-gray-50"
+                className="flex items-center justify-center gap-2 py-3.5 sm:py-4 text-sm font-bold text-gray-500 hover:text-gray-900 transition-colors hover:bg-gray-50"
               >
-                <Package size={16} /> Estimate
+                <Package size={16} /> {t('Estimate')}
               </button>
             </div>
 
             {/* Footer */}
-            <div className="p-6 bg-gray-50">
-              <div className="flex justify-between items-center mb-6">
-                <span className="text-lg font-bold text-gray-900">Subtotal</span>
+            <div className="shrink-0 p-4 sm:p-6 pb-[calc(1rem+env(safe-area-inset-bottom))] sm:pb-6 bg-gray-50">
+              <div className="flex justify-between items-center mb-5 sm:mb-6">
+                <span className="text-lg font-bold text-gray-900">{t('Subtotal')}</span>
                 <span className="text-lg font-black text-gray-900">
                   Rs. {cartTotal.toLocaleString("en-IN")}
                 </span>
               </div>
 
-              <label className="flex items-center gap-3 mb-6 cursor-pointer group">
+              <label className="flex items-center gap-3 mb-5 sm:mb-6 cursor-pointer group">
                 <div className={`w-5 h-5 rounded border flex items-center justify-center transition-colors ${agreedToTerms ? 'bg-black border-black' : 'border-gray-300 group-hover:border-black'}`}>
                   {agreedToTerms && <X size={14} className="text-white" />}
                 </div>
@@ -186,7 +191,7 @@ export default function CartDrawer() {
                   onChange={(e) => setAgreedToTerms(e.target.checked)}
                 />
                 <span className="text-sm font-medium text-gray-500 group-hover:text-gray-900 transition-colors">
-                  I agree with <strong className="text-gray-900">Terms & Conditions</strong>
+                  {t('I agree with')} <strong className="text-gray-900">{t('Terms & Conditions')}</strong>
                 </span>
               </label>
 
@@ -196,12 +201,12 @@ export default function CartDrawer() {
                   onClick={handleClose}
                   className="flex items-center justify-center w-full py-3 rounded-xl border border-black text-black font-semibold hover:bg-black/5 transition-colors"
                 >
-                  View Cart
+                  {t('View Cart')}
                 </Link>
                 <button
                   onClick={() => {
                     handleClose();
-                    router.push("/checkout");
+                    router.push(locale === "en" ? "/checkout" : `/${locale}/checkout`);
                   }}
                   disabled={!agreedToTerms || items.length === 0}
                   className={`flex items-center justify-center w-full py-3 rounded-xl font-semibold transition-colors ${
@@ -210,7 +215,7 @@ export default function CartDrawer() {
                       : "bg-[#111111] text-white hover:bg-black hover:-translate-y-0.5 shadow-lg"
                   }`}
                 >
-                  Checkout
+                  {t('Checkout')}
                 </button>
               </div>
             </div>
@@ -242,10 +247,10 @@ export default function CartDrawer() {
                     <div className="p-6 overflow-y-auto">
                       <div className="flex items-center gap-2 mb-6">
                         <Calendar size={20} />
-                        <h3 className="text-lg font-bold">Add Order Note</h3>
+                        <h3 className="text-lg font-bold">{t('Add Order Note')}</h3>
                       </div>
                       <textarea
-                        placeholder="How can we help you?"
+                        placeholder={t('How can we help you?')}
                         rows={6}
                         className="w-full p-4 rounded-xl border border-gray-200 bg-white resize-none focus:outline-none focus:border-black mb-6"
                       />
@@ -254,13 +259,13 @@ export default function CartDrawer() {
                           onClick={() => setActivePanel(null)}
                           className="w-full py-4 rounded-xl bg-black text-white font-black hover:bg-black/90 transition-colors"
                         >
-                          Save
+                          {t('Save')}
                         </button>
                         <button
                           onClick={() => setActivePanel(null)}
                           className="w-full py-4 rounded-xl border border-black text-black font-black hover:bg-black/5 transition-colors bg-white"
                         >
-                          Cancel
+                          {t('Cancel')}
                         </button>
                       </div>
                     </div>
@@ -270,30 +275,30 @@ export default function CartDrawer() {
                     <div className="p-6 overflow-y-auto">
                       <div className="flex items-center gap-2 mb-6">
                         <Package size={20} />
-                        <h3 className="text-lg font-bold">Estimate Shipping</h3>
+                        <h3 className="text-lg font-bold">{t('Estimate Shipping')}</h3>
                       </div>
                       <div className="space-y-4 mb-6">
                         <div>
-                          <label className="block text-sm text-gray-500 mb-2">Country/region</label>
+                          <label className="block text-sm text-gray-500 mb-2">{t('Country/region')}</label>
                           <select className="w-full p-4 rounded-xl border border-gray-200 bg-white focus:outline-none focus:border-black appearance-none">
-                            <option>United States</option>
-                            <option>India</option>
-                            <option>United Kingdom</option>
+                            <option>{t('United States')}</option>
+                            <option>{t('India')}</option>
+                            <option>{t('United Kingdom')}</option>
                           </select>
                         </div>
                         <div>
-                          <label className="block text-sm text-gray-500 mb-2">Province</label>
+                          <label className="block text-sm text-gray-500 mb-2">{t('Province')}</label>
                           <select className="w-full p-4 rounded-xl border border-gray-200 bg-white focus:outline-none focus:border-black appearance-none">
-                            <option>Alabama</option>
-                            <option>California</option>
-                            <option>New York</option>
+                            <option>{t('Alabama')}</option>
+                            <option>{t('California')}</option>
+                            <option>{t('New York')}</option>
                           </select>
                         </div>
                         <div>
-                          <label className="block text-sm text-gray-500 mb-2">Postal/ZIP code</label>
+                          <label className="block text-sm text-gray-500 mb-2">{t('Postal/ZIP code')}</label>
                           <input
                             type="text"
-                            placeholder="Postal/ZIP code"
+                            placeholder={t('Postal/ZIP code')}
                             className="w-full p-4 rounded-xl border border-gray-200 bg-white focus:outline-none focus:border-black"
                           />
                         </div>
@@ -303,13 +308,13 @@ export default function CartDrawer() {
                           onClick={() => setActivePanel(null)}
                           className="w-full py-4 rounded-xl bg-black text-white font-black hover:bg-black/90 transition-colors"
                         >
-                          Estimate Shipping
+                          {t('Estimate Shipping')}
                         </button>
                         <button
                           onClick={() => setActivePanel(null)}
                           className="w-full py-4 rounded-xl border border-black text-black font-black hover:bg-black/5 transition-colors bg-white"
                         >
-                          Cancel
+                          {t('Cancel')}
                         </button>
                       </div>
                     </div>
